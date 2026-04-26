@@ -5,8 +5,9 @@
   ],
   "routes": [
     { "src": "/", "dest": "/lock.html" },
-    { "src": "/index.html", "dest": "/lock.html" },
+    { "src": "/index", "dest": "/lock.html" },
     { "src": "/lock.html", "dest": "/lock.html" },
+    { "src": "/index.html", "dest": "/index.html" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
