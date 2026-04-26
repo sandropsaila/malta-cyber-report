@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#0a0c10;">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Secure Access</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background-color: #0a0c10 !important;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .lock-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 40px 20px;
+      width: 100%;
+      max-width: 340px;
+    }
+
+    .lock-icon { width: 56px; height: 56px; opacity: 0.4; }
+
+    .pin-dots { display: flex; gap: 18px; align-items: center; height: 20px; }
+    .dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 2px solid #3a4255; background-color: transparent;
+      transition: background-color 0.15s, border-color 0.15s, transform 0.15s;
+    }
+    .dot.filled  { background-color: #e63946; border-color: #e63946; transform: scale(1.1); }
+    .dot.error   { background-color: #e63946; border-color: #e63946; animation: shake 0.4s ease; }
+    .dot.success { background-color: #2ec4b6; border-color: #2ec4b6; }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .key {
+      background-color: #111318;
+      border: 1px solid #1f2530;
+      border-radius: 12px;
+      color: #d0d6e2;
+      font-size: 22px;
+      font-weight: 300;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color 0.1s, transform 0.1s, border-color 0.1s;
+      position: relative;
+      overflow: hidden;
+    }
+    .key:active, .key.pressed { background-color: #1c2030; border-color: #2a3345; transform: scale(0.95); }
+    .key.zero { grid-column: 2; }
+    .key.del  { grid-column: 3; background-color: transparent; border-color: transparent; }
+    .key.del:active { background-color: #111318; border-color: #1f2530; }
+
+    .ripple {
+      position: absolute; border-radius: 50%;
+      background: rgba(230,57,70,0.15);
+      transform: scale(0);
+      animation: ripple 0.4s linear;
+      pointer-events: none;
+    }
+    @keyframes ripple { to { transform: scale(4); opacity: 0; } }
+
+    .status {
+      height: 16px; font-size: 12px; letter-spacing: 2px;
+      text-transform: uppercase; color: #e63946;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .status.show { opacity: 1; }
+  </style>
+</head>
+<body style="background-color:#0a0c10 !important;">
+<div class="lock-wrap">
+
+  <svg class="lock-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="26" width="36" height="24" rx="4" stroke="#d0d6e2" stroke-width="2.5"/>
+    <path d="M18 26V18a10 10 0 0 1 20 0v8" stroke="#d0d6e2" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="28" cy="37" r="3" fill="#d0d6e2"/>
+    <line x1="28" y1="40" x2="28" y2="44" stroke="#d0d6e2" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+
+  <div class="pin-dots" id="pinDots">
+    <div class="dot" id="d0"></div>
+    <div class="dot" id="d1"></div>
+    <div class="dot" id="d2"></div>
+    <div class="dot" id="d3"></div>
+  </div>
+
+  <div class="status" id="status">&#x2715;</div>
+
+  <div class="keypad" id="keypad">
+    <div class="key" data-n="1">1</div>
+    <div class="key" data-n="2">2</div>
+    <div class="key" data-n="3">3</div>
+    <div class="key" data-n="4">4</div>
+    <div class="key" data-n="5">5</div>
+    <div class="key" data-n="6">6</div>
+    <div class="key" data-n="7">7</div>
+    <div class="key" data-n="8">8</div>
+    <div class="key" data-n="9">9</div>
+    <div class="key zero" data-n="0">0</div>
+    <div class="key del" id="delKey">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M21 5H9L2 12l7 7h12V5z" stroke="#d0d6e2" stroke-width="2" stroke-linejoin="round"/>
+        <line x1="14" y1="9" x2="18" y2="15" stroke="#d0d6e2" stroke-width="2" stroke-linecap="round"/>
+        <line x1="18" y1="9" x2="14" y2="15" stroke="#d0d6e2" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+</div>
+<script>
+  // Passcode stored as SHA-256 hash only — "1122"
+  const HASH = "e9c549a4e1c3cded6cae5aec7c497c80c1bc1a09c35ea5dbd89a3bf04ce38d32";
+
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,"0")).join("");
+  }
+
+  let pin = "", locked = false;
+  const dots = [0,1,2,3].map(i => document.getElementById("d"+i));
+  const status = document.getElementById("status");
+
+  function updateDots() {
+    dots.forEach((d,i) => {
+      d.classList.remove("error","success");
+      i < pin.length ? d.classList.add("filled") : d.classList.remove("filled");
+    });
+  }
+
+  function addRipple(el, e) {
+    const r = document.createElement("span");
+    r.classList.add("ripple");
+    const rect = el.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    r.style.cssText = `width:${size}px;height:${size}px;left:${(e.clientX||rect.left+rect.width/2)-rect.left-size/2}px;top:${(e.clientY||rect.top+rect.height/2)-rect.top-size/2}px;`;
+    el.appendChild(r);
+    setTimeout(() => r.remove(), 500);
+  }
+
+  async function checkPin() {
+    const h = await sha256(pin);
+    if (h === HASH) {
+      dots.forEach(d => { d.classList.remove("filled"); d.classList.add("success"); });
+      setTimeout(() => { window.location.href = "index.html"; }, 400);
+    } else {
+      dots.forEach(d => { d.classList.remove("filled"); d.classList.add("error"); });
+      status.classList.add("show");
+      setTimeout(() => {
+        dots.forEach(d => d.classList.remove("error","filled","success"));
+        status.classList.remove("show");
+        pin = ""; locked = false;
+      }, 800);
+    }
+  }
+
+  document.getElementById("keypad").addEventListener("click", async (e) => {
+    if (locked) return;
+    const key = e.target.closest(".key");
+    if (!key) return;
+    addRipple(key, e);
+    key.classList.add("pressed");
+    setTimeout(() => key.classList.remove("pressed"), 150);
+    if (key.id === "delKey") { pin = pin.slice(0,-1); status.classList.remove("show"); updateDots(); return; }
+    const n = key.dataset.n;
+    if (n === undefined || pin.length >= 4) return;
+    pin += n; updateDots();
+    if (pin.length === 4) { locked = true; setTimeout(checkPin, 100); }
+  });
+</script>
+</body>
+</html>
