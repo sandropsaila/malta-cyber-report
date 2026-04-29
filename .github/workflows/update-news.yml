@@ -1,0 +1,38 @@
+name: Update Malta Cyber News
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # Daily at 6am UTC
+  workflow_dispatch:        # Allow manual trigger from GitHub UI
+
+jobs:
+  fetch-and-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch latest Malta cyber news
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node api/fetch-news.js
+
+      - name: Commit news.json if changed
+        run: |
+          git config user.name  "Malta Cyber Bot"
+          git config user.email "bot@malta-cyber-report"
+          git add news.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🔄 Auto-update: Malta cyber news $(date +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi

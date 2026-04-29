@@ -175,10 +175,10 @@
     <div class="header-meta">
       <span><span class="dot"></span>Updated: April 2026</span>
       <span><span class="dot"></span>MaltaToday · The Shift News · Independent · Lovin Malta · Newsbook · Times of Malta · iGaming Capital · IDPC · MSS</span>
-      <span id="lastFetch"><span class="dot"></span>Live feed loading...</span>
+      <span id="lastFetch"><span class="dot"></span>Loading news feed...</span>
     </div>
     <div style="margin-top:16px;">
-      <span class="live-badge"><span class="live-dot"></span>Live — refreshed on every load</span>
+      <span class="live-badge"><span class="live-dot"></span>Auto-updated daily via GitHub Actions</span>
     </div>
   </header>
 </div>
@@ -521,85 +521,36 @@
 
 <script>
 // ═══════════════════════════════════════════════════════
-// LIVE NEWS FEED — Claude AI searches Maltese portals on every load
+// NEWS FEED — reads from news.json (updated daily by GitHub Action)
 // ═══════════════════════════════════════════════════════
-const MALTESE_SOURCES = [
-  "maltatoday.com.mt",
-  "timesofmalta.com",
-  "independent.com.mt",
-  "theshiftnews.com",
-  "lovinmalta.com",
-  "newsbook.com.mt",
-  "maltadaily.mt",
-  "tvm.com.mt"
-];
-
-const SYSTEM_PROMPT = `You are a cybersecurity intelligence analyst specialising in Malta. 
-Search for the latest cybersecurity incidents, data breaches, hacking events, ransomware attacks, phishing campaigns, and information security issues in Malta.
-Focus on news from: ${MALTESE_SOURCES.join(", ")}, as well as iGaming security news affecting Malta-based companies.
-
-Return a JSON array of up to 8 recent news items. Each item must have:
-- title: string (headline)
-- source: string (publication name)
-- date: string (e.g. "April 2026")
-- url: string (full article URL if known, else "#")
-- summary: string (2-3 sentence summary of the incident)
-- severity: "critical" | "high" | "medium" | "low"
-- sector: string (e.g. "iGaming", "Government", "Healthcare", "Financial", "Telecoms")
-
-Today is ${new Date().toLocaleDateString('en-GB', {month:'long', year:'numeric'})}.
-Only include genuine cybersecurity incidents from the past 12 months where possible, falling back to significant historical ones.
-Return ONLY valid JSON array, no markdown, no preamble.`;
-
 async function fetchLiveNews() {
-  const grid = document.getElementById("newsGrid");
-  const status = document.getElementById("liveStatus");
+  const grid    = document.getElementById("newsGrid");
+  const status  = document.getElementById("liveStatus");
   const countEl = document.getElementById("liveCount");
   const lastFetch = document.getElementById("lastFetch");
 
   try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        tools: [{ type: "web_search_20250305", name: "web_search" }],
-        system: SYSTEM_PROMPT,
-        messages: [{
-          role: "user",
-          content: `Search Maltese news portals and iGaming security sources for the latest cybersecurity incidents, data breaches, and information security issues in Malta. Include incidents from: ${MALTESE_SOURCES.join(", ")}. Return results as a JSON array.`
-        }]
-      })
-    });
-
+    const res  = await fetch("news.json?v=" + Date.now());
+    if (!res.ok) throw new Error("news.json not found");
     const data = await res.json();
-
-    // Extract text from response (may include tool_use blocks)
-    let raw = "";
-    if (data.content) {
-      for (const block of data.content) {
-        if (block.type === "text") raw += block.text;
-      }
-    }
-
-    // Parse JSON
-    const jsonMatch = raw.match(/\[[\s\S]*\]/);
-    if (!jsonMatch) throw new Error("No JSON array found in response");
-    const items = JSON.parse(jsonMatch[0]);
+    const items = data.items || [];
 
     status.style.display = "none";
-    countEl.textContent = `${items.length} articles · Live`;
-    lastFetch.innerHTML = `<span class="dot"></span>Live fetch: ${new Date().toLocaleTimeString('en-GB', {hour:'2-digit',minute:'2-digit'})}`;
+    countEl.textContent  = items.length + " articles · Auto-updated daily";
 
-    const severityBorder = { critical: "#e63946", high: "#ff9f1c", medium: "#2ec4b6", low: "#4a5568" };
-    const severityBadge = { critical: "b-crit", high: "b-high", medium: "b-med", low: "b-neutral" };
-    const severityLabel = { critical: "Critical", high: "High", medium: "Medium", low: "Low" };
+    const fetched = data.fetched ? new Date(data.fetched) : null;
+    if (fetched) {
+      lastFetch.innerHTML = `<span class="dot"></span>Last updated: ${fetched.toLocaleDateString("en-GB", {day:"numeric",month:"short",year:"numeric"})} at ${fetched.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})} UTC`;
+    }
+
+    const severityBorder = { critical:"#e63946", high:"#ff9f1c", medium:"#2ec4b6", low:"#4a5568" };
+    const severityBadge  = { critical:"b-crit",  high:"b-high",  medium:"b-med",  low:"b-neutral" };
+    const severityLabel  = { critical:"Critical", high:"High",   medium:"Medium", low:"Low" };
 
     grid.innerHTML = items.map(item => `
-      <div class="news-card" style="border-left-color:${severityBorder[item.severity]||'#e63946'}; background:#111318 !important;">
+      <div class="news-card" style="border-left-color:${severityBorder[item.severity]||"#e63946"}; background:#111318 !important;">
         <div class="news-card-title">
-          <a href="${item.url||'#'}" target="_blank">${item.title}</a>
+          <a href="${item.url||"#"}" target="_blank">${item.title}</a>
         </div>
         <div class="news-card-meta">
           <span class="news-source">${item.source}</span>
@@ -607,17 +558,16 @@ async function fetchLiveNews() {
           <span>${item.sector}</span>
         </div>
         <div class="news-card-meta" style="margin-top:0;">
-          <span class="badge ${severityBadge[item.severity]||'b-crit'}" style="font-size:9px; padding:2px 6px;">${severityLabel[item.severity]||'High'}</span>
+          <span class="badge ${severityBadge[item.severity]||"b-crit"}" style="font-size:9px;padding:2px 6px;">${severityLabel[item.severity]||"High"}</span>
         </div>
         <div class="news-card-summary">${item.summary}</div>
-      </div>
-    `).join("");
+      </div>`).join("");
 
   } catch (err) {
     status.style.display = "none";
     countEl.textContent = "Feed unavailable";
-    grid.innerHTML = `<div class="news-error">⚠ Live feed could not be loaded: ${err.message}<br><br>The curated incidents below remain up to date.</div>`;
-    console.error("Live feed error:", err);
+    grid.innerHTML = `<div class="news-error">⚠ News feed could not be loaded.<br><br>The curated incidents below remain up to date.</div>`;
+    console.error("News feed error:", err);
   }
 }
 

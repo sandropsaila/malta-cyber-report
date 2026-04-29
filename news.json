@@ -1,0 +1,51 @@
+{
+  "fetched": "2026-04-29T06:00:00.000Z",
+  "count": 5,
+  "items": [
+    {
+      "title": "Malta Gaming Authority Confirms System Breach by German Researcher",
+      "source": "MaltaToday",
+      "date": "March 2026",
+      "url": "https://www.maltatoday.com.mt/news/national/140462/hacker_claims_responsibility_for_gaming_authority_data_breach_",
+      "summary": "Lilith Wittmann, a Berlin-based security researcher, claimed responsibility for breaching the Malta Gaming Authority's systems, stating data had been shared with media and authorities. The MGA confirmed the breach but called the accompanying allegations 'unsubstantiated'. A criminal investigation has been opened.",
+      "severity": "critical",
+      "sector": "iGaming / Regulatory"
+    },
+    {
+      "title": "Fast Track CRM Cyberattack Exposes Casino Player KYC Data",
+      "source": "Brave New Coin",
+      "date": "October 2025",
+      "url": "https://bravenewcoin.com/insights/shuffle-data-breach-major-crypto-casino-hit-by-third-party-crm-attack",
+      "summary": "Malta-headquartered iGaming CRM provider Fast Track suffered a cyberattack exposing player KYC documents including passports and driver's licences. Shuffle Casino was the only publicly identified victim among two affected operators. Fast Track held a SOC 2 Type 2 certification at the time of the breach.",
+      "severity": "high",
+      "sector": "iGaming / CRM"
+    },
+    {
+      "title": "Saint James Hospital Group Hit by Sophisticated Cyberattack",
+      "source": "MaltaToday",
+      "date": "April 2025",
+      "url": "https://www.maltatoday.com.mt/news/national/134670/saint_james_hospital_targeted_in_cyberattack_medical_appointments_proceeding_normally",
+      "summary": "Malta's Saint James Hospital Group confirmed a sophisticated cyberattack on 18 April 2025, with all systems immediately isolated from external networks. A forensic investigation was launched to determine whether patient data was accessed. Medical appointments continued as normal and the IDPC was formally notified.",
+      "severity": "high",
+      "sector": "Healthcare"
+    },
+    {
+      "title": "MTCA Data Leak Exposes Details of 7,000 Companies",
+      "source": "Newsbook",
+      "date": "November 2025",
+      "url": "https://newsbook.com.mt/en/data-breach-at-malta-tax-office-7000-companies-details-exposed/",
+      "summary": "The Malta Tax and Customs Administration accidentally emailed contact details of approximately 7,000 companies to unintended recipients due to a procedural failure. Exposed data included company names, registration numbers, tax IDs, and email addresses. The IDPC was formally notified and an internal probe launched.",
+      "severity": "medium",
+      "sector": "Government / Tax"
+    },
+    {
+      "title": "The Mill Adventure API Flaw Exposes 800,000 Casino Players",
+      "source": "iGaming Business",
+      "date": "March 2025",
+      "url": "https://igamingbusiness.com/tech-innovation/cybersecurity/merkur-player-data-breach-cyber-security-questions",
+      "summary": "Malta-based gaming software provider The Mill Adventure was found to have an unauthenticated GraphQL API exposing player records without credentials. Up to 800,000 players were affected across Merkur's German platforms, with 70,000+ identity documents exposed. Germany's GGL issued a public reprimand against Malta-based subsidiaries.",
+      "severity": "high",
+      "sector": "iGaming / Software"
+    }
+  ]
+}
