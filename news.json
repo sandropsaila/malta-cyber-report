@@ -59,7 +59,8 @@
       "url": "https://agbrief.com/intel/deep-dive/22/03/2026/the-hacker-who-says-she-holds-maltas-gambling-empire-to-ransom/",
       "summary": "The MGA confirmed on 17 March that one of its systems was breached, immediately activating internal response protocols. German researcher Lilith Wittmann claimed responsibility via LinkedIn, stating data had been shared with media and authorities. She warned that any extradition attempt would trigger the immediate release of her full iGaming data archive \u2014 covering data on all 304 MGA-licensed operators and their compliance filings. A criminal investigation has been opened in Malta.",
       "severity": "critical",
-      "sector": "iGaming / Regulatory (MGA)"
+      "sector": "iGaming / Regulatory (MGA)",
+      "malta_connection": "MGA is Malta's primary gaming regulator; breach of its internal systems; Wittmann's LinkedIn post targeted MGA directly"
     },
     {
       "title": "MFSA Issues 'Heightened Cyber Threat' Circular to Financial Sector \u2014 March 2026",
@@ -68,7 +69,8 @@
       "url": "https://www.mfsa.mt/publication/impact-of-conflict-on-maltas-cyber-threat-landscape/",
       "summary": "The Malta Financial Services Authority published a circular on 5 March 2026 titled 'Exercising Caution in Times of Heightened Cyber Threat', warning all MFSA-supervised financial entities of an elevated cyber risk environment linked to global conflicts. The circular followed the MFSA's 2026 Supervisory Priorities which placed ICT and cyber-resilience frameworks under DORA as a top-tier concern for Malta's entire financial sector.",
       "severity": "high",
-      "sector": "Financial Services (MFSA)"
+      "sector": "Financial Services (MFSA)",
+      "malta_connection": "MFSA is Malta's financial regulator; circular issued to all MFSA-supervised entities operating in Malta"
     },
     {
       "title": "MFSA Launches Public-Private Anti-Fraud Partnership with Police, FIAU and Central Bank",
@@ -77,7 +79,8 @@
       "url": "https://www.crowdfundinsider.com/2026/04/274113-malta-mfsa-advances-financial-sector-resilience-with-new-anti-fraud-alliance-and-insurance-oversight-review/",
       "summary": "On 8 April 2026, the MFSA announced a formal Public-Private Partnership to combat financial fraud, bringing together the Malta Police Force, the Office of the Arbiter for Financial Services, the Financial Intelligence Analysis Unit (FIAU), and the Central Bank of Malta. The initiative focuses on consumer-facing retail payment fraud and unauthorised transactions, with intelligence sharing across five pillars including typology workshops and coordinated supervisory actions.",
       "severity": "medium",
-      "sector": "Financial Services (MFSA / FCID / FIAU)"
+      "sector": "Financial Services (MFSA / FCID / FIAU)",
+      "malta_connection": "MFSA-led partnership involving Malta Police Force, FIAU and Central Bank of Malta \u2014 all Maltese authorities"
     },
     {
       "title": "Court of Appeal Confirms MFSA Liable for Leaking Confidential Regulatory Data to Media",
@@ -86,7 +89,8 @@
       "url": "https://www.maltatoday.com.mt/news/court_and_police/138151/court_of_appeal_reaffirms_mfsa_liability_in_data_leak_case_orders_regulator_to_shoulder_costs",
       "summary": "Malta's Court of Appeal confirmed that the MFSA bore responsibility for leaking a confidential regulatory decision regarding E&S Consultancy Ltd to the 'OffshoreAlert' investigative website \u2014 a full week before the authority had officially notified the company. A forensic report established that only the MFSA possessed the information at the time of publication. The court ordered the MFSA to shoulder costs, marking a significant accountability ruling against a Maltese regulator for a data protection breach.",
       "severity": "high",
-      "sector": "Financial Regulation (MFSA)"
+      "sector": "Financial Regulation (MFSA)",
+      "malta_connection": "MFSA is a Maltese regulatory body; court ruling by Malta Court of Appeal; confidential data of Maltese-licensed firm leaked"
     },
     {
       "title": "IDPC: New Commissioner Dr Reno Borg Takes Oath \u2014 Previous Term Saw 544 Breach Notifications",
@@ -95,7 +99,8 @@
       "url": "https://idpc.org.mt/",
       "summary": "Dr Reno Borg was sworn in as the new Information and Data Protection Commissioner on 22 April 2026, succeeding Ian Deguara whose five-year mandate ended on 23 April. During Deguara's tenure, 544 personal data breach notifications were filed with the IDPC from GDPR implementation in May 2018 through October 2023 alone. The IDPC's 2026 coordinated enforcement focus is on GDPR Articles 12\u201314 transparency obligations.",
       "severity": "medium",
-      "sector": "Data Protection (IDPC)"
+      "sector": "Data Protection (IDPC)",
+      "malta_connection": "IDPC is Malta's data protection authority; 544 breach notifications filed by Malta-based controllers under Maltese/GDPR law"
     },
     {
       "title": "BOV Fraud Losses Nearly Doubled: \u20ac2.9M in 2024 to \u20ac5.4M in 8 Months of 2025",
@@ -104,7 +109,8 @@
       "url": "https://newsbook.com.mt/en/bov-malta-chamber-sound-alarm-on-soaring-business-fraud-losses/",
       "summary": "Bank of Valletta revealed fraud losses nearly doubled from \u20ac2.9M in 2024 to \u20ac5.4M in just the first eight months of 2025. The Financial Crime Investigations Department simultaneously probed \u20ac13M in total scam losses in H1 2025, with \u20ac3.5M attributed to Business Email Compromise. BOV and the Malta Chamber launched a joint scam-awareness programme, noting the EU's new instant payments directive would further elevate risk from October onwards.",
       "severity": "high",
-      "sector": "Financial Services (BOV)"
+      "sector": "Financial Services (BOV)",
+      "malta_connection": "Bank of Valletta is Malta's largest bank; fraud losses reported to Malta Chamber; FCID (Malta Police) investigation"
     },
     {
       "title": "Multi-Bank Phishing Scheme Targets 100+ Victims Across BOV, APS, HSBC and BNF Bank",
@@ -113,7 +119,8 @@
       "url": "https://www.maltatoday.com.mt/news/court_and_police/139843/fraudster_used_text_messages_fake_bank_apps_to_swindle_hundreds_of_victims_",
       "summary": "A coordinated phishing operation used fake bank apps and SMS links mimicking BOV's login portal to defraud 100+ victims across four Maltese banks. Reports began at BOV in September 2024, spreading to APS Bank by May 2025, then HSBC and BNF Bank. A 25-year-old suspect was arrested in February 2026 with international involvement suspected and cryptocurrency money laundering detected via Revolut and Bitcoin tracing.",
       "severity": "high",
-      "sector": "Financial Services (BOV / APS / HSBC / BNF)"
+      "sector": "Financial Services (BOV / APS / HSBC / BNF)",
+      "malta_connection": "Maltese banks BOV, APS, HSBC Malta and BNF Bank targeted; victims are Maltese bank customers; suspect arrested in Malta"
     },
     {
       "title": "Saint James Hospital \u2014 Malta's First Confirmed Healthcare Cyberattack",
@@ -122,7 +129,8 @@
       "url": "https://www.maltatoday.com.mt/news/national/134670/saint_james_hospital_targeted_in_cyberattack_medical_appointments_proceeding_normally",
       "summary": "Saint James Hospital Group confirmed a sophisticated cyberattack on 18 April 2025, immediately isolating all systems from external networks. A forensic investigation was launched into potential patient data exposure by IT, legal and external cybersecurity experts. Both the IDPC and police were formally notified \u2014 the first confirmed cyberattack on Maltese healthcare infrastructure.",
       "severity": "high",
-      "sector": "Healthcare"
+      "sector": "Healthcare",
+      "malta_connection": "Saint James Hospital is a Malta-based healthcare provider; patients are Maltese residents; IDPC and Malta Police notified"
     },
     {
       "title": "MTCA Email Error Exposes Tax IDs and Contact Details of ~7,000 Companies",
@@ -131,7 +139,8 @@
       "url": "https://newsbook.com.mt/en/data-breach-at-malta-tax-office-7000-companies-details-exposed/",
       "summary": "The Malta Tax and Customs Administration accidentally attached a file with company names, tax identification numbers, registration numbers and contact details of approximately 7,000 businesses to a mass email sent to unintended recipients. The IDPC was formally notified. The Opposition demanded the Finance Minister's accountability and an independent investigation. The MTCA confirmed no financial data was exposed.",
       "severity": "medium",
-      "sector": "Government / Tax (MTCA)"
+      "sector": "Government / Tax (MTCA)",
+      "malta_connection": "MTCA is a Maltese government authority; 7,000 Malta-registered companies' data exposed; IDPC Malta notified"
     },
     {
       "title": "MSS Annual Reports: Phishing, Ransomware and DDoS Surged During Malta's UN and OSCE Tenure",
@@ -140,7 +149,9 @@
       "url": "https://www.maltatoday.com.mt/news/national/135540/cyberattacks_rose_as_malta_assumed_top_posts_secret_service_report_shows",
       "summary": "The Malta Security Service's annual reports for 2023 and 2024, tabled in Parliament in 2025, confirmed a surge in cyberattacks during Malta's UN Security Council membership and OSCE chairmanship. Incidents included phishing at public sector employees, ransomware on SMEs, and DDoS attacks. The MSS found no direct causal link to diplomatic activity but noted Malta's elevated geopolitical profile likely increased its cyber-risk profile.",
       "severity": "high",
-      "sector": "Government / National Security (MSS)"
+      "sector": "Government / National Security (MSS)",
+      "malta_connection": "MSS is Malta's national security service; attacks targeted Maltese public sector employees and Malta-based SMEs"
     }
-  ]
+  ],
+  "filter_applied": "Strict Malta-relevance filter: all items must have direct connection to Malta as victim, attacker, regulator or legal jurisdiction"
 }

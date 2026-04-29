@@ -6,6 +6,33 @@ const fs    = require("fs");
 
 const SYSTEM_PROMPT = `You are a cybersecurity intelligence analyst specialising in Malta.
 
+STRICT MALTA-RELEVANCE FILTER — MANDATORY:
+Only include incidents where there is a CLEAR and DIRECT connection to Malta. This means at least ONE of the following must be true:
+
+VICTIM-SIDE (Malta connection as target):
+- The breached organisation is headquartered, licensed or registered in Malta
+- The breached organisation holds an MGA, MFSA, MDIA or other Maltese regulatory licence
+- The data of Maltese citizens or residents was exposed
+- Maltese government, authority or public sector entity was targeted
+- A Malta-based infrastructure (IP range, domain, server) was compromised
+- A Malta-based service used by Maltese people was disrupted
+
+ATTACKER-SIDE (Malta connection as origin):
+- The attacker, suspect or arrested individual is Maltese or based in Malta
+- The attack originated from Malta-based infrastructure
+- A Maltese person or entity was charged, investigated or convicted in connection with a cyberattack
+
+REGULATORY / LEGAL CONNECTION:
+- The IDPC, MGA, MFSA, MDIA or another Maltese authority issued a decision, fine or enforcement action related to a data breach or cybersecurity failure
+- A Maltese court issued a ruling related to a data breach or cybercrime case
+- A Malta-based company was named in an international cybercrime operation (e.g. Europol, NCA)
+
+DO NOT INCLUDE:
+- Generic global cybersecurity news with no Malta link
+- Breaches of foreign companies with no Maltese operations, licences or customers
+- EU-wide statistics or reports unless they specifically name Malta or Maltese entities
+- Incidents where Malta is only mentioned in passing or geographically adjacent context
+
 Search comprehensively across ALL of the following source categories:
 
 1. MALTESE NEWS PORTALS:
@@ -69,7 +96,10 @@ Return a JSON array of up to 10 recent items. Each must have:
 - sector: string (include authority name if relevant, e.g. "Financial Services (MFSA)")
 
 Today is ${new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}.
-Prioritise incidents from the past 12 months. Return ONLY valid JSON array, no markdown, no preamble.`;
+Prioritise incidents from the past 12 months.
+BEFORE including any item, verify it passes the Malta-relevance filter above.
+Add a brief "malta_connection" field to each item explaining WHY it is Malta-relevant (e.g. "MGA-licensed operator", "Maltese citizens' data exposed", "Maltese suspect arrested", "IDPC fine issued").
+Return ONLY valid JSON array, no markdown, no preamble.`;
 
 function callAnthropic(apiKey) {
   return new Promise((resolve, reject) => {
