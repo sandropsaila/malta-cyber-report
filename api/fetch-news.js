@@ -13,9 +13,9 @@ Search comprehensively across ALL of the following source categories:
    lovinmalta.com, newsbook.com.mt, maltadaily.mt, tvm.com.mt, illum.com.mt,
    netnews.com.mt, onenews.com.mt
 
-2. MALTESE REGULATORY AUTHORITY ANNOUNCEMENTS:
-   - MGA (Malta Gaming Authority): mga.org.mt — cybersecurity incidents, enforcement, breach notices
-   - MFSA (Malta Financial Services Authority): mfsa.mt — circulars, breach reports, DORA/ICT incidents
+2. MALTESE REGULATORY & GOVERNMENT AUTHORITY ANNOUNCEMENTS:
+   - MGA (Malta Gaming Authority): mga.org.mt — incidents, enforcement register, circulars
+   - MFSA (Malta Financial Services Authority): mfsa.mt — circulars, DORA/ICT incidents, enforcement dashboard
    - IDPC (Information & Data Protection Commissioner): idpc.org.mt — GDPR breach decisions, fines
    - MDIA (Malta Digital Innovation Authority): mdia.org.mt — digital security incidents
    - MITA (Malta Information Technology Agency): mita.gov.mt — government IT incidents
@@ -24,16 +24,38 @@ Search comprehensively across ALL of the following source categories:
    - Transport Malta, MTCA, Lands Authority, Identity Malta: any breach notices
 
 3. SOCIAL & PROFESSIONAL NETWORKS:
-   - LinkedIn: posts from Maltese cybersecurity professionals, CISO disclosures, authority announcements
-   - Facebook: public posts from Maltese organisations announcing breaches or service disruptions
+   - LinkedIn: CISO posts, authority announcements, professional disclosures
+   - Facebook: public Maltese organisation announcements, service disruptions
    - Twitter/X: Malta-tagged cybersecurity incidents
+   - Reddit: r/malta and r/cybersecurity for community-reported phishing/scam waves
 
 4. IGAMING & TECH INDUSTRY SOURCES:
-   igamingcapital.mt, igamingbusiness.com, sigma.world, igamingfuture.com, next.io, tribuna.com
+   igamingcapital.mt, igamingbusiness.com, sigma.world, igamingfuture.com,
+   next.io, tribuna.com, calvin.ayre.com, casino.org
 
-5. SECURITY DATABASES & DARK WEB MONITORS:
-   HaveIBeenPwned mentions of Maltese companies, BleepingComputer, SecurityWeek,
-   The Record, Shodan exposure reports referencing Malta
+5. EU & INTERNATIONAL REGULATORY BODIES:
+   - ENISA (enisa.europa.eu): EU threat reports naming Malta or affecting Maltese entities
+   - EDPB (edpb.europa.eu): coordinated enforcement actions involving Malta's IDPC
+   - Europol (europol.europa.eu): cybercrime operations involving Malta suspects/targets
+   - EUR-Lex: EU Official Journal for Malta-specific GDPR enforcement escalations
+
+6. SECURITY DATABASES, INTELLIGENCE & INVESTIGATIVE:
+   - GDPRhub (gdprhub.eu): every IDPC decision indexed with legal analysis
+   - DataBreaches.net: earliest reporting on GDPR breach decisions
+   - HaveIBeenPwned: Maltese company/domain breach data
+   - BleepingComputer: Malta company mentions + known Malta operators (Kindred, Betsson, LeoVegas, Evolution)
+   - SecurityWeek: Malta-linked incidents
+   - The Record (therecord.media): EU regulatory and financial sector breaches
+   - Cybernews.com: iGaming breach coverage
+   - OCCRP (occrp.org): organised crime and corruption investigations involving Malta
+   - Daphne Caruana Galizia Foundation (daphne.foundation): investigative data misuse reporting
+   - Shodan.io: exposed Maltese IP ranges and services
+   - VirusTotal / MalwareBazaar: malware samples targeting Maltese infrastructure
+
+7. OFFICIAL ENFORCEMENT REGISTERS (check for new entries):
+   - MGA Enforcement Register: mga.org.mt/enforcement
+   - MFSA Enforcement & Supervisory Dashboard: mfsa.mt
+   - IDPC Decisions page: idpc.org.mt/decisions
 
 6. GOOGLE NEWS: broad search for "Malta" + cyberattack/breach/hacked/ransomware/phishing
 
@@ -60,12 +82,13 @@ function callAnthropic(apiKey) {
         role: "user",
         content: `Today is ${new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}.
 Search ALL of the following for the latest Malta cybersecurity incidents:
-- Maltese news portals (maltatoday, timesofmalta, independent, theshiftnews, lovinmalta, newsbook, netnews, onenews)
-- Regulatory bodies: MGA, MFSA, IDPC, MDIA, MITA, MSS, FCID, Transport Malta, MTCA
-- LinkedIn and Facebook for Maltese organisation announcements
-- iGaming industry sources (igamingcapital, igamingbusiness, sigma.world)
-- Google News for "Malta" + cyberattack/breach/hacked/ransomware/phishing
-- Security databases: BleepingComputer, SecurityWeek, HaveIBeenPwned Malta mentions
+- Maltese news portals: maltatoday, timesofmalta, independent, theshiftnews, lovinmalta, newsbook, netnews, onenews, tvm, illum, maltadaily
+- Maltese regulators: MGA (enforcement register), MFSA (enforcement dashboard + circulars), IDPC (decisions page), MDIA, MITA, MSS, FCID, Transport Malta, MTCA, Identity Malta, Lands Authority
+- Social: LinkedIn (CISO/authority posts), Facebook (org announcements), Twitter/X, Reddit r/malta
+- iGaming: igamingcapital, igamingbusiness, sigma.world, next.io, tribuna.com, calvin.ayre, casino.org
+- EU bodies: ENISA, EDPB, Europol, EUR-Lex for Malta-specific enforcement
+- Security intelligence: GDPRhub (IDPC decisions), DataBreaches.net, HaveIBeenPwned, BleepingComputer, SecurityWeek, The Record, Cybernews, OCCRP, Daphne Foundation, Shodan, VirusTotal
+- Google News: "Malta" + cyberattack/breach/hacked/ransomware/phishing/GDPR fine
 Return results as a JSON array.`
       }]
     });
@@ -118,12 +141,18 @@ async function main() {
     count: items.length,
     sources_searched: [
       "maltatoday.com.mt","timesofmalta.com","independent.com.mt","theshiftnews.com",
-      "lovinmalta.com","newsbook.com.mt","maltadaily.mt","tvm.com.mt","netnews.com.mt","onenews.com.mt",
-      "mga.org.mt","mfsa.mt","idpc.org.mt","mdia.org.mt","mita.gov.mt",
+      "lovinmalta.com","newsbook.com.mt","maltadaily.mt","tvm.com.mt","illum.com.mt",
+      "netnews.com.mt","onenews.com.mt",
+      "mga.org.mt (incl. Enforcement Register)","mfsa.mt (incl. Enforcement Dashboard)",
+      "idpc.org.mt (incl. Decisions page)","mdia.org.mt","mita.gov.mt",
       "MSS Parliamentary Reports","FCID Police Statistics",
-      "LinkedIn","Facebook","Twitter/X",
-      "igamingcapital.mt","igamingbusiness.com","sigma.world","next.io",
-      "BleepingComputer","SecurityWeek","HaveIBeenPwned"
+      "Transport Malta","MTCA","Identity Malta","Lands Authority",
+      "LinkedIn","Facebook","Twitter/X","Reddit r/malta",
+      "igamingcapital.mt","igamingbusiness.com","sigma.world","next.io","tribuna.com","calvin.ayre.com",
+      "ENISA","EDPB","Europol","EUR-Lex",
+      "GDPRhub","DataBreaches.net","HaveIBeenPwned","BleepingComputer",
+      "SecurityWeek","The Record","Cybernews","OCCRP","Daphne Foundation",
+      "Shodan","VirusTotal/MalwareBazaar","Google News"
     ],
     items
   };
