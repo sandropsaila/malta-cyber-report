@@ -10,7 +10,8 @@ Search comprehensively across ALL of the following source categories:
 
 1. MALTESE NEWS PORTALS:
    maltatoday.com.mt, timesofmalta.com, independent.com.mt, theshiftnews.com,
-   lovinmalta.com, newsbook.com.mt, maltadaily.mt, tvm.com.mt, illum.com.mt
+   lovinmalta.com, newsbook.com.mt, maltadaily.mt, tvm.com.mt, illum.com.mt,
+   netnews.com.mt, onenews.com.mt
 
 2. MALTESE REGULATORY AUTHORITY ANNOUNCEMENTS:
    - MGA (Malta Gaming Authority): mga.org.mt — cybersecurity incidents, enforcement, breach notices
@@ -59,7 +60,7 @@ function callAnthropic(apiKey) {
         role: "user",
         content: `Today is ${new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}.
 Search ALL of the following for the latest Malta cybersecurity incidents:
-- Maltese news portals (maltatoday, timesofmalta, independent, theshiftnews, lovinmalta, newsbook)
+- Maltese news portals (maltatoday, timesofmalta, independent, theshiftnews, lovinmalta, newsbook, netnews, onenews)
 - Regulatory bodies: MGA, MFSA, IDPC, MDIA, MITA, MSS, FCID, Transport Malta, MTCA
 - LinkedIn and Facebook for Maltese organisation announcements
 - iGaming industry sources (igamingcapital, igamingbusiness, sigma.world)
@@ -117,7 +118,7 @@ async function main() {
     count: items.length,
     sources_searched: [
       "maltatoday.com.mt","timesofmalta.com","independent.com.mt","theshiftnews.com",
-      "lovinmalta.com","newsbook.com.mt","maltadaily.mt","tvm.com.mt",
+      "lovinmalta.com","newsbook.com.mt","maltadaily.mt","tvm.com.mt","netnews.com.mt","onenews.com.mt",
       "mga.org.mt","mfsa.mt","idpc.org.mt","mdia.org.mt","mita.gov.mt",
       "MSS Parliamentary Reports","FCID Police Statistics",
       "LinkedIn","Facebook","Twitter/X",
