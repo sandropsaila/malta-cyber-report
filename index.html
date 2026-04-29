@@ -162,6 +162,19 @@
 
     @keyframes fadeUp { from{opacity:0;transform:translateY(14px);} to{opacity:1;transform:translateY(0);} }
     header { animation:fadeUp 0.5s ease both; }
+
+    /* ── COLLAPSIBLE NEWS CARDS ── */
+    .news-card { cursor:pointer; }
+    .news-card-body { display:none; margin-top:12px; padding-top:12px; border-top:1px solid #1f2530; }
+    .news-card-body.open { display:block; }
+    .news-card-toggle {
+      float:right; font-family:'IBM Plex Mono',monospace; font-size:10px;
+      color:#4a5568 !important; letter-spacing:1px; text-transform:uppercase;
+      margin-top:2px; transition:color 0.2s;
+    }
+    .news-card:hover .news-card-toggle { color:#2ec4b6 !important; }
+    .news-card-toggle::after { content:' ▸'; }
+    .news-card-toggle.open::after { content:' ▾'; }
   </style>
 </head>
 <body style="background-color:#0a0c10 !important; color:#d0d6e2 !important;">
@@ -547,21 +560,23 @@ async function fetchLiveNews() {
     const severityBadge  = { critical:"b-crit",  high:"b-high",  medium:"b-med",  low:"b-neutral" };
     const severityLabel  = { critical:"Critical", high:"High",   medium:"Medium", low:"Low" };
 
-    grid.innerHTML = items.map(item => `
-      <div class="news-card" style="border-left-color:${severityBorder[item.severity]||"#e63946"}; background:#111318 !important;">
-        <div class="news-card-title">
-          <a href="${item.url||"#"}" target="_blank">${item.title}</a>
+    grid.innerHTML = items.map((item, i) => `
+      <div class="news-card" id="nc-${i}" style="border-left-color:${severityBorder[item.severity]||"#e63946"}; background:#111318 !important;" onclick="toggleCard(${i})">
+        <div class="news-card-title" style="color:#fff !important;">
+          <span class="news-card-toggle" id="toggle-${i}">Details</span>
+          ${item.title}
         </div>
-        <div class="news-card-meta">
+        <div class="news-card-meta" style="margin-top:8px;">
           <span class="news-source">${item.source}</span>
           <span>${item.date}</span>
           <span>${item.sector}</span>
-        </div>
-        <div class="news-card-meta" style="margin-top:0;">
           <span class="badge ${severityBadge[item.severity]||"b-crit"}" style="font-size:9px;padding:2px 6px;">${severityLabel[item.severity]||"High"}</span>
-          ${item.malta_connection ? `<span class="badge b-neutral" style="font-size:9px;padding:2px 6px;">🇲🇹 ${item.malta_connection}</span>` : ""}
         </div>
-        <div class="news-card-summary">${item.summary}</div>
+        <div class="news-card-body" id="body-${i}">
+          ${item.malta_connection ? `<div class="news-card-meta" style="margin-bottom:10px;"><span class="badge b-neutral" style="font-size:9px;padding:2px 6px;">🇲🇹 ${item.malta_connection}</span></div>` : ""}
+          <div class="news-card-summary">${item.summary}</div>
+          ${item.url && item.url !== "#" ? `<div style="margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;"><a href="${item.url}" target="_blank" style="color:#2ec4b6 !important;">Read full article ↗</a></div>` : ""}
+        </div>
       </div>`).join("");
 
   } catch (err) {
@@ -573,6 +588,17 @@ async function fetchLiveNews() {
 }
 
 fetchLiveNews();
+
+function toggleCard(i) {
+  const body   = document.getElementById("body-" + i);
+  const toggle = document.getElementById("toggle-" + i);
+  const isOpen = body.classList.contains("open");
+  body.classList.toggle("open", !isOpen);
+  toggle.classList.toggle("open", !isOpen);
+  toggle.textContent = isOpen ? "Details" : "Close";
+  if (!isOpen) toggle.style.color = "#2ec4b6";
+  else toggle.style.color = "";
+}
 </script>
 </body>
 </html>
