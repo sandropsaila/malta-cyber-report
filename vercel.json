@@ -1,13 +1,15 @@
 {
   "version": 2,
   "builds": [
-    { "src": "*.html", "use": "@vercel/static" }
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.json", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/", "dest": "/lock.html" },
     { "src": "/index", "dest": "/lock.html" },
     { "src": "/lock.html", "dest": "/lock.html" },
     { "src": "/index.html", "dest": "/index.html" },
+    { "src": "/news.json", "dest": "/news.json" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
