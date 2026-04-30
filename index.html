@@ -164,9 +164,29 @@
     header { animation:fadeUp 0.5s ease both; }
 
     /* ── COLLAPSIBLE CARDS (news + incident + context + timeline) ── */
-    .news-card { cursor:pointer; }
-    .news-card-body { display:none; margin-top:12px; padding-top:12px; border-top:1px solid #1f2530; }
+    .news-card {
+      cursor:pointer;
+      background:#111318 !important;
+      border:1px solid #1f2530;
+      border-left-width:4px;
+      padding:12px 16px;
+      transition:background 0.15s;
+    }
+    .news-card:hover { background:#13161e !important; }
+    .news-card-body {
+      display:none;
+      margin-top:12px;
+      padding-top:12px;
+      border-top:1px solid #1f2530;
+    }
     .news-card-body.open { display:block; }
+    .news-card-header {
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .news-card-header-left { flex:1; min-width:0; }
 
     .news-card-toggle, .card-toggle, .ctx-toggle, .tl-toggle {
       float:right; font-family:'IBM Plex Mono',monospace; font-size:10px;
@@ -756,7 +776,15 @@ function toggleEl(bodyId, toggleId) {
 }
 
 // News card toggle
-function toggleCard(i) { toggleEl("body-" + i, "toggle-" + i); }
+function toggleCard(i) {
+  const body   = document.getElementById("body-" + i);
+  const toggle = document.getElementById("toggle-" + i);
+  if (!body || !toggle) return;
+  const isOpen = body.classList.contains("open");
+  body.classList.toggle("open", !isOpen);
+  toggle.textContent = isOpen ? "▸" : "▾";
+  toggle.style.color = isOpen ? "#4a5568" : "#2ec4b6";
+}
 
 // Incident card toggle — called on click of icard
 document.addEventListener("click", function(e) {
