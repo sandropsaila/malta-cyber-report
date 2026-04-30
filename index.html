@@ -285,21 +285,6 @@
 <div class="wrap">
 
   <!-- ═══════════════════════════════
-       LIVE NEWS FEED
-  ═══════════════════════════════ -->
-  <div class="section mt-36">
-    <div class="section-header">
-      <div class="section-title">Live News Feed</div>
-      <div class="section-count" id="liveCount">Fetching...</div>
-    </div>
-    <div class="live-status" id="liveStatus">
-      <span class="spinner"></span>
-      <span>Searching Maltese news portals for latest cyber incidents...</span>
-    </div>
-    <div class="news-grid" id="newsGrid"></div>
-  </div>
-
-  <!-- ═══════════════════════════════
        SECTOR TABLE
   ═══════════════════════════════ -->
   <div class="section">
@@ -329,6 +314,18 @@
           <tr style="background:#0d0f14 !important;"><td style="color:#d0d6e2 !important;">🏛 Government — Land</td><td style="color:#b0b8cc !important;">Lands Authority — Google-indexed data breach</td><td><span class="yr-tag">2018</span></td><td><span class="sev-pill sp-high">High</span></td><td style="color:#b0b8cc !important;">Misconfigured web portal</td><td style="color:#b0b8cc !important;">5,000+ users; ID cards &amp; passports; €5K GDPR fine</td></tr>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- NEWS FEED LINK -->
+  <div class="section">
+    <div style="background:#111318 !important; border:1px solid #1f2530; border-left:4px solid #e63946; padding:20px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#e63946 !important; margin-bottom:6px;">Live News Feed</div>
+        <div style="font-size:15px; font-weight:600; color:#fff !important; margin-bottom:4px;">Latest Malta Cyber Incidents</div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6b7585 !important;">Auto-updated daily · 48 sources · Malta-relevant only</div>
+      </div>
+      <a href="news.html" style="display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#0a0c10 !important; background:#e63946; padding:10px 18px; text-decoration:none; white-space:nowrap; flex-shrink:0;">View Feed ↗</a>
     </div>
   </div>
 
@@ -720,106 +717,5 @@
 </div>
 </div>
 
-<script>
-// ═══════════════════════════════════════════════════════
-// NEWS FEED — reads from news.json (updated daily by GitHub Action)
-// ═══════════════════════════════════════════════════════
-async function fetchLiveNews() {
-  const grid    = document.getElementById("newsGrid");
-  const status  = document.getElementById("liveStatus");
-  const countEl = document.getElementById("liveCount");
-  const lastFetch = document.getElementById("lastFetch");
-
-  try {
-    const res  = await fetch("news.json?v=" + Date.now());
-    if (!res.ok) throw new Error("news.json not found");
-    const data = await res.json();
-    const items = data.items || [];
-
-    status.style.display = "none";
-    countEl.textContent  = items.length + " articles · Auto-updated daily";
-
-    const fetched = data.fetched ? new Date(data.fetched) : null;
-    if (fetched) {
-      lastFetch.innerHTML = `<span class="dot"></span>Last updated: ${fetched.toLocaleDateString("en-GB", {day:"numeric",month:"short",year:"numeric"})} at ${fetched.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})} UTC`;
-    }
-
-    const severityBorder = { critical:"#e63946", high:"#ff9f1c", medium:"#2ec4b6", low:"#4a5568" };
-    const severityBadge  = { critical:"b-crit",  high:"b-high",  medium:"b-med",  low:"b-neutral" };
-    const severityLabel  = { critical:"Critical", high:"High",   medium:"Medium", low:"Low" };
-
-    grid.innerHTML = items.map((item, i) => `
-      <div class="news-card" id="nc-${i}" style="border-left-color:${severityBorder[item.severity]||"#e63946"}; background:#111318 !important;" onclick="toggleCard(${i})">
-        <div class="news-card-title" style="color:#fff !important;">
-          <span class="news-card-toggle" id="toggle-${i}">Details</span>
-          ${item.title}
-        </div>
-        <div class="news-card-meta" style="margin-top:8px;">
-          <span class="news-source">${item.source}</span>
-          <span>${item.date}</span>
-          <span>${item.sector}</span>
-          <span class="badge ${severityBadge[item.severity]||"b-crit"}" style="font-size:9px;padding:2px 6px;">${severityLabel[item.severity]||"High"}</span>
-        </div>
-        <div class="news-card-body" id="body-${i}">
-          ${item.malta_connection ? `<div class="news-card-meta" style="margin-bottom:10px;"><span class="badge b-neutral" style="font-size:9px;padding:2px 6px;">🇲🇹 ${item.malta_connection}</span></div>` : ""}
-          <div class="news-card-summary">${item.summary}</div>
-          ${item.url && item.url !== "#" ? `<div style="margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;"><a href="${item.url}" target="_blank" style="color:#2ec4b6 !important;">Read full article ↗</a></div>` : ""}
-        </div>
-      </div>`).join("");
-
-  } catch (err) {
-    status.style.display = "none";
-    countEl.textContent = "Feed unavailable";
-    grid.innerHTML = `<div class="news-error">⚠ News feed could not be loaded.<br><br>The curated incidents below remain up to date.</div>`;
-    console.error("News feed error:", err);
-  }
-}
-
-fetchLiveNews();
-
-function toggleEl(bodyId, toggleId) {
-  const body   = document.getElementById(bodyId);
-  const toggle = document.getElementById(toggleId);
-  if (!body || !toggle) return;
-  const isOpen = body.classList.contains("open");
-  body.classList.toggle("open", !isOpen);
-  toggle.classList.toggle("open", !isOpen);
-  toggle.textContent = isOpen ? "Details" : "Close";
-  toggle.style.color = isOpen ? "" : "#2ec4b6";
-}
-
-// News card toggle
-function toggleCard(i) {
-  const body   = document.getElementById("body-" + i);
-  const toggle = document.getElementById("toggle-" + i);
-  if (!body || !toggle) return;
-  const isOpen = body.classList.contains("open");
-  body.classList.toggle("open", !isOpen);
-  toggle.classList.toggle("open", !isOpen);
-  toggle.textContent = isOpen ? "▸" : "▾";
-}
-
-// Incident card toggle — called on click of icard
-document.addEventListener("click", function(e) {
-  const icard = e.target.closest(".icard");
-  if (icard) {
-    const m = icard.querySelector("[id^='icb-']");
-    const t = icard.querySelector("[id^='ict-']");
-    if (m && t) toggleEl(m.id, t.id);
-  }
-  const ctx = e.target.closest(".ctx-card");
-  if (ctx) {
-    const m = ctx.querySelector("[id^='cxb-']");
-    const t = ctx.querySelector("[id^='ctx-']");
-    if (m && t) toggleEl(m.id, t.id);
-  }
-  const tl = e.target.closest(".tl-item");
-  if (tl) {
-    const m = tl.querySelector("[id^='tlb-']");
-    const t = tl.querySelector("[id^='tlt-']");
-    if (m && t) toggleEl(m.id, t.id);
-  }
-});
-</script>
 </body>
 </html>

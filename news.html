@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#0a0c10;">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Malta Cyber News Feed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; background: #0a0c10 !important; }
+    body {
+      background: #0a0c10 !important; background-color: #0a0c10 !important;
+      color: #d0d6e2 !important;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 15px; line-height: 1.65; min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    .grid-bg {
+      position: fixed; inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg,  transparent, transparent 39px, rgba(60,70,90,0.22) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(60,70,90,0.22) 40px);
+      background-size: 40px 40px; pointer-events: none; z-index: 0;
+    }
+    .wrap { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:0 16px 80px; }
+    @media (min-width:600px) { .wrap { padding-left:24px; padding-right:24px; } }
+
+    /* BACK BUTTON */
+    .back-bar {
+      padding: 20px 0 0;
+      margin-bottom: 32px;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #2ec4b6 !important; text-decoration: none;
+      border: 1px solid #1f2530; padding: 8px 14px;
+      background: #111318; transition: border-color 0.2s;
+    }
+    .back-btn:hover { border-color: #2ec4b6; }
+    .back-btn::before { content: '←'; font-size: 14px; }
+
+    /* HEADER */
+    .page-header { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #1f2530; }
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: #e63946 !important; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .eyebrow::before { content:''; display:inline-block; width:20px; height:1px; background:#e63946; }
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 10vw, 64px);
+      line-height: 0.95; letter-spacing: 2px;
+      color: #ffffff !important; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .h1-red { color: #e63946 !important; display: block; }
+    .feed-meta {
+      font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+      color: #6b7585 !important; display: flex; flex-wrap: wrap; gap: 16px;
+    }
+    .feed-meta span { display: flex; align-items: center; gap: 6px; color: #6b7585 !important; }
+    .dot { width:5px; height:5px; border-radius:50%; background:#2ec4b6; display:inline-block; flex-shrink:0; }
+    .live-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(230,57,70,0.12); border: 1px solid #e63946;
+      padding: 4px 10px; font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: #e63946 !important; margin-top: 14px;
+    }
+    .live-dot { width:6px; height:6px; border-radius:50%; background:#e63946; animation:pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+    /* LOADING */
+    .loading {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+      color: #6b7585 !important; padding: 24px 0;
+    }
+    .spinner { width:14px; height:14px; border:2px solid #1f2530; border-top-color:#e63946; border-radius:50%; animation:spin 0.8s linear infinite; flex-shrink:0; }
+    @keyframes spin { to{transform:rotate(360deg);} }
+
+    /* NEWS ITEMS */
+    .news-list { display: grid; gap: 0; }
+
+    .news-item {
+      border-bottom: 1px solid #1f2530;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .news-item:first-child { border-top: 1px solid #1f2530; }
+    .news-item:hover { background: #111318 !important; }
+
+    .news-item-header {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 12px;
+      padding: 16px 0;
+    }
+    .news-item-left { flex: 1; min-width: 0; }
+    .news-item-title {
+      font-size: 15px; font-weight: 600;
+      color: #ffffff !important; line-height: 1.35;
+      margin-bottom: 6px;
+    }
+    .news-item-meta {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    }
+    .news-source { color: #ff9f1c !important; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 1px; }
+    .news-date { color: #6b7585 !important; font-family: 'IBM Plex Mono', monospace; font-size: 10px; }
+    .badge {
+      font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 2px 7px; border: 1px solid; line-height: 1.4;
+    }
+    .b-crit { color: #e63946 !important; border-color: #e63946; background: rgba(230,57,70,0.1); }
+    .b-high { color: #ff9f1c !important; border-color: #ff9f1c; background: rgba(255,159,28,0.1); }
+    .b-med  { color: #2ec4b6 !important; border-color: #2ec4b6; background: rgba(46,196,182,0.1); }
+    .b-low  { color: #6b7585 !important; border-color: #6b7585; background: transparent; }
+    .b-neutral { color: #6b7585 !important; border-color: #1f2530; background: transparent; }
+
+    .news-item-arrow {
+      font-size: 13px; color: #3a4255 !important;
+      flex-shrink: 0; transition: color 0.15s;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .news-item-arrow.open { color: #2ec4b6 !important; }
+
+    .news-item-body {
+      display: none;
+      padding: 0 0 20px;
+    }
+    .news-item-body.open { display: block; }
+
+    .malta-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+      color: #6b7585 !important; border: 1px solid #1f2530;
+      padding: 3px 8px; margin-bottom: 12px;
+    }
+    .news-summary {
+      font-size: 14px; color: #b0b8cc !important;
+      font-weight: 300; line-height: 1.75; margin-bottom: 14px;
+    }
+    .news-summary strong { color: #e0e6f0 !important; font-weight: 600; }
+    .news-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+      color: #2ec4b6 !important; text-decoration: none;
+      border: 1px solid #1f2530; padding: 6px 12px;
+      background: #111318; transition: border-color 0.2s;
+    }
+    .news-link:hover { border-color: #2ec4b6; }
+
+    /* ERROR */
+    .feed-error {
+      font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+      color: #e63946 !important; padding: 20px;
+      background: #111318; border: 1px solid #1f2530;
+      border-left: 4px solid #e63946;
+    }
+
+    /* SOURCES */
+    .sources-section {
+      margin-top: 48px; padding-top: 24px; border-top: 1px solid #1f2530;
+    }
+    .sources-title {
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #4a5568 !important; margin-bottom: 14px;
+    }
+    .sources-grid {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .source-tag {
+      font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+      letter-spacing: 1px; color: #4a5568 !important;
+      border: 1px solid #1f2530; padding: 3px 8px;
+    }
+
+    /* FOOTER */
+    .page-footer {
+      margin-top: 48px; padding-top: 20px; border-top: 1px solid #1f2530;
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+      color: #4a5568 !important; letter-spacing: 1px;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
+    .news-item { animation: fadeUp 0.3s ease both; }
+  </style>
+</head>
+<body style="background-color:#0a0c10 !important; color:#d0d6e2 !important;">
+<div class="grid-bg"></div>
+<div class="wrap">
+
+  <!-- BACK -->
+  <div class="back-bar">
+    <a href="index.html" class="back-btn">Back to Report</a>
+  </div>
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="eyebrow">Malta Cybersecurity Intelligence</div>
+    <h1>Live<span class="h1-red">News Feed</span></h1>
+    <div class="feed-meta">
+      <span><span class="dot"></span><span id="fetchTime">Loading...</span></span>
+      <span><span class="dot"></span>48 sources searched</span>
+      <span><span class="dot"></span>Malta-relevant only</span>
+    </div>
+    <div class="live-badge" style="margin-top:14px;">
+      <span class="live-dot"></span>Auto-updated daily · Strict Malta filter applied
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div class="loading" id="loadingEl">
+    <span class="spinner"></span>
+    <span>Loading Malta cyber news feed...</span>
+  </div>
+
+  <!-- NEWS LIST -->
+  <div class="news-list" id="newsList"></div>
+
+  <!-- SOURCES -->
+  <div class="sources-section" id="sourcesSection" style="display:none;">
+    <div class="sources-title">Sources Searched</div>
+    <div class="sources-grid" id="sourcesList"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-footer">
+    <span>Malta Cyber Report · Live News Feed</span>
+    <span><a href="index.html" style="color:#2ec4b6 !important; text-decoration:none;">← Back to full report</a></span>
+  </div>
+
+</div>
+<script>
+const severityBadge  = { critical:"b-crit", high:"b-high", medium:"b-med", low:"b-low" };
+const severityLabel  = { critical:"Critical", high:"High", medium:"Medium", low:"Low" };
+
+function toggleItem(i) {
+  const body   = document.getElementById("nb-" + i);
+  const arrow  = document.getElementById("na-" + i);
+  if (!body || !arrow) return;
+  const isOpen = body.classList.contains("open");
+  body.classList.toggle("open", !isOpen);
+  arrow.classList.toggle("open", !isOpen);
+  arrow.textContent = isOpen ? "▸" : "▾";
+}
+
+async function loadFeed() {
+  const list    = document.getElementById("newsList");
+  const loading = document.getElementById("loadingEl");
+  const timeEl  = document.getElementById("fetchTime");
+  const srcSec  = document.getElementById("sourcesSection");
+  const srcList = document.getElementById("sourcesList");
+
+  try {
+    const res  = await fetch("news.json?v=" + Date.now());
+    if (!res.ok) throw new Error("news.json not found");
+    const data = await res.json();
+    const items = data.items || [];
+
+    loading.style.display = "none";
+
+    // Fetch time
+    if (data.fetched) {
+      const d = new Date(data.fetched);
+      timeEl.textContent = "Updated " + d.toLocaleDateString("en-GB", {day:"numeric", month:"short", year:"numeric"}) + " at " + d.toLocaleTimeString("en-GB", {hour:"2-digit", minute:"2-digit"}) + " UTC";
+    }
+
+    // Render items
+    list.innerHTML = items.map((item, i) => `
+      <div class="news-item" id="ni-${i}" onclick="toggleItem(${i})" style="animation-delay:${i*0.04}s;">
+        <div class="news-item-header">
+          <div class="news-item-left">
+            <div class="news-item-title">${item.title}</div>
+            <div class="news-item-meta">
+              <span class="news-source">${item.source}</span>
+              <span class="news-date">${item.date}</span>
+              <span class="badge ${severityBadge[item.severity]||"b-high"}">${severityLabel[item.severity]||"High"}</span>
+            </div>
+          </div>
+          <span class="news-item-arrow" id="na-${i}">▸</span>
+        </div>
+        <div class="news-item-body" id="nb-${i}">
+          <div class="news-item-meta" style="margin-bottom:10px;">
+            <span class="badge b-neutral">${item.sector}</span>
+            ${item.malta_connection ? `<span class="malta-badge">🇲🇹 ${item.malta_connection}</span>` : ""}
+          </div>
+          <div class="news-summary">${item.summary}</div>
+          ${item.url && item.url !== "#"
+            ? `<a href="${item.url}" target="_blank" class="news-link" onclick="event.stopPropagation()">Read full article ↗</a>`
+            : ""}
+        </div>
+      </div>`).join("");
+
+    // Sources
+    if (data.sources_searched && data.sources_searched.length) {
+      srcSec.style.display = "block";
+      srcList.innerHTML = data.sources_searched
+        .map(s => `<span class="source-tag">${s}</span>`).join("");
+    }
+
+  } catch(err) {
+    loading.style.display = "none";
+    list.innerHTML = `<div class="feed-error">⚠ Could not load news feed: ${err.message}</div>`;
+  }
+}
+
+loadFeed();
+</script>
+</body>
+</html>
