@@ -369,13 +369,27 @@ const SEV_BORDER = { critical:'#e63946', high:'#ff9f1c', medium:'#2ec4b6', low:'
 const STATUS_COLOR = { 'Concluded':'#2ec4b6', 'Ongoing':'#ff9f1c', 'Concluded (Pardoned)':'#2ec4b6', 'Appealed':'#ff9f1c' };
 
 function toggleSection(id) {
-  const el = document.getElementById(id);
+  const el  = document.getElementById(id);
   const tog = document.getElementById('tog-' + id);
   if (!el || !tog) return;
-  const open = el.classList.contains('open');
-  el.classList.toggle('open', !open);
-  tog.textContent = open ? '▸' : '▾';
-  tog.style.color  = open ? '#4a5568' : '#2ec4b6';
+  const open = el.style.display !== 'none';
+  el.style.display  = open ? 'none' : 'block';
+  tog.textContent   = open ? '▸' : '▾';
+  tog.style.color   = open ? '#4a5568' : '#2ec4b6';
+}
+
+function openCard(cardId) {
+  // Extract incident id from 'card-N'
+  const el  = document.getElementById(cardId);
+  const tog = document.getElementById('tog-' + cardId);
+  const num = cardId.replace('card-', '');
+  const anchor = document.getElementById('card-anchor-' + num);
+  if (el) el.style.display = 'block';
+  if (tog) { tog.textContent = '▾'; tog.style.color = '#2ec4b6'; }
+  // Scroll after short delay to let render complete
+  setTimeout(() => {
+    if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 80);
 }
 
 async function loadData() {
@@ -396,16 +410,13 @@ async function loadData() {
     const incidents = data.confirmed_incidents || [];
     document.getElementById('breachCount').textContent = incidents.length + ' Incidents';
     document.getElementById('breachBody').innerHTML = incidents.map((inc, i) => `
-      <tr style="background:${i%2===0?'#0a0c10':'#0d0f14'} !important; cursor:pointer;" onclick="toggleSection('inc-${inc.id}')">
-        <td style="color:#d0d6e2 !important; font-weight:600;">${inc.sector}</td>
-        <td style="color:#b0b8cc !important;">
-          <span id="tog-inc-${inc.id}" style="float:right;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a5568;">▸</span>
-          ${inc.title}
-          <div id="inc-${inc.id}" style="display:none;" class="">
-            <div style="margin-top:10px;padding-top:10px;border-top:1px solid #1f2530;font-size:13px;color:#b0b8cc !important;font-weight:300;line-height:1.7;">${inc.summary}</div>
-            <div style="margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a5568 !important;">🇲🇹 ${inc.malta_connection}</div>
-            <div style="margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;"><a href="${inc.source_url}" target="_blank" style="color:#2ec4b6 !important;text-decoration:none;">${inc.source_name} ↗</a></div>
-          </div>
+      <tr style="background:${i%2===0?'#0a0c10':'#0d0f14'} !important;">
+        <td style="color:#d0d6e2 !important; font-weight:600; white-space:nowrap;">${inc.sector}</td>
+        <td>
+          <a href="#card-anchor-${inc.id}" onclick="openCard('card-${inc.id}')"
+             style="color:#2ec4b6 !important; text-decoration:none; font-weight:600; line-height:1.4; display:block;">
+            ${inc.title} <span style="font-size:10px; opacity:0.6;">↓</span>
+          </a>
         </td>
         <td><span class="yr-tag">${inc.year}</span></td>
         <td>${SEV_PILL[inc.severity] || SEV_PILL.high}</td>
@@ -468,20 +479,22 @@ async function loadData() {
 
     // ── Incident Cards ──
     document.getElementById('incidentCards').innerHTML = incidents.map(inc => `
-      <div style="background:#111318 !important; border:1px solid #1f2530; border-left:4px solid ${SEV_BORDER[inc.severity]||'#e63946'}; margin-bottom:12px; padding:16px; cursor:pointer;" onclick="toggleSection('card-${inc.id}')">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
-          <div style="font-size:15px;font-weight:600;color:#fff !important;line-height:1.35;">${inc.title}</div>
-          <span id="tog-card-${inc.id}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#4a5568;flex-shrink:0;">▸</span>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
-          <span class="yr-tag">${inc.year}</span>
-          ${SEV_PILL[inc.severity]||''}
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border:1px solid #1f2530;color:#6b7585 !important;">${inc.sector}</span>
-        </div>
-        <div id="card-${inc.id}" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid #1f2530;">
-          <div style="font-size:14px;color:#b0b8cc !important;font-weight:300;line-height:1.75;margin-bottom:10px;">${inc.summary}</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a5568 !important;margin-bottom:8px;">🇲🇹 ${inc.malta_connection}</div>
-          <a href="${inc.source_url}" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2ec4b6 !important;text-decoration:none;" onclick="event.stopPropagation()">Source: ${inc.source_name} ↗</a>
+      <div id="card-anchor-${inc.id}" style="scroll-margin-top:20px;">
+        <div style="background:#111318 !important; border:1px solid #1f2530; border-left:4px solid ${SEV_BORDER[inc.severity]||'#e63946'}; margin-bottom:12px; padding:16px; cursor:pointer;" onclick="toggleSection('card-${inc.id}')">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+            <div style="font-size:15px;font-weight:600;color:#fff !important;line-height:1.35;">${inc.title}</div>
+            <span id="tog-card-${inc.id}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#4a5568;flex-shrink:0;">▸</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span class="yr-tag">${inc.year}</span>
+            ${SEV_PILL[inc.severity]||''}
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border:1px solid #1f2530;color:#6b7585 !important;">${inc.sector}</span>
+          </div>
+          <div id="card-${inc.id}" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid #1f2530;">
+            <div style="font-size:14px;color:#b0b8cc !important;font-weight:300;line-height:1.75;margin-bottom:10px;">${inc.summary}</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a5568 !important;margin-bottom:8px;">🇲🇹 ${inc.malta_connection}</div>
+            <a href="${inc.source_url}" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2ec4b6 !important;text-decoration:none;" onclick="event.stopPropagation()">Source: ${inc.source_name} ↗</a>
+          </div>
         </div>
       </div>`).join('');
 
