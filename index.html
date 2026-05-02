@@ -51,16 +51,15 @@
     @keyframes ticker { from{transform:translateX(0);} to{transform:translateX(-100%);} }
 
     /* STATS */
-    .stats-strip { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#1f2530; border-bottom:1px solid #1f2530; }
-    @media (min-width:700px) { .stats-strip { grid-template-columns:repeat(3,1fr); } }
+    .stats-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#1f2530; border-bottom:1px solid #1f2530; }
+    .stat-num { font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,7vw,52px); line-height:1; margin-bottom:5px; }
     .stat-box { padding:22px 16px; position:relative; }
     @media (min-width:600px) { .stat-box { padding:26px 22px; } }
     .stat-box::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; }
     .sb-red { background:#111318 !important; } .sb-red::after { background:#e63946; }
     .sb-amber { background:#111318 !important; } .sb-amber::after { background:#ff9f1c; }
     .sb-teal { background:#111318 !important; } .sb-teal::after { background:#2ec4b6; }
-    .stat-num { font-family:'Bebas Neue',sans-serif; font-size:42px; line-height:1; margin-bottom:5px; }
-    @media (min-width:600px) { .stat-num { font-size:52px; } }
+
     .sb-red .stat-num { color:#e63946 !important; }
     .sb-amber .stat-num { color:#ff9f1c !important; }
     .sb-teal .stat-num { color:#2ec4b6 !important; }
