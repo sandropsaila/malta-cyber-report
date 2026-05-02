@@ -413,9 +413,9 @@ async function loadData() {
       <tr style="background:${i%2===0?'#0a0c10':'#0d0f14'} !important;">
         <td style="color:#d0d6e2 !important; font-weight:600; white-space:nowrap;">${inc.sector}</td>
         <td>
-          <a href="#card-anchor-${inc.id}" onclick="openCard('card-${inc.id}')"
+          <a href="incident.html?id=${inc.id}"
              style="color:#2ec4b6 !important; text-decoration:none; font-weight:600; line-height:1.4; display:block;">
-            ${inc.title} <span style="font-size:10px; opacity:0.6;">↓</span>
+            ${inc.title} <span style="font-size:10px; opacity:0.6;">↗</span>
           </a>
         </td>
         <td><span class="yr-tag">${inc.year}</span></td>
@@ -493,7 +493,10 @@ async function loadData() {
           <div id="card-${inc.id}" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid #1f2530;">
             <div style="font-size:14px;color:#b0b8cc !important;font-weight:300;line-height:1.75;margin-bottom:10px;">${inc.summary}</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a5568 !important;margin-bottom:8px;">🇲🇹 ${inc.malta_connection}</div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;">
+            <a href="incident.html?id=${inc.id}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#e63946 !important;text-decoration:none;border:1px solid #e63946;padding:4px 10px;" onclick="event.stopPropagation()">Full Analysis ↗</a>
             <a href="${inc.source_url}" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2ec4b6 !important;text-decoration:none;" onclick="event.stopPropagation()">Source: ${inc.source_name} ↗</a>
+          </div>
           </div>
         </div>
       </div>`).join('');

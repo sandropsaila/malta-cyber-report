@@ -10,6 +10,7 @@
     { "src": "/lock.html", "dest": "/lock.html" },
     { "src": "/index.html", "dest": "/index.html" },
     { "src": "/news.html", "dest": "/news.html" },
+    { "src": "/incident.html", "dest": "/incident.html" },
     { "src": "/data.json", "dest": "/data.json" },
     { "src": "/news.json", "dest": "/news.json" },
     { "src": "/(.*)", "dest": "/$1" }

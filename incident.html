@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#0a0c10;">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Incident Detail — Malta Cyber Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; background: #0a0c10 !important; }
+    body {
+      background: #0a0c10 !important; color: #d0d6e2 !important;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 15px; line-height: 1.65; min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    .grid-bg {
+      position: fixed; inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(60,70,90,0.2) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(60,70,90,0.2) 40px);
+      background-size: 40px 40px; pointer-events: none; z-index: 0;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 16px 80px; }
+    @media (min-width: 600px) { .wrap { padding-left: 24px; padding-right: 24px; } }
+
+    /* BACK BAR */
+    .back-bar { padding: 20px 0 0; margin-bottom: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #2ec4b6 !important; text-decoration: none;
+      border: 1px solid #1f2530; padding: 8px 14px; background: #111318;
+    }
+    .back-btn::before { content: '←'; font-size: 14px; }
+    .nav-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: #6b7585 !important; text-decoration: none;
+      border: 1px solid #1f2530; padding: 8px 14px; background: transparent;
+      cursor: pointer;
+    }
+    .nav-btn:hover { color: #d0d6e2 !important; border-color: #3a4255; }
+
+    /* HEADER */
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: #e63946 !important; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .eyebrow::before { content:''; display:inline-block; width:20px; height:1px; background:#e63946; }
+
+    .incident-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(32px, 8vw, 56px);
+      line-height: 1.0; letter-spacing: 1px;
+      color: #ffffff !important; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .badge {
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 10px; border: 1px solid; line-height: 1.4;
+    }
+    .b-crit { color: #e63946 !important; border-color: #e63946; background: rgba(230,57,70,0.1); }
+    .b-high { color: #ff9f1c !important; border-color: #ff9f1c; background: rgba(255,159,28,0.1); }
+    .b-med  { color: #2ec4b6 !important; border-color: #2ec4b6; background: rgba(46,196,182,0.1); }
+    .b-low  { color: #6b7585 !important; border-color: #6b7585; background: transparent; }
+    .b-neutral { color: #6b7585 !important; border-color: #1f2530; background: transparent; }
+
+    /* META GRID */
+    .meta-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; margin-bottom: 32px;
+    }
+    @media (min-width: 500px) { .meta-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); } }
+    .meta-box { background: #111318; border: 1px solid #1f2530; padding: 14px 16px; }
+    .meta-key { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #4a5568 !important; margin-bottom: 4px; display: block; }
+    .meta-val { font-size: 13px; color: #d0d6e2 !important; font-weight: 600; line-height: 1.4; }
+
+    /* SECTIONS */
+    .inc-section { margin-bottom: 28px; }
+    .inc-section-title {
+      font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 12px; padding-bottom: 10px;
+      border-bottom: 1px solid #1f2530;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .inc-section-title.red   { color: #e63946 !important; }
+    .inc-section-title.amber { color: #ff9f1c !important; }
+    .inc-section-title.teal  { color: #2ec4b6 !important; }
+    .inc-section-title.purple{ color: #a78bfa !important; }
+
+    .inc-text {
+      font-size: 14px; color: #b0b8cc !important;
+      font-weight: 300; line-height: 1.8;
+    }
+    .inc-text strong { color: #e0e6f0 !important; font-weight: 600; }
+
+    /* MONITORING CONTROLS */
+    .controls-list { display: grid; gap: 8px; margin-top: 4px; }
+    .control-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: #111318; border: 1px solid #1f2530;
+      border-left: 3px solid #2ec4b6; padding: 12px 14px;
+    }
+    .control-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .control-text { font-size: 13px; color: #d0d6e2 !important; font-weight: 500; line-height: 1.4; }
+
+    /* MALTA CONNECTION */
+    .malta-box {
+      background: rgba(46,196,182,0.06); border: 1px solid rgba(46,196,182,0.25);
+      padding: 14px 16px; margin-bottom: 28px; display: flex; gap: 10px; align-items: flex-start;
+    }
+    .malta-box-text { font-size: 13px; color: #b0b8cc !important; font-weight: 300; line-height: 1.6; }
+
+    /* SOURCE */
+    .source-box {
+      background: #111318; border: 1px solid #1f2530;
+      padding: 14px 16px; margin-top: 8px;
+    }
+    .source-link { color: #2ec4b6 !important; text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+    .source-link:hover { text-decoration: underline; }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid #1f2530; margin: 28px 0; }
+
+    /* FOOTER */
+    footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid #1f2530; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .footer-l { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #4a5568 !important; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* NOT FOUND */
+    .not-found { text-align: center; padding: 60px 20px; }
+    .not-found h2 { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #e63946 !important; margin-bottom: 16px; }
+    .not-found p { color: #6b7585 !important; font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+  </style>
+</head>
+<body style="background-color:#0a0c10 !important; color:#d0d6e2 !important;">
+<div class="grid-bg"></div>
+<div class="wrap">
+
+  <div class="back-bar">
+    <a href="index.html" class="back-btn">Back to Report</a>
+    <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" style="display:none;">← Prev</button>
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)" style="display:none;">Next →</button>
+  </div>
+
+  <div id="content">
+    <div class="not-found">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6b7585;">Loading...</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-l">Malta Cyber Report · Incident Detail</div>
+    <a href="index.html" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#2ec4b6 !important;text-decoration:none;letter-spacing:1px;text-transform:uppercase;">← Back to Report</a>
+  </footer>
+
+</div>
+<script>
+const SEV_CLASS = { critical:'b-crit', high:'b-high', medium:'b-med', low:'b-low' };
+const SEV_BORDER = { critical:'#e63946', high:'#ff9f1c', medium:'#2ec4b6', low:'#4a5568' };
+
+let allIncidents = [];
+
+function getParam(name) {
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+function navigate(dir) {
+  const id = parseInt(getParam('id') || '1');
+  const idx = allIncidents.findIndex(i => i.id === id);
+  const next = allIncidents[idx + dir];
+  if (next) window.location.href = 'incident.html?id=' + next.id;
+}
+
+async function load() {
+  try {
+    const res  = await fetch('data.json?v=' + Date.now());
+    const data = await res.json();
+    allIncidents = data.confirmed_incidents || [];
+
+    const id  = parseInt(getParam('id') || '1');
+    const inc = allIncidents.find(i => i.id === id);
+    const idx = allIncidents.findIndex(i => i.id === id);
+
+    // Show prev/next
+    if (idx > 0) { document.getElementById('prevBtn').style.display = 'inline-flex'; document.getElementById('prevBtn').textContent = '← ' + allIncidents[idx-1].title.split('—')[0].trim(); }
+    if (idx < allIncidents.length - 1) { document.getElementById('nextBtn').style.display = 'inline-flex'; document.getElementById('nextBtn').textContent = allIncidents[idx+1].title.split('—')[0].trim() + ' →'; }
+
+    if (!inc) {
+      document.getElementById('content').innerHTML = `
+        <div class="not-found">
+          <h2>Not Found</h2>
+          <p>Incident #${id} does not exist.</p>
+        </div>`;
+      return;
+    }
+
+    document.title = inc.title + ' — Malta Cyber Report';
+    const a = inc.analysis || {};
+    const controls = a.monitoring_controls || [];
+
+    document.getElementById('content').innerHTML = `
+      <div class="eyebrow">Incident #${inc.id} of ${allIncidents.length} · ${inc.year}</div>
+
+      <div class="incident-title">${inc.title}</div>
+
+      <div class="badge-row">
+        <span class="badge ${SEV_CLASS[inc.severity]||'b-high'}">${inc.severity}</span>
+        <span class="badge b-neutral">${inc.year}</span>
+        <span class="badge b-neutral">${inc.sector}</span>
+        <span class="badge b-neutral">${inc.type}</span>
+      </div>
+
+      <div class="meta-grid">
+        <div class="meta-box"><span class="meta-key">Sector</span><span class="meta-val">${inc.sector}</span></div>
+        <div class="meta-box"><span class="meta-key">Year</span><span class="meta-val">${inc.year}</span></div>
+        <div class="meta-box"><span class="meta-key">Severity</span><span class="meta-val">${inc.severity.charAt(0).toUpperCase()+inc.severity.slice(1)}</span></div>
+        <div class="meta-box"><span class="meta-key">Records / Impact</span><span class="meta-val">${inc.records}</span></div>
+      </div>
+
+      <div class="malta-box">
+        <span style="font-size:18px;flex-shrink:0;">🇲🇹</span>
+        <div class="malta-box-text"><strong style="color:#2ec4b6 !important;">Malta connection:</strong> ${inc.malta_connection}</div>
+      </div>
+
+      <!-- WHAT HAPPENED -->
+      <div class="inc-section">
+        <div class="inc-section-title red">📋 What Happened</div>
+        <div class="inc-text">${inc.summary}</div>
+        ${inc.source_url ? `<div class="source-box"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a5568;">SOURCE</span><br><a href="${inc.source_url}" target="_blank" class="source-link">${inc.source_name} ↗</a></div>` : ''}
+      </div>
+
+      <hr class="divider"/>
+
+      <!-- PREVENTION -->
+      ${a.prevention ? `
+      <div class="inc-section">
+        <div class="inc-section-title amber">🛡️ How Could This Have Been Prevented</div>
+        <div class="inc-text">${a.prevention}</div>
+      </div>` : ''}
+
+      <!-- DETECTION -->
+      ${a.detection ? `
+      <div class="inc-section">
+        <div class="inc-section-title teal">🔍 How Could This Have Been Detected Earlier</div>
+        <div class="inc-text">${a.detection}</div>
+      </div>` : ''}
+
+      <!-- IMPROVEMENT -->
+      ${a.improvement ? `
+      <div class="inc-section">
+        <div class="inc-section-title purple">📈 Security Posture Improvement Recommendations</div>
+        <div class="inc-text">${a.improvement}</div>
+      </div>` : ''}
+
+      <!-- MONITORING CONTROLS -->
+      ${controls.length ? `
+      <div class="inc-section">
+        <div class="inc-section-title teal">🎛️ Recommended Monitoring Controls</div>
+        <div class="controls-list">
+          ${controls.map(c => `
+          <div class="control-item">
+            <span class="control-icon">◈</span>
+            <span class="control-text">${c}</span>
+          </div>`).join('')}
+        </div>
+      </div>` : ''}
+    `;
+
+  } catch(err) {
+    document.getElementById('content').innerHTML = `
+      <div class="not-found">
+        <h2>Error</h2>
+        <p>${err.message}</p>
+      </div>`;
+  }
+}
+
+load();
+</script>
+</body>
+</html>
