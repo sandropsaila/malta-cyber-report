@@ -321,7 +321,7 @@
       <table>
         <thead>
           <tr>
-            <th>Case</th><th>Year</th><th>Court / Body</th><th>Outcome</th><th>Status</th>
+            <th>Case</th><th>Date</th><th>Court / Body</th><th>Outcome</th><th>Status</th>
           </tr>
         </thead>
         <tbody id="courtBody">
@@ -432,7 +432,7 @@ async function loadData() {
             <div style="margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;"><a href="${c.source_url}" target="_blank" style="color:#2ec4b6 !important;text-decoration:none;">${c.source_name} ↗</a></div>
           </div>
         </td>
-        <td><span class="yr-tag">${c.year}</span></td>
+        <td><span class="yr-tag" style="white-space:nowrap;">${c.date||c.year}</span></td>
         <td style="color:#b0b8cc !important;font-size:13px;">${c.court}</td>
         <td style="color:#b0b8cc !important;font-size:13px;">${c.outcome}</td>
         <td><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border:1px solid;color:${STATUS_COLOR[c.status]||'#6b7585'} !important;border-color:${STATUS_COLOR[c.status]||'#6b7585'};">${c.status}</span></td>

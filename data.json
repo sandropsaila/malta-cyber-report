@@ -362,7 +362,8 @@
       "status": "Appealed",
       "summary": "IDPC fined C-Planet \u20ac65,000 for unlawfully processing voter data of 330,000+ Maltese citizens. C-Planet appealed the decision. The origin of the voter database remains legally disputed with proceedings ongoing.",
       "source_name": "noyb \u00b7 The Shift News",
-      "source_url": "https://theshiftnews.com/2022/01/17/c-planet-fined-e65000-for-voter-data-breach/"
+      "source_url": "https://theshiftnews.com/2022/01/17/c-planet-fined-e65000-for-voter-data-breach/",
+      "date": "January 2022"
     },
     {
       "id": 2,
@@ -373,7 +374,8 @@
       "status": "Concluded",
       "summary": "IDPC fined the Lands Authority \u20ac5,000 for misconfiguring its online portal, exposing 5,000+ citizens' identity documents publicly on Google. The portal was temporarily suspended. First significant GDPR enforcement action in Malta.",
       "source_name": "EDPB / IDPC",
-      "source_url": "https://www.edpb.europa.eu/news/national-news/2019/idpc-lands-authority-personal-data-breach_en"
+      "source_url": "https://www.edpb.europa.eu/news/national-news/2019/idpc-lands-authority-personal-data-breach_en",
+      "date": "February 2019"
     },
     {
       "id": 3,
@@ -384,7 +386,8 @@
       "status": "Concluded (Pardoned)",
       "summary": "Four UoM students and their lecturer were criminally charged after responsibly disclosing API vulnerabilities in FreeHour. Devices impounded for 28 months. Case led to Budapest Convention adoption and Presidential Pardon in July 2025. Triggered national law reform on ethical hacking protections.",
       "source_name": "Newsbook \u00b7 Wikipedia",
-      "source_url": "https://newsbook.com.mt/en/ethical-hackers-charged-with-unauthorised-access-to-freehour-app/"
+      "source_url": "https://newsbook.com.mt/en/ethical-hackers-charged-with-unauthorised-access-to-freehour-app/",
+      "date": "Nov 2022 \u2013 Jul 2025"
     },
     {
       "id": 4,
@@ -395,7 +398,8 @@
       "status": "Concluded",
       "summary": "Malta's Court of Appeal confirmed the MFSA bore responsibility for leaking a confidential regulatory decision regarding E&S Consultancy Ltd to investigative website OffshoreAlert a full week before official notification. Forensic report established only the MFSA possessed the information at the time. MFSA ordered to shoulder costs.",
       "source_name": "MaltaToday",
-      "source_url": "https://www.maltatoday.com.mt/news/court_and_police/138151/court_of_appeal_reaffirms_mfsa_liability_in_data_leak_case_orders_regulator_to_shoulder_costs"
+      "source_url": "https://www.maltatoday.com.mt/news/court_and_police/138151/court_of_appeal_reaffirms_mfsa_liability_in_data_leak_case_orders_regulator_to_shoulder_costs",
+      "date": "November 2025"
     },
     {
       "id": 5,
@@ -406,7 +410,8 @@
       "status": "Ongoing",
       "summary": "A 25-year-old suspect was arrested in February 2026 in connection with a phishing scheme targeting BOV, APS, HSBC Malta and BNF Bank, defrauding 100+ victims. International involvement suspected; cryptocurrency money laundering detected via Revolut and Bitcoin. Bail was denied by the court.",
       "source_name": "MaltaToday \u00b7 Newsbook",
-      "source_url": "https://www.maltatoday.com.mt/news/court_and_police/139843/fraudster_used_text_messages_fake_bank_apps_to_swindle_hundreds_of_victims_"
+      "source_url": "https://www.maltatoday.com.mt/news/court_and_police/139843/fraudster_used_text_messages_fake_bank_apps_to_swindle_hundreds_of_victims_",
+      "date": "February 2026"
     },
     {
       "id": 6,
@@ -417,7 +422,8 @@
       "status": "Ongoing",
       "summary": "Malta Police and the FCID arrested a 25-year-old woman and an 82-year-old man in connection with a fraud investigation linked to losses of approximately \u20ac1 million affecting around 200 victims. Case referred to the criminal court for prosecution.",
       "source_name": "AML Intelligence \u00b7 Malta Police",
-      "source_url": "https://www.amlintelligence.com/2026/02/news-malta-police-arrest-25-year-old-woman-suspected-of-scamming-200-people-out-of-e1m/"
+      "source_url": "https://www.amlintelligence.com/2026/02/news-malta-police-arrest-25-year-old-woman-suspected-of-scamming-200-people-out-of-e1m/",
+      "date": "February 2026"
     },
     {
       "id": 7,
@@ -428,7 +434,8 @@
       "status": "Concluded",
       "summary": "Six individuals were arrested in the UK in connection with the EmpireMonkey APT group responsible for the BOV \u20ac13M heist. The case involved international cooperation between Malta, the UK, US, Czech Republic and Hong Kong. \u20ac10.1M was recovered.",
       "source_name": "SecurityWeek \u00b7 MaltaToday",
-      "source_url": "https://www.securityweek.com/six-arrested-uk-over-malta-bank-cyber-heist/"
+      "source_url": "https://www.securityweek.com/six-arrested-uk-over-malta-bank-cyber-heist/",
+      "date": "2019\u20132021"
     }
   ],
   "live_news": [
