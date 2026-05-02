@@ -207,7 +207,7 @@
     <h1>Live<span class="h1-red">News Feed</span></h1>
     <div class="feed-meta">
       <span><span class="dot"></span><span id="fetchTime">Loading...</span></span>
-      <span><span class="dot"></span>48 sources searched</span>
+      <span><span class="dot"></span><span id="sourceCount">—</span> sources searched</span>
       <span><span class="dot"></span>Malta-relevant only</span>
     </div>
     <div class="live-badge" style="margin-top:14px;">
@@ -299,6 +299,11 @@ async function loadFeed() {
       </div>`).join("");
 
     // Sources
+    // Dynamic source count
+    const srcCount = (data.sources_searched||[]).length;
+    const scEl = document.getElementById('sourceCount');
+    if (scEl) scEl.textContent = srcCount;
+
     // sources from data.json
     if (data.sources_searched && data.sources_searched.length) {
       srcSec.style.display = "block";

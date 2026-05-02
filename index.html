@@ -236,9 +236,9 @@
     <div class="eyebrow">Threat Intelligence Report</div>
     <h1>Malta<span class="h1-red">Cyber Breaches</span></h1>
     <div class="header-meta">
-      <span><span class="dot"></span>Updated: April 2026</span>
+      <span><span class="dot"></span><span id="headerDate">Loading...</span></span>
       <span><span class="dot"></span>MaltaToday · The Shift News · Independent · Lovin Malta · Newsbook · Times of Malta · iGaming Capital · IDPC · MSS</span>
-      <span id="lastFetch"><span class="dot"></span>Loading news feed...</span>
+      <span id="lastFetch"><span class="dot"></span><span id="headerSources">48 sources</span></span>
     </div>
     <div style="margin-top:16px;">
       <span class="live-badge"><span class="live-dot"></span>Malta-relevant only · Auto-updated daily</span>
@@ -265,11 +265,11 @@
 
 <div class="stats-strip" style="background:#1f2530;">
   <div class="stat-box sb-red" style="background:#111318 !important;">
-    <div class="stat-num" style="color:#e63946 !important;">12</div>
-    <div class="stat-label" style="color:#6b7585 !important;">Confirmed Incidents<br>2018–2026</div>
+    <div class="stat-num" style="color:#e63946 !important;" id="statIncidents">—</div>
+    <div class="stat-label" style="color:#6b7585 !important;">Confirmed Incidents<br><span id="statYearRange">—</span></div>
   </div>
   <div class="stat-box sb-amber" style="background:#111318 !important;">
-    <div class="stat-num" style="color:#ff9f1c !important;">8</div>
+    <div class="stat-num" style="color:#ff9f1c !important;" id="statSectors">—</div>
     <div class="stat-label" style="color:#6b7585 !important;">Sectors<br>Affected</div>
   </div>
   <div class="stat-box sb-red" style="background:#111318 !important;">
@@ -432,10 +432,31 @@ async function loadData() {
         <td><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border:1px solid;color:${STATUS_COLOR[c.status]||'#6b7585'} !important;border-color:${STATUS_COLOR[c.status]||'#6b7585'};">${c.status}</span></td>
       </tr>`).join('');
 
-    // ── Stats ──
-    document.getElementById('breachCount').textContent = incidents.length + ' Incidents';
-    document.getElementById('courtCount').textContent  = cases.length + ' Cases';
-    document.getElementById('cardCount').textContent   = incidents.length + ' Events';
+    // ── Stats — all dynamic from data.json ──
+    const incidentCount  = incidents.length;
+    const sectorSet      = new Set(incidents.map(i => i.sector.split('/')[0].trim()));
+    const years          = incidents.map(i => parseInt(i.year)).filter(Boolean);
+    const minYear        = Math.min(...years);
+    const maxYear        = Math.max(...years);
+
+    document.getElementById('statIncidents').textContent = incidentCount;
+    document.getElementById('statSectors').textContent   = sectorSet.size;
+    document.getElementById('statYearRange').textContent = minYear + '–' + maxYear;
+    document.getElementById('breachCount').textContent   = incidentCount + ' Incidents';
+    document.getElementById('courtCount').textContent    = cases.length + ' Cases';
+    document.getElementById('cardCount').textContent     = incidentCount + ' Events';
+
+    // ── Header & footer dates ──
+    if (data.fetched) {
+      const d    = new Date(data.fetched);
+      const nice = d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+      const time = d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+      document.getElementById('headerDate').textContent  = 'Refreshed ' + nice + ' at ' + time + ' UTC';
+      document.getElementById('footerDate').textContent  = 'Refreshed ' + nice;
+      document.getElementById('lastUpdatedText').textContent = '⟳ ' + nice + ' at ' + time + ' UTC';
+      document.getElementById('feedMeta').textContent    = 'Updated ' + nice + ' · ' + (data.sources_searched||[]).length + ' sources · Malta-relevant only';
+      document.getElementById('headerSources').textContent = (data.sources_searched||[]).length + ' sources searched';
+    }
 
     // ── Feed meta ──
     if (data.fetched) {
@@ -477,7 +498,7 @@ loadData();
 </script>
 
   <footer style="background:transparent;">
-    <div class="footer-l">Malta Cybersecurity Report · Compiled April 2026 · Live feed powered by Claude AI</div>
+    <div class="footer-l">Malta Cybersecurity Report · <span id="footerDate">—</span> · Live feed powered by Claude AI</div>
     <div class="footer-r">Sources: MaltaToday, The Shift News, Independent, Lovin Malta, Newsbook, Times of Malta, iGaming Capital, MSS, IDPC, noyb, Daphne Foundation, SecurityWeek, GTG Advocates, MTCA, Saint James Hospital, SIGMA World, iGaming Business, Brave New Coin</div>
   </footer>
 
