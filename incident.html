@@ -25,7 +25,7 @@
     @media (min-width: 600px) { .wrap { padding-left: 24px; padding-right: 24px; } }
 
     /* BACK BAR */
-    .back-bar { padding: 20px 0 0; margin-bottom: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .back-bar { padding: 20px 0 0; margin-bottom: 24px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
     .back-btn {
       display: inline-flex; align-items: center; gap: 8px;
       font-family: 'IBM Plex Mono', monospace; font-size: 11px;
@@ -36,11 +36,12 @@
     .back-btn::before { content: '←'; font-size: 14px; }
     .nav-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'IBM Plex Mono', monospace; font-size: 11px;
-      letter-spacing: 1px; text-transform: uppercase;
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+      letter-spacing: 0.5px; text-transform: uppercase;
       color: #6b7585 !important; text-decoration: none;
-      border: 1px solid #1f2530; padding: 8px 14px; background: transparent;
-      cursor: pointer;
+      border: 1px solid #1f2530; padding: 7px 10px; background: transparent;
+      cursor: pointer; max-width: 45vw; overflow: hidden;
+      text-overflow: ellipsis; white-space: nowrap;
     }
     .nav-btn:hover { color: #d0d6e2 !important; border-color: #3a4255; }
 
@@ -55,7 +56,7 @@
 
     .incident-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(32px, 8vw, 56px);
+      font-size: clamp(28px, 7vw, 56px);
       line-height: 1.0; letter-spacing: 1px;
       color: #ffffff !important; text-transform: uppercase;
       margin-bottom: 20px;
@@ -76,9 +77,9 @@
     /* META GRID */
     .meta-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 12px; margin-bottom: 32px;
+      gap: 10px; margin-bottom: 28px;
     }
-    @media (min-width: 500px) { .meta-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); } }
+    @media (min-width: 480px) { .meta-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); } }
     .meta-box { background: #111318; border: 1px solid #1f2530; padding: 14px 16px; }
     .meta-key { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #4a5568 !important; margin-bottom: 4px; display: block; }
     .meta-val { font-size: 13px; color: #d0d6e2 !important; font-weight: 600; line-height: 1.4; }
@@ -86,11 +87,11 @@
     /* SECTIONS */
     .inc-section { margin-bottom: 28px; }
     .inc-section-title {
-      font-family: 'IBM Plex Mono', monospace; font-size: 11px;
-      letter-spacing: 2px; text-transform: uppercase;
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+      letter-spacing: 1.5px; text-transform: uppercase;
       margin-bottom: 12px; padding-bottom: 10px;
       border-bottom: 1px solid #1f2530;
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
     }
     .inc-section-title.red   { color: #e63946 !important; }
     .inc-section-title.amber { color: #ff9f1c !important; }
@@ -106,9 +107,9 @@
     /* MONITORING CONTROLS */
     .controls-list { display: grid; gap: 8px; margin-top: 4px; }
     .control-item {
-      display: flex; align-items: flex-start; gap: 12px;
+      display: flex; align-items: flex-start; gap: 10px;
       background: #111318; border: 1px solid #1f2530;
-      border-left: 3px solid #2ec4b6; padding: 12px 14px;
+      border-left: 3px solid #2ec4b6; padding: 10px 12px;
     }
     .control-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
     .control-text { font-size: 13px; color: #d0d6e2 !important; font-weight: 500; line-height: 1.4; }

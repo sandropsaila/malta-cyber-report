@@ -53,7 +53,8 @@
     /* STATS */
     .stats-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#1f2530; border-bottom:1px solid #1f2530; }
     .stat-num { font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,7vw,52px); line-height:1; margin-bottom:5px; }
-    .stat-box { padding:22px 16px; position:relative; }
+    .stat-box { padding:16px 12px; position:relative; }
+    @media (min-width:400px) { .stat-box { padding:20px 16px; } }
     @media (min-width:600px) { .stat-box { padding:26px 22px; } }
     .stat-box::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; }
     .sb-red { background:#111318 !important; } .sb-red::after { background:#e63946; }
@@ -63,7 +64,7 @@
     .sb-red .stat-num { color:#e63946 !important; }
     .sb-amber .stat-num { color:#ff9f1c !important; }
     .sb-teal .stat-num { color:#2ec4b6 !important; }
-    .stat-label { font-size:10px; color:#6b7585 !important; text-transform:uppercase; letter-spacing:1.2px; line-height:1.4; }
+    .stat-label { font-size:clamp(8px,2.5vw,10px); color:#6b7585 !important; text-transform:uppercase; letter-spacing:0.8px; line-height:1.4; }
 
     /* SECTION */
     .section { margin-bottom:52px; }
@@ -91,19 +92,22 @@
 
     /* TABLE */
     .tbl-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
-    table { width:100%; border-collapse:collapse; font-size:13px; min-width:560px; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
     thead tr { background:#111318 !important; border-bottom:2px solid #e63946; }
-    thead th { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#6b7585 !important; padding:12px 14px; text-align:left; }
+    thead th { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#6b7585 !important; padding:10px 12px; text-align:left; white-space:nowrap; }
     tbody tr { border-bottom:1px solid #1f2530; }
     tbody tr:nth-child(even) { background:#0d0f14 !important; }
     tbody tr:nth-child(odd)  { background:#0a0c10 !important; }
-    tbody td { padding:11px 14px; color:#b0b8cc !important; vertical-align:top; line-height:1.5; }
-    tbody td:first-child { font-weight:600; color:#d0d6e2 !important; white-space:nowrap; }
-    .sev-pill { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; padding:2px 7px; border:1px solid; }
+    tbody td { padding:10px 12px; color:#b0b8cc !important; vertical-align:top; line-height:1.5; font-size:13px; }
+    tbody td:first-child { font-weight:600; color:#d0d6e2 !important; }
+    /* Hide less critical columns on mobile */
+    .hide-mobile { display:none; }
+    @media (min-width:600px) { .hide-mobile { display:table-cell; } }
+    .sev-pill { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; padding:2px 7px; border:1px solid; white-space:nowrap; }
     .sp-crit { color:#e63946 !important; border-color:#e63946; background:rgba(230,57,70,0.1); }
     .sp-high { color:#ff9f1c !important; border-color:#ff9f1c; background:rgba(255,159,28,0.1); }
     .sp-med  { color:#2ec4b6 !important; border-color:#2ec4b6; background:rgba(46,196,182,0.1); }
-    .yr-tag  { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#ff9f1c !important; }
+    .yr-tag  { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#ff9f1c !important; white-space:nowrap; }
 
     /* CARDS */
     .incident-grid { display:grid; gap:14px; }
@@ -301,7 +305,7 @@
       <table>
         <thead>
           <tr>
-            <th>Sector</th><th>Incident</th><th>Year</th><th>Severity</th><th>Type</th><th>Impact</th>
+            <th>Sector</th><th>Incident</th><th>Year</th><th>Severity</th><th class="hide-mobile">Type</th><th class="hide-mobile">Impact</th>
           </tr>
         </thead>
         <tbody id="breachBody">
@@ -321,7 +325,7 @@
       <table>
         <thead>
           <tr>
-            <th>Case</th><th>Date</th><th>Court / Body</th><th>Outcome</th><th>Status</th>
+            <th>Case</th><th>Date</th><th class="hide-mobile">Court / Body</th><th class="hide-mobile">Outcome</th><th>Status</th>
           </tr>
         </thead>
         <tbody id="courtBody">
@@ -333,7 +337,7 @@
 
   <!-- ══ NEWS FEED LINK ══ -->
   <div class="section">
-    <div style="background:#111318 !important; border:1px solid #1f2530; border-left:4px solid #e63946; padding:20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+    <div style="background:#111318 !important; border:1px solid #1f2530; border-left:4px solid #e63946; padding:20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
       <div>
         <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#e63946 !important; margin-bottom:6px;">Live News Feed</div>
         <div style="font-size:15px; font-weight:600; color:#fff !important; margin-bottom:4px;">Latest Malta Cyber Incidents</div>
@@ -415,8 +419,8 @@ async function loadData() {
         </td>
         <td><span class="yr-tag">${inc.year}</span></td>
         <td>${SEV_PILL[inc.severity] || SEV_PILL.high}</td>
-        <td style="color:#b0b8cc !important;">${inc.type}</td>
-        <td style="color:#b0b8cc !important;">${inc.records}</td>
+        <td class="hide-mobile" style="color:#b0b8cc !important;">${inc.type}</td>
+        <td class="hide-mobile" style="color:#b0b8cc !important;">${inc.records}</td>
       </tr>`).join('');
 
     // ── TABLE 2: Court Cases ──
@@ -433,8 +437,8 @@ async function loadData() {
           </div>
         </td>
         <td><span class="yr-tag" style="white-space:nowrap;">${c.date||c.year}</span></td>
-        <td style="color:#b0b8cc !important;font-size:13px;">${c.court}</td>
-        <td style="color:#b0b8cc !important;font-size:13px;">${c.outcome}</td>
+        <td class="hide-mobile" style="color:#b0b8cc !important;font-size:13px;">${c.court}</td>
+        <td class="hide-mobile" style="color:#b0b8cc !important;font-size:13px;">${c.outcome}</td>
         <td><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border:1px solid;color:${STATUS_COLOR[c.status]||'#6b7585'} !important;border-color:${STATUS_COLOR[c.status]||'#6b7585'};">${c.status}</span></td>
       </tr>`).join('');
 
