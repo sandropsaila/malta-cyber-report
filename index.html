@@ -406,7 +406,13 @@ async function loadData() {
     }
 
     // ── TABLE 1: Confirmed Breaches ──
-    const incidents = data.confirmed_incidents || [];
+    // Sort by extracted year/date — most recent first
+    const yearKey = s => {
+      if (!s) return 0;
+      const m = String(s).match(/\d{4}/g);
+      return m ? Math.max(...m.map(Number)) : 0;
+    };
+    const incidents = (data.confirmed_incidents || []).slice().sort((a, b) => yearKey(b.year) - yearKey(a.year));
     document.getElementById('breachCount').textContent = incidents.length + ' Incidents';
     document.getElementById('breachBody').innerHTML = incidents.map((inc, i) => `
       <tr style="background:${i%2===0?'#0a0c10':'#0d0f14'} !important;">
@@ -424,7 +430,7 @@ async function loadData() {
       </tr>`).join('');
 
     // ── TABLE 2: Court Cases ──
-    const cases = data.court_cases || [];
+    const cases = (data.court_cases || []).slice().sort((a, b) => yearKey(b.year) - yearKey(a.year));
     document.getElementById('courtCount').textContent = cases.length + ' Cases';
     document.getElementById('courtBody').innerHTML = cases.map((c, i) => `
       <tr style="background:${i%2===0?'#0a0c10':'#0d0f14'} !important; cursor:pointer;" onclick="toggleSection('crt-${c.id}')">

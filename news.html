@@ -262,7 +262,19 @@ async function loadFeed() {
     const res  = await fetch("data.json?v=" + Date.now());
     if (!res.ok) throw new Error("data.json not found");
     const data = await res.json();
-    const items = data.live_news || [];
+    const monthMap = {Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12,
+        January:1,February:2,March:3,April:4,June:6,July:7,August:8,September:9,October:10,November:11,December:12};
+    const dateKey = s => {
+      if (!s) return 0;
+      // Find latest year
+      const yearMatch = String(s).match(/\d{4}/g);
+      const year = yearMatch ? Math.max(...yearMatch.map(Number)) : 0;
+      // Find latest month
+      const monthMatches = String(s).match(/\b(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b/g);
+      const month = monthMatches ? Math.max(...monthMatches.map(m => monthMap[m] || 0)) : 0;
+      return year * 100 + month;
+    };
+    const items = (data.live_news || []).slice().sort((a, b) => dateKey(b.date) - dateKey(a.date));
 
     loading.style.display = "none";
 
