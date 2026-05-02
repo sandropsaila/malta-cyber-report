@@ -1,9 +1,9 @@
 name: Update Malta Cyber News
 
 on:
-  schedule:
-    - cron: '0 6 * * *'   # Daily at 6am UTC
-  workflow_dispatch:        # Allow manual trigger from GitHub UI
+  workflow_dispatch:  # Manual trigger only — requires ANTHROPIC_API_KEY secret
+  # schedule:
+  #   - cron: '0 6 * * *'  # Re-enable once ANTHROPIC_API_KEY is added to repo secrets
 
 jobs:
   fetch-and-commit:
@@ -20,16 +20,23 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Check API key is set
+        run: |
+          if [ -z "${{ secrets.ANTHROPIC_API_KEY }}" ]; then
+            echo "ANTHROPIC_API_KEY secret not set. Add it in GitHub repo Settings → Secrets → Actions."
+            exit 1
+          fi
+
       - name: Fetch latest Malta cyber news
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node api/fetch-news.js
 
-      - name: Commit news.json if changed
+      - name: Commit data.json if changed
         run: |
           git config user.name  "Malta Cyber Bot"
           git config user.email "bot@malta-cyber-report"
-          git add news.json
+          git add data.json
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
