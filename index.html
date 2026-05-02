@@ -285,429 +285,196 @@
 <div class="wrap">
 
   <!-- ═══════════════════════════════
-       SECTOR TABLE
-  ═══════════════════════════════ -->
+
+<div class="wrap">
+
+  <!-- Last updated bar -->
+  <div class="section mt-36">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6b7585 !important; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+      <span id="lastUpdatedText">Loading data...</span>
+      <a href="news.html" style="color:#2ec4b6 !important; text-decoration:none;">View Live News ↗</a>
+    </div>
+  </div>
+
+  <!-- ══ TABLE 1: CONFIRMED BREACHES ══ -->
   <div class="section">
     <div class="section-header">
-      <div class="section-title">Sector Breakdown</div>
-      <div class="section-count">12 Incidents · 8 Sectors</div>
+      <div class="section-title">Confirmed Breaches</div>
+      <div class="section-count" id="breachCount">Loading...</div>
     </div>
     <div class="tbl-wrap">
       <table>
         <thead>
           <tr>
-            <th>Sector</th><th>Incident</th><th>Year</th><th>Severity</th><th>Type</th><th>Records / Impact</th>
+            <th>Sector</th><th>Incident</th><th>Year</th><th>Severity</th><th>Type</th><th>Impact</th>
           </tr>
         </thead>
-        <tbody>
-          <tr style="background:#0a0c10 !important;"><td style="color:#d0d6e2 !important;">🎰 iGaming — Regulatory</td><td style="color:#b0b8cc !important;">Malta Gaming Authority (MGA) breach</td><td><span class="yr-tag">2026</span></td><td><span class="sev-pill sp-crit">Critical</span></td><td style="color:#b0b8cc !important;">Unauthorised system access</td><td style="color:#b0b8cc !important;">Unknown — under investigation</td></tr>
-          <tr style="background:#0d0f14 !important;"><td style="color:#d0d6e2 !important;">🎰 iGaming — CRM</td><td style="color:#b0b8cc !important;">Fast Track CRM attack (Shuffle Casino)</td><td><span class="yr-tag">2025</span></td><td><span class="sev-pill sp-high">High</span></td><td style="color:#b0b8cc !important;">Third-party platform breach</td><td style="color:#b0b8cc !important;">PII + KYC + financials; majority of Shuffle users</td></tr>
-          <tr style="background:#0a0c10 !important;"><td style="color:#d0d6e2 !important;">🎰 iGaming — Software</td><td style="color:#b0b8cc !important;">The Mill Adventure API flaw</td><td><span class="yr-tag">2025</span></td><td><span class="sev-pill sp-high">High</span></td><td style="color:#b0b8cc !important;">Unauthenticated API exposure</td><td style="color:#b0b8cc !important;">~800,000 players; 70,000+ ID docs</td></tr>
-          <tr style="background:#0d0f14 !important;"><td style="color:#d0d6e2 !important;">🏥 Healthcare</td><td style="color:#b0b8cc !important;">Saint James Hospital Group cyberattack</td><td><span class="yr-tag">2025</span></td><td><span class="sev-pill sp-high">High</span></td><td style="color:#b0b8cc !important;">Sophisticated cyberattack</td><td style="color:#b0b8cc !important;">Potential patient data exposure</td></tr>
-          <tr style="background:#0a0c10 !important;"><td style="color:#d0d6e2 !important;">🏛 Government — Tax</td><td style="color:#b0b8cc !important;">MTCA email data leak</td><td><span class="yr-tag">2025</span></td><td><span class="sev-pill sp-med">Medium</span></td><td style="color:#b0b8cc !important;">Human error / procedural</td><td style="color:#b0b8cc !important;">~7,000 company records</td></tr>
-          <tr style="background:#0d0f14 !important;"><td style="color:#d0d6e2 !important;">📡 Telecoms / ISP</td><td style="color:#b0b8cc !important;">Melita DDoS extortion attack</td><td><span class="yr-tag">2021</span></td><td><span class="sev-pill sp-high">High</span></td><td style="color:#b0b8cc !important;">DDoS / extortion</td><td style="color:#b0b8cc !important;">National internet disruption; 49% of broadband users</td></tr>
-          <tr style="background:#0a0c10 !important;"><td style="color:#d0d6e2 !important;">🏛 Government — Multi-sector</td><td style="color:#b0b8cc !important;">MSS-reported wave: phishing, ransomware, DDoS</td><td><span class="yr-tag">2023–24</span></td><td><span class="sev-pill sp-high">High</span></td><td style="color:#b0b8cc !important;">Phishing / ransomware / DDoS</td><td style="color:#b0b8cc !important;">Public sector &amp; SMEs; UN/OSCE exposure</td></tr>
-          <tr style="background:#0d0f14 !important;"><td style="color:#d0d6e2 !important;">🏛 Government — Transport</td><td style="color:#b0b8cc !important;">Transport Malta server breach</td><td><span class="yr-tag">2020</span></td><td><span class="sev-pill sp-high">High</span></td><td style="color:#b0b8cc !important;">System breach</td><td style="color:#b0b8cc !important;">Servers &amp; IP systems; 5 days downtime</td></tr>
-          <tr style="background:#0a0c10 !important;"><td style="color:#d0d6e2 !important;">🗳 Political / Civil Society</td><td style="color:#b0b8cc !important;">C-Planet voter data breach</td><td><span class="yr-tag">2020</span></td><td><span class="sev-pill sp-crit">Critical</span></td><td style="color:#b0b8cc !important;">Unlawful data collection &amp; leak</td><td style="color:#b0b8cc !important;">330,000+ voters; €65K GDPR fine</td></tr>
-          <tr style="background:#0d0f14 !important;"><td style="color:#d0d6e2 !important;">💻 Tech / Education</td><td style="color:#b0b8cc !important;">FreeHour app vulnerability disclosure</td><td><span class="yr-tag">2022</span></td><td><span class="sev-pill sp-med">Medium</span></td><td style="color:#b0b8cc !important;">API vulnerability (ethical disclosure)</td><td style="color:#b0b8cc !important;">Student PII at risk; national law reform</td></tr>
-          <tr style="background:#0a0c10 !important;"><td style="color:#d0d6e2 !important;">🏦 Financial Services</td><td style="color:#b0b8cc !important;">Bank of Valletta €13M cyber heist</td><td><span class="yr-tag">2019</span></td><td><span class="sev-pill sp-crit">Critical</span></td><td style="color:#b0b8cc !important;">APT / nation-state (EmpireMonkey)</td><td style="color:#b0b8cc !important;">€13M transferred; full bank shutdown</td></tr>
-          <tr style="background:#0d0f14 !important;"><td style="color:#d0d6e2 !important;">🏛 Government — Land</td><td style="color:#b0b8cc !important;">Lands Authority — Google-indexed data breach</td><td><span class="yr-tag">2018</span></td><td><span class="sev-pill sp-high">High</span></td><td style="color:#b0b8cc !important;">Misconfigured web portal</td><td style="color:#b0b8cc !important;">5,000+ users; ID cards &amp; passports; €5K GDPR fine</td></tr>
+        <tbody id="breachBody">
+          <tr><td colspan="6" style="color:#6b7585;font-family:'IBM Plex Mono',monospace;font-size:11px;padding:20px 14px;">Loading...</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- NEWS FEED LINK -->
+  <!-- ══ TABLE 2: COURT CASES & ENFORCEMENT ══ -->
   <div class="section">
-    <div style="background:#111318 !important; border:1px solid #1f2530; border-left:4px solid #e63946; padding:20px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+    <div class="section-header">
+      <div class="section-title">Court Cases &amp; Enforcement</div>
+      <div class="section-count" id="courtCount">Loading...</div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Case</th><th>Year</th><th>Court / Body</th><th>Outcome</th><th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="courtBody">
+          <tr><td colspan="5" style="color:#6b7585;font-family:'IBM Plex Mono',monospace;font-size:11px;padding:20px 14px;">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══ NEWS FEED LINK ══ -->
+  <div class="section">
+    <div style="background:#111318 !important; border:1px solid #1f2530; border-left:4px solid #e63946; padding:20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
       <div>
         <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#e63946 !important; margin-bottom:6px;">Live News Feed</div>
         <div style="font-size:15px; font-weight:600; color:#fff !important; margin-bottom:4px;">Latest Malta Cyber Incidents</div>
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6b7585 !important;">Auto-updated daily · 48 sources · Malta-relevant only</div>
+        <div id="feedMeta" style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6b7585 !important;">Auto-updated · 48 sources · Malta-relevant only</div>
       </div>
       <a href="news.html" style="display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#0a0c10 !important; background:#e63946; padding:10px 18px; text-decoration:none; white-space:nowrap; flex-shrink:0;">View Feed ↗</a>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════
-       INCIDENT DETAIL CARDS
-  ═══════════════════════════════ -->
+  <!-- ══ INCIDENT DETAIL CARDS ══ -->
   <div class="section">
     <div class="section-header">
       <div class="section-title">Incident Detail</div>
-      <div class="section-count">12 Events · 2018–2026</div>
+      <div class="section-count" id="cardCount">Loading...</div>
     </div>
-    <div class="incident-grid">
-
-      <div class="icard ic-crit" style="background:#111318 !important;">
-        <div class="card-title" style="color:#fff !important;"><span class="card-toggle" id="ict-0" style="color:#4a5568;">Details</span>Malta Gaming Authority (MGA) — System Breach</div>
-        <div class="badge-row"><span class="badge b-crit">Critical</span><span class="badge b-neutral">March 2026</span><span class="badge b-neutral">iGaming / Regulatory</span></div>
-        <div class="icard-body" id="icb-0">
-        <div class="card-body">
-          <p>On 17 March 2026 the MGA confirmed a breach of an internal system. Days later, Berlin-based researcher <strong>Lilith Wittmann</strong> of the Chaos Computer Club claimed responsibility, stating data had been shared with media and authorities. She alleged the MGA enabled <strong>"organised crime enablement schemes"</strong> and warned any extradition attempt would trigger release of a full iGaming data archive.</p>
-          <p>Wittmann stated she maintained access for <strong>months</strong> before detection, calling the breach straightforward. The MGA called the allegations "unsubstantiated." Criminal investigation opened; Wittmann faces up to 10 years under Maltese law.</p>
-        </div>
-        <div class="card-meta">
-          <div><span class="meta-key">Attacker</span><span class="meta-val">Lilith Wittmann (DE)</span></div>
-          <div><span class="meta-key">Data Shared With</span><span class="meta-val">Media + Authorities</span></div>
-          <div><span class="meta-key">Target</span><span class="meta-val">Public Regulatory Body</span></div>
-          <div><span class="meta-key">Status</span><span class="meta-val">Under Investigation</span></div>
-        </div>
-        <div class="card-src">Sources: <a href="https://www.maltatoday.com.mt/news/national/140462/hacker_claims_responsibility_for_gaming_authority_data_breach_" target="_blank">MaltaToday</a> · <a href="https://theshiftnews.com/2026/03/27/hacking-the-malta-gaming-authority/" target="_blank">The Shift News</a> · <a href="https://newsbook.com.mt/en/german-hacker-claims-responsibility-for-mga-breach-and-vows-further-disclosures/" target="_blank">Newsbook</a></div>
-        </div>
-        </div>
-
-      <div class="icard ic-high" style="background:#111318 !important;">
-        <div class="card-title" style="color:#fff !important;"><span class="card-toggle" id="ict-1" style="color:#4a5568;">Details</span>Fast Track (Malta-based CRM) — Third-Party Casino Data Breach</div>
-        <div class="badge-row"><span class="badge b-high">High</span><span class="badge b-neutral">October 2025</span><span class="badge b-neutral">iGaming / CRM</span></div>
-        <div class="icard-body" id="icb-1">
-        <div class="card-body">
-          <p><strong>Fast Track</strong>, a Malta-headquartered iGaming CRM serving 100+ casino operators, was attacked in October 2025. <strong>Shuffle Casino</strong> was the only publicly confirmed victim. Attackers accessed full names, addresses, phone numbers, transaction histories, betting patterns, and critically, <strong>KYC documents</strong> including passports and driver's licences.</p>
-          <p>Fast Track held a fresh <strong>SOC 2 Type 2</strong> certification (June 2025). Shuffle terminated the partnership. The breach exemplifies how third-party CRM providers are now prime iGaming attack vectors.</p>
-        </div>
-        <div class="card-meta">
-          <div><span class="meta-key">Data Exposed</span><span class="meta-val">PII + KYC + Financials</span></div>
-          <div><span class="meta-key">Affected Operators</span><span class="meta-val">2 confirmed</span></div>
-          <div><span class="meta-key">Certification</span><span class="meta-val">SOC 2 Type 2</span></div>
-          <div><span class="meta-key">HQ</span><span class="meta-val">Malta + SE, ES, US</span></div>
-        </div>
-        <div class="card-src">Sources: <a href="https://bravenewcoin.com/insights/shuffle-data-breach-major-crypto-casino-hit-by-third-party-crm-attack" target="_blank">Brave New Coin</a> · <a href="https://breached.company/major-data-breach-hits-online-casinos-through-third-party-crm-provider-fast-track/" target="_blank">Breached.company</a></div>
-        </div>
-        </div>
-
-      <div class="icard ic-high" style="background:#111318 !important;">
-        <div class="card-title" style="color:#fff !important;"><span class="card-toggle" id="ict-2" style="color:#4a5568;">Details</span>The Mill Adventure (Malta) — API Flaw Exposes 800K+ Players</div>
-        <div class="badge-row"><span class="badge b-high">High</span><span class="badge b-neutral">March 2025</span><span class="badge b-neutral">iGaming / Software</span></div>
-        <div class="icard-body" id="icb-2">
-        <div class="card-body">
-          <p>Malta-based gaming provider <strong>The Mill Adventure</strong> had a critically vulnerable <strong>unauthenticated GraphQL API</strong> exposing player records without credentials. Wittmann disclosed the flaw 14 March 2025. Affected: Merkur's German platforms — Slotmagie, Crazybuzzer, Merkurbets. Exposed: player IDs, names, IBANs, login records, and <strong>70,000+ identity documents</strong>. ~800,000 players affected.</p>
-          <p>Germany's GGL issued a public reprimand; Malta-based subsidiaries placed on a warnings registry for failing mandatory annual pen tests. 12+ unlicensed casinos went offline.</p>
-        </div>
-        <div class="card-meta">
-          <div><span class="meta-key">Root Cause</span><span class="meta-val">Unauthenticated GraphQL</span></div>
-          <div><span class="meta-key">Players Affected</span><span class="meta-val">~800,000</span></div>
-          <div><span class="meta-key">ID Docs Exposed</span><span class="meta-val">70,000+ files</span></div>
-          <div><span class="meta-key">Regulator Action</span><span class="meta-val">GGL public reprimand</span></div>
-        </div>
-        <div class="card-src">Sources: <a href="https://sigma.world/news/data-leak-of-800000-players-in-germany/" target="_blank">SIGMA World</a> · <a href="https://igamingbusiness.com/tech-innovation/cybersecurity/merkur-player-data-breach-cyber-security-questions" target="_blank">iGaming Business</a></div>
-        </div>
-        </div>
-
-      <div class="icard ic-high" style="background:#111318 !important;">
-        <div class="card-title" style="color:#fff !important;"><span class="card-toggle" id="ict-3" style="color:#4a5568;">Details</span>Saint James Hospital Group — Sophisticated Cyberattack</div>
-        <div class="badge-row"><span class="badge b-high">High</span><span class="badge b-neutral">April 2025</span><span class="badge b-neutral">Healthcare</span></div>
-        <div class="icard-body" id="icb-3">
-        <div class="card-body">
-          <p>On 18 April 2025, <strong>Saint James Hospital Group</strong> confirmed a sophisticated cyberattack. All systems were immediately isolated. IT, legal, and external cybersecurity experts launched a forensic investigation into potential <strong>patient data exposure</strong>. Medical services continued uninterrupted. IDPC and police formally notified. First confirmed attack on Maltese healthcare infrastructure.</p>
-        </div>
-        <div class="card-meta">
-          <div><span class="meta-key">Attack Date</span><span class="meta-val">18 April 2025</span></div>
-          <div><span class="meta-key">Data at Risk</span><span class="meta-val">Potential patient records</span></div>
-          <div><span class="meta-key">Response</span><span class="meta-val">Systems isolated</span></div>
-          <div><span class="meta-key">Status</span><span class="meta-val">Investigation ongoing</span></div>
-        </div>
-        <div class="card-src">Sources: <a href="https://www.maltatoday.com.mt/news/national/134670/saint_james_hospital_targeted_in_cyberattack_medical_appointments_proceeding_normally" target="_blank">MaltaToday</a> · <a href="https://lovinmalta.com/news/st-james-hospital-targeted-by-sophisticated-cyber-attack/" target="_blank">Lovin Malta</a></div>
-        </div>
-        </div>
-
-      <div class="icard ic-med" style="background:#111318 !important;">
-        <div class="card-title" style="color:#fff !important;"><span class="card-toggle" id="ict-4" style="color:#4a5568;">Details</span>Malta Tax &amp; Customs Administration (MTCA) — Email Data Leak</div>
-        <div class="badge-row"><span class="badge b-med">Medium</span><span class="badge b-neutral">November 2025</span><span class="badge b-neutral">Government / Tax</span></div>
-        <div class="icard-body" id="icb-4">
-        <div class="card-body">
-          <p>On 12 November 2025, the <strong>MTCA</strong> accidentally attached a file containing contact details of ~7,000 companies to a mass email instead of distributing it through its secure portal. Exposed: company names, registration numbers, tax IDs, email addresses, phone numbers. No financial data. IDPC notified. Opposition demanded independent investigation.</p>
-        </div>
-        <div class="card-meta">
-          <div><span class="meta-key">Cause</span><span class="meta-val">Human / procedural error</span></div>
-          <div><span class="meta-key">Records Exposed</span><span class="meta-val">~7,000 companies</span></div>
-          <div><span class="meta-key">Data Type</span><span class="meta-val">Company contacts + tax IDs</span></div>
-          <div><span class="meta-key">IDPC Notified</span><span class="meta-val">Yes</span></div>
-        </div>
-        <div class="card-src">Sources: <a href="https://newsbook.com.mt/en/data-breach-at-malta-tax-office-7000-companies-details-exposed/" target="_blank">Newsbook</a> · <a href="https://lovinmalta.com/news/local/mtca-email-error-resulted-in-company-contact-details-shared-to-7000-recipients/" target="_blank">Lovin Malta</a></div>
-        </div>
-        </div>
-
-      <div class="icard ic-high" style="background:#111318 !important;">
-        <div class="card-title" style="color:#fff !important;"><span class="card-toggle" id="ict-5" style="color:#4a5568;">Details</span>Melita (Malta's Largest ISP) — DDoS Extortion Attack</div>
-        <div class="badge-row"><span class="badge b-high">High</span><span class="badge b-neutral">January 2021</span><span class="badge b-neutral">Telecoms / ISP</span></div>
-        <div class="icard-body" id="icb-5">
-        <div class="card-body">
-          <p>On 13 January 2021, <strong>Melita</strong> — covering ~49% of all Maltese broadband subscriptions — suffered a sophisticated DDoS attack by cybercriminals demanding extortion. Internet services dropped island-wide from 12:30pm. Described as <strong>"one of the most sophisticated yet"</strong>. Mitigated within hours; no systems breached, no data compromised. Reported to police and authorities.</p>
-        </div>
-        <div class="card-meta">
-          <div><span class="meta-key">Attack Type</span><span class="meta-val">DDoS / Extortion</span></div>
-          <div><span class="meta-key">Motive</span><span class="meta-val">Financial extortion</span></div>
-          <div><span class="meta-key">Data Breached</span><span class="meta-val">None confirmed</span></div>
-          <div><span class="meta-key">Impact</span><span class="meta-val">National internet disruption</span></div>
-        </div>
-        <div class="card-src">Sources: <a href="https://lovinmalta.com/news/cyber-criminals-aiming-to-extort-money-leads-to-melitas-internet-dropping-across-malta/" target="_blank">Lovin Malta</a> · <a href="https://www.maltatoday.com.mt/news/national/107018/cybercriminals_launch_ddos_attack_on_melita_to_extort_money" target="_blank">MaltaToday</a> · <a href="https://www.independent.com.mt/articles/2021-01-13/local-news/Melita-internet-slows-as-company-faces-cyber-attack-6736230117" target="_blank">Malta Independent</a></div>
-        </div>
-        </div>
-
-      <div class="icard ic-high" style="background:#111318 !important;">
-        <div class="card-title" style="color:#fff !important;"><span class="card-toggle" id="ict-6" style="color:#4a5568;">Details</span>Malta Security Service — Reported Wave of Public Sector &amp; SME Attacks</div>
-        <div class="badge-row"><span class="badge b-high">High</span><span class="badge b-neutral">2023–2024</span><span class="badge b-neutral">Government / SMEs / National Security</span></div>
-        <div class="icard-body" id="icb-6">
-        <div class="card-body">
-          <p>MSS annual reports (tabled 2025) confirmed Malta suffered a surge in cyber incidents during its <strong>UN Security Council tenure (2023–2024)</strong> and OSCE chairmanship. Incidents included phishing at public sector employees, ransomware on SMEs, and DDoS attacks. Most were financially motivated. No direct link to diplomatic activity established but elevated geopolitical profile likely raised risk.</p>
-        </div>
-        <div class="card-meta">
-          <div><span class="meta-key">Attack Types</span><span class="meta-val">Phishing, Ransomware, DDoS</span></div>
-          <div><span class="meta-key">Targets</span><span class="meta-val">Govt staff + SMEs</span></div>
-          <div><span class="meta-key">Motive</span><span class="meta-val">Financial / disruption</span></div>
-          <div><span class="meta-key">Source</span><span class="meta-val">MSS Annual Reports</span></div>
-        </div>
-        <div class="card-src">Sources: <a href="https://www.maltatoday.com.mt/news/national/135540/cyberattacks_rose_as_malta_assumed_top_posts_secret_service_report_shows" target="_blank">MaltaToday — MSS Report</a></div>
-        </div>
-        </div>
-
-      <div class="icard ic-high" style="background:#111318 !important;">
-        <div class="card-title" style="color:#fff !important;"><span class="card-toggle" id="ict-7" style="color:#4a5568;">Details</span>Transport Malta — Server &amp; IP Systems Breach</div>
-        <div class="badge-row"><span class="badge b-high">High</span><span class="badge b-neutral">September 2020</span><span class="badge b-neutral">Government / Transport</span></div>
-        <div class="icard-body" id="icb-7">
-        <div class="card-body">
-          <p>Overnight 25–26 September 2020, <strong>Transport Malta</strong>'s servers and intellectual property systems were compromised. Online services were down for 5 days. Staff were advised to monitor personal accounts. IDPC notified; a magisterial inquiry was opened with forensic experts appointed. No public confirmation of data exfiltration.</p>
-        </div>
-        <div class="card-meta">
-          <div><span class="meta-key">Systems Affected</span><span class="meta-val">Servers + IP systems</span></div>
-          <div><span class="meta-key">Downtime</span><span class="meta-val">5 days</span></div>
-          <div><span class="meta-key">IDPC Notified</span><span class="meta-val">Yes</span></div>
-          <div><span class="meta-key">Legal Action</span><span class="meta-val">Magisterial inquiry</span></div>
-        </div>
-        <div class="card-src">Sources: <a href="https://www.maltatoday.com.mt/news/national/105329/tm_cyber_attack_employees_told_to_secure_personal_data" target="_blank">MaltaToday</a></div>
-        </div>
-        </div>
-
-      <div class="icard ic-crit" style="background:#111318 !important;">
-        <div class="card-title" style="color:#fff !important;"><span class="card-toggle" id="ict-8" style="color:#4a5568;">Details</span>C-Planet IT Solutions — Maltese Voter Database Leak</div>
-        <div class="badge-row"><span class="badge b-crit">Critical</span><span class="badge b-neutral">2020 (Fined 2022)</span><span class="badge b-neutral">Political / Civil Society</span></div>
-        <div class="icard-body" id="icb-8">
-        <div class="card-body">
-          <p>In April 2020, a database on <strong>C-Planet</strong> servers exposed PII of 330,000+ Maltese voters (98% of the electorate), including names, ID card numbers, dates of birth, and <strong>political opinions and voting intentions</strong>. IDPC opened an investigation; in January 2022 C-Planet was fined <strong>€65,000</strong> — Malta's highest GDPR fine at the time. noyb filed complaints; class action initiated. Origin of data remains disputed.</p>
-        </div>
-        <div class="card-meta">
-          <div><span class="meta-key">Records Exposed</span><span class="meta-val">330,000+ voters</span></div>
-          <div><span class="meta-key">Data Sensitivity</span><span class="meta-val">Political opinions + PII</span></div>
-          <div><span class="meta-key">GDPR Fine</span><span class="meta-val">€65,000</span></div>
-          <div><span class="meta-key">Status</span><span class="meta-val">Appealed; origin unknown</span></div>
-        </div>
-        <div class="card-src">Sources: <a href="https://noyb.eu/en/data-breach-malta-65000-eu-fine-c-planet" target="_blank">noyb</a> · <a href="https://theshiftnews.com/2022/01/17/c-planet-fined-e65000-for-voter-data-breach/" target="_blank">The Shift News</a></div>
-        </div>
-        </div>
-
-      <div class="icard ic-med" style="background:#111318 !important;">
-        <div class="card-title" style="color:#fff !important;"><span class="card-toggle" id="ict-9" style="color:#4a5568;">Details</span>FreeHour App — Vulnerability Disclosure &amp; Legal Controversy</div>
-        <div class="badge-row"><span class="badge b-med">Medium</span><span class="badge b-neutral">2022–2025</span><span class="badge b-neutral">Tech / Education</span></div>
-        <div class="icard-body" id="icb-9">
-        <div class="card-body">
-          <p>Four UoM students found critical flaws in <strong>FreeHour</strong> (Malta's most popular student app) — unauthenticated API endpoints exposing user data. Rather than recognition, students were arrested, strip-searched, and had <strong>14 devices impounded for 28 months</strong>. Two reported PTSD. Case triggered national debate, Budapest Convention adoption (January 2025), and a <strong>Presidential Pardon</strong> (July 2025).</p>
-        </div>
-        <div class="card-meta">
-          <div><span class="meta-key">Vulnerability</span><span class="meta-val">Unauthenticated API</span></div>
-          <div><span class="meta-key">Action</span><span class="meta-val">Responsible disclosure</span></div>
-          <div><span class="meta-key">Legal Outcome</span><span class="meta-val">Presidential Pardon 2025</span></div>
-          <div><span class="meta-key">Policy Impact</span><span class="meta-val">National law reform</span></div>
-        </div>
-        <div class="card-src">Sources: <a href="https://en.wikipedia.org/wiki/2022_FreeHour_ethical_hacking_case" target="_blank">Wikipedia</a> · <a href="https://newsbook.com.mt/en/ethical-hackers-charged-with-unauthorised-access-to-freehour-app/" target="_blank">Newsbook</a></div>
-        </div>
-        </div>
-
-      <div class="icard ic-crit" style="background:#111318 !important;">
-        <div class="card-title" style="color:#fff !important;"><span class="card-toggle" id="ict-10" style="color:#4a5568;">Details</span>Bank of Valletta (BOV) — €13M Nation-State Cyber Heist</div>
-        <div class="badge-row"><span class="badge b-crit">Critical</span><span class="badge b-neutral">February 2019</span><span class="badge b-neutral">Financial Services</span></div>
-        <div class="icard-body" id="icb-10">
-        <div class="card-body">
-          <p>On 13 February 2019, <strong>EmpireMonkey</strong> APT transferred €13M from Malta's largest bank via falsified international transactions to accounts in the US, UK, Czech Republic, and Hong Kong. BOV shut down all operations within 30 minutes of detection — branches, ATMs, mobile banking, email. <strong>€10.1M recovered</strong>; remaining €2.9M located in Hong Kong. EmpireMonkey had previously targeted HSBC Malta (October 2018). 6 UK arrests followed.</p>
-        </div>
-        <div class="card-meta">
-          <div><span class="meta-key">Amount Stolen</span><span class="meta-val">€13M attempted</span></div>
-          <div><span class="meta-key">Recovered</span><span class="meta-val">€10.1M</span></div>
-          <div><span class="meta-key">Attacker</span><span class="meta-val">EmpireMonkey (APT)</span></div>
-          <div><span class="meta-key">Impact</span><span class="meta-val">Full national bank shutdown</span></div>
-        </div>
-        <div class="card-src">Sources: <a href="https://www.maltatoday.com.mt/news/national/92964/bank_of_valletta_shuts_down_operations_following_cyber_attack_" target="_blank">MaltaToday</a> · <a href="https://www.securityweek.com/six-arrested-uk-over-malta-bank-cyber-heist/" target="_blank">SecurityWeek</a></div>
-        </div>
-        </div>
-
-      <div class="icard ic-high" style="background:#111318 !important;">
-        <div class="card-title" style="color:#fff !important;"><span class="card-toggle" id="ict-11" style="color:#4a5568;">Details</span>Lands Authority — Google-Indexed Personal Data Breach</div>
-        <div class="badge-row"><span class="badge b-high">High</span><span class="badge b-neutral">2018 (Fined 2019)</span><span class="badge b-neutral">Government / Land Registry</span></div>
-        <div class="icard-body" id="icb-11">
-        <div class="card-body">
-          <p>The <strong>Lands Authority</strong>'s online application portal was misconfigured, leaving over <strong>10GB of personal data — including identity cards and passport copies</strong> of 5,000+ applicants — publicly accessible and indexed by Google. Discovered by Times of Malta and The Shift News in November 2018. IDPC fined the Authority <strong>€5,000</strong> in February 2019 — at the time Malta's highest GDPR fine. Portal was temporarily suspended.</p>
-        </div>
-        <div class="card-meta">
-          <div><span class="meta-key">Data Exposed</span><span class="meta-val">ID cards, passports, correspondence</span></div>
-          <div><span class="meta-key">Records</span><span class="meta-val">5,000+ applicants; 10GB</span></div>
-          <div><span class="meta-key">GDPR Fine</span><span class="meta-val">€5,000</span></div>
-          <div><span class="meta-key">Root Cause</span><span class="meta-val">Misconfigured web portal</span></div>
-        </div>
-        <div class="card-src">Sources: <a href="https://www.edpb.europa.eu/news/national-news/2019/idpc-lands-authority-personal-data-breach_en" target="_blank">EDPB / IDPC Decision</a> · <a href="https://theshiftnews.com/2020/04/04/data-protection-laws-violated-30-times-in-7-years-minimal-fines/" target="_blank">The Shift News</a></div>
-        </div>
-        </div>
-
-    </div>
+    <div id="incidentCards"></div>
   </div>
 
-  <!-- ═══════════════════════════════
-       THREAT LANDSCAPE
-  ═══════════════════════════════ -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">Broader Threat Landscape</div>
-      <div class="section-count">Context · 2025–2026</div>
-    </div>
-    <div class="ctx-grid">
-      <div class="ctx-card" style="background:#111318 !important;">
-        <div class="ctx-title"><span class="ctx-toggle" id="ctx-0" style="color:#4a5568;">Details</span>🎯 Scale of Attacks</div>
-        <div class="ctx-body" id="cxb-0"><p>PwC recorded over <strong>6 million distinct attacks</strong> on Maltese IP ranges between August and October 2025 alone — more than one every second. Automated botnets scan every IP address indiscriminately.</p></div>
-        </div>
-      <div class="ctx-card" style="background:#111318 !important;">
-        <div class="ctx-title"><span class="ctx-toggle" id="ctx-1" style="color:#4a5568;">Details</span>🔒 SME Blind Spots</div>
-        <div class="ctx-body" id="cxb-1"><p><strong>28.7% of Maltese enterprises</strong> reported a cyber incident in 2023 — well above the EU average of 21.5% (Eurostat 2024). And <strong>20% still don't know</strong> whether they have been attacked.</p></div>
-        </div>
-      <div class="ctx-card" style="background:#111318 !important;">
-        <div class="ctx-title"><span class="ctx-toggle" id="ctx-2" style="color:#4a5568;">Details</span>🌐 iGaming as Attack Surface</div>
-        <div class="ctx-body" id="cxb-2"><p>Malta's iGaming sector generates over <strong>€714M GVA per half-year</strong> (H1 2025), 6.5% of GDP. Five of twelve incidents trace to iGaming — by far the highest-risk national sector.</p></div>
-        </div>
-      <div class="ctx-card" style="background:#111318 !important;">
-        <div class="ctx-title"><span class="ctx-toggle" id="ctx-3" style="color:#4a5568;">Details</span>⚠ Third-Party Risk Pattern</div>
-        <div class="ctx-body" id="cxb-3"><p>Fast Track, The Mill Adventure, and BOV were all compromised via <strong>trusted third-party platforms or supply-chain entry points</strong>. Vendor access management is now the single most critical control.</p></div>
-        </div>
-      <div class="ctx-card" style="background:#111318 !important;">
-        <div class="ctx-title"><span class="ctx-toggle" id="ctx-4" style="color:#4a5568;">Details</span>🏥 Healthcare Emerging Target</div>
-        <div class="ctx-body" id="cxb-4"><p>The Saint James Hospital attack (April 2025) is Malta's first confirmed healthcare cyberattack, consistent with an EU-wide trend of hospitals being targeted for ransom and medical record theft.</p></div>
-        </div>
-      <div class="ctx-card" style="background:#111318 !important;">
-        <div class="ctx-title"><span class="ctx-toggle" id="ctx-5" style="color:#4a5568;">Details</span>📋 544 Silent Breaches</div>
-        <div class="ctx-body" id="cxb-5"><p><strong>544 personal data breach notifications</strong> were filed with the IDPC between GDPR implementation (May 2018) and October 2023. These are private notifications — the vast majority never appeared in any news source.</p></div>
-        </div>
-    </div>
-  </div>
+</div><!-- /wrap -->
 
-  <!-- ═══════════════════════════════
-       REGULATORY TIMELINE
-  ═══════════════════════════════ -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">Regulatory Timeline</div>
-      <div class="section-count">Key Milestones</div>
-    </div>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-0" style="color:#4a5568;">Details</span>November 2018</div>
-        <div class="tl-body" id="tlb-0">
-        <div class="tl-text" style="color:#b0b8cc !important;">Lands Authority breach discovered — 5,000+ citizens' identity documents indexed by Google via misconfigured portal.</div>
-        <div class="tl-src">Sources: <a href="https://www.edpb.europa.eu/news/national-news/2019/idpc-lands-authority-personal-data-breach_en" target="_blank">EDPB/IDPC</a></div>
+<script>
+// ═══════════════════════════════════════════════
+// All content driven by data.json — single source of truth
+// ═══════════════════════════════════════════════
+
+const SEV_PILL = { critical:'<span class="sev-pill sp-crit">Critical</span>', high:'<span class="sev-pill sp-high">High</span>', medium:'<span class="sev-pill sp-med">Medium</span>', low:'<span class="sev-pill sp-low">Low</span>' };
+const SEV_BORDER = { critical:'#e63946', high:'#ff9f1c', medium:'#2ec4b6', low:'#4a5568' };
+const STATUS_COLOR = { 'Concluded':'#2ec4b6', 'Ongoing':'#ff9f1c', 'Concluded (Pardoned)':'#2ec4b6', 'Appealed':'#ff9f1c' };
+
+function toggleSection(id) {
+  const el = document.getElementById(id);
+  const tog = document.getElementById('tog-' + id);
+  if (!el || !tog) return;
+  const open = el.classList.contains('open');
+  el.classList.toggle('open', !open);
+  tog.textContent = open ? '▸' : '▾';
+  tog.style.color  = open ? '#4a5568' : '#2ec4b6';
+}
+
+async function loadData() {
+  try {
+    const res  = await fetch('data.json?v=' + Date.now());
+    if (!res.ok) throw new Error('data.json not found');
+    const data = await res.json();
+
+    // ── Last updated ──
+    if (data.fetched) {
+      const d = new Date(data.fetched);
+      document.getElementById('lastUpdatedText').textContent =
+        '⟳ Last refreshed: ' + d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) +
+        ' at ' + d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' UTC';
+    }
+
+    // ── TABLE 1: Confirmed Breaches ──
+    const incidents = data.confirmed_incidents || [];
+    document.getElementById('breachCount').textContent = incidents.length + ' Incidents';
+    document.getElementById('breachBody').innerHTML = incidents.map((inc, i) => `
+      <tr style="background:${i%2===0?'#0a0c10':'#0d0f14'} !important; cursor:pointer;" onclick="toggleSection('inc-${inc.id}')">
+        <td style="color:#d0d6e2 !important; font-weight:600;">${inc.sector}</td>
+        <td style="color:#b0b8cc !important;">
+          <span id="tog-inc-${inc.id}" style="float:right;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a5568;">▸</span>
+          ${inc.title}
+          <div id="inc-${inc.id}" style="display:none;" class="">
+            <div style="margin-top:10px;padding-top:10px;border-top:1px solid #1f2530;font-size:13px;color:#b0b8cc !important;font-weight:300;line-height:1.7;">${inc.summary}</div>
+            <div style="margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a5568 !important;">🇲🇹 ${inc.malta_connection}</div>
+            <div style="margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;"><a href="${inc.source_url}" target="_blank" style="color:#2ec4b6 !important;text-decoration:none;">${inc.source_name} ↗</a></div>
+          </div>
+        </td>
+        <td><span class="yr-tag">${inc.year}</span></td>
+        <td>${SEV_PILL[inc.severity] || SEV_PILL.high}</td>
+        <td style="color:#b0b8cc !important;">${inc.type}</td>
+        <td style="color:#b0b8cc !important;">${inc.records}</td>
+      </tr>`).join('');
+
+    // ── TABLE 2: Court Cases ──
+    const cases = data.court_cases || [];
+    document.getElementById('courtCount').textContent = cases.length + ' Cases';
+    document.getElementById('courtBody').innerHTML = cases.map((c, i) => `
+      <tr style="background:${i%2===0?'#0a0c10':'#0d0f14'} !important; cursor:pointer;" onclick="toggleSection('crt-${c.id}')">
+        <td style="color:#d0d6e2 !important; font-weight:600;">
+          <span id="tog-crt-${c.id}" style="float:right;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a5568;">▸</span>
+          ${c.title}
+          <div id="crt-${c.id}" style="display:none;">
+            <div style="margin-top:10px;padding-top:10px;border-top:1px solid #1f2530;font-size:13px;color:#b0b8cc !important;font-weight:300;line-height:1.7;">${c.summary}</div>
+            <div style="margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;"><a href="${c.source_url}" target="_blank" style="color:#2ec4b6 !important;text-decoration:none;">${c.source_name} ↗</a></div>
+          </div>
+        </td>
+        <td><span class="yr-tag">${c.year}</span></td>
+        <td style="color:#b0b8cc !important;font-size:13px;">${c.court}</td>
+        <td style="color:#b0b8cc !important;font-size:13px;">${c.outcome}</td>
+        <td><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border:1px solid;color:${STATUS_COLOR[c.status]||'#6b7585'} !important;border-color:${STATUS_COLOR[c.status]||'#6b7585'};">${c.status}</span></td>
+      </tr>`).join('');
+
+    // ── Stats ──
+    document.getElementById('breachCount').textContent = incidents.length + ' Incidents';
+    document.getElementById('courtCount').textContent  = cases.length + ' Cases';
+    document.getElementById('cardCount').textContent   = incidents.length + ' Events';
+
+    // ── Feed meta ──
+    if (data.fetched) {
+      const d = new Date(data.fetched);
+      document.getElementById('feedMeta').textContent =
+        'Updated ' + d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) +
+        ' · 48 sources · Malta-relevant only';
+    }
+
+    // ── Incident Cards ──
+    document.getElementById('incidentCards').innerHTML = incidents.map(inc => `
+      <div style="background:#111318 !important; border:1px solid #1f2530; border-left:4px solid ${SEV_BORDER[inc.severity]||'#e63946'}; margin-bottom:12px; padding:16px; cursor:pointer;" onclick="toggleSection('card-${inc.id}')">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+          <div style="font-size:15px;font-weight:600;color:#fff !important;line-height:1.35;">${inc.title}</div>
+          <span id="tog-card-${inc.id}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#4a5568;flex-shrink:0;">▸</span>
         </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-1" style="color:#4a5568;">Details</span>February 2019</div>
-        <div class="tl-body" id="tlb-1">
-        <div class="tl-text" style="color:#b0b8cc !important;">BOV €13M cyber heist by EmpireMonkey APT. Full bank shutdown. €10.1M recovered. IDPC fines Lands Authority €5,000.</div>
-        <div class="tl-src">Sources: <a href="https://www.maltatoday.com.mt/news/national/92964/bank_of_valletta_shuts_down_operations_following_cyber_attack_" target="_blank">MaltaToday</a></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+          <span class="yr-tag">${inc.year}</span>
+          ${SEV_PILL[inc.severity]||''}
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border:1px solid #1f2530;color:#6b7585 !important;">${inc.sector}</span>
         </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-2" style="color:#4a5568;">Details</span>April 2020</div>
-        <div class="tl-body" id="tlb-2">
-        <div class="tl-text" style="color:#b0b8cc !important;">C-Planet voter database leak — 330,000+ citizens' political opinions exposed. IDPC opens investigation.</div>
-        <div class="tl-src">Sources: <a href="https://noyb.eu/en/data-breach-malta-65000-eu-fine-c-planet" target="_blank">noyb</a></div>
+        <div id="card-${inc.id}" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid #1f2530;">
+          <div style="font-size:14px;color:#b0b8cc !important;font-weight:300;line-height:1.75;margin-bottom:10px;">${inc.summary}</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a5568 !important;margin-bottom:8px;">🇲🇹 ${inc.malta_connection}</div>
+          <a href="${inc.source_url}" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2ec4b6 !important;text-decoration:none;" onclick="event.stopPropagation()">Source: ${inc.source_name} ↗</a>
         </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-3" style="color:#4a5568;">Details</span>September 2020</div>
-        <div class="tl-body" id="tlb-3">
-        <div class="tl-text" style="color:#b0b8cc !important;">Transport Malta overnight cyberattack — servers compromised; 5 days downtime. Magisterial inquiry opened.</div>
-        <div class="tl-src">Sources: <a href="https://www.maltatoday.com.mt/news/national/105329/tm_cyber_attack_employees_told_to_secure_personal_data" target="_blank">MaltaToday</a></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-4" style="color:#4a5568;">Details</span>January 2021</div>
-        <div class="tl-body" id="tlb-4">
-        <div class="tl-text" style="color:#b0b8cc !important;">Melita DDoS extortion attack — ~49% of Malta broadband users affected; national disruption mitigated within hours.</div>
-        <div class="tl-src">Sources: <a href="https://lovinmalta.com/news/cyber-criminals-aiming-to-extort-money-leads-to-melitas-internet-dropping-across-malta/" target="_blank">Lovin Malta</a> · <a href="https://www.independent.com.mt/articles/2021-01-13/local-news/Melita-internet-slows-as-company-faces-cyber-attack-6736230117" target="_blank">Malta Independent</a></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-5" style="color:#4a5568;">Details</span>January 2022</div>
-        <div class="tl-body" id="tlb-5">
-        <div class="tl-text" style="color:#b0b8cc !important;">IDPC fines C-Planet <strong>€65,000</strong> — Malta's highest GDPR fine. C-Planet appeals; origin of voter data still unknown.</div>
-        <div class="tl-src">Sources: <a href="https://theshiftnews.com/2022/01/17/c-planet-fined-e65000-for-voter-data-breach/" target="_blank">The Shift News</a></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-6" style="color:#4a5568;">Details</span>October–November 2022</div>
-        <div class="tl-body" id="tlb-6">
-        <div class="tl-text" style="color:#b0b8cc !important;">FreeHour students arrested and strip-searched after responsible API vulnerability disclosure. 14 devices impounded. National outcry begins.</div>
-        <div class="tl-src">Sources: <a href="https://newsbook.com.mt/en/ethical-hackers-charged-with-unauthorised-access-to-freehour-app/" target="_blank">Newsbook</a></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-7" style="color:#4a5568;">Details</span>2023–2024</div>
-        <div class="tl-body" id="tlb-7">
-        <div class="tl-text" style="color:#b0b8cc !important;">MSS reports surge in phishing, ransomware, and DDoS attacks on Maltese public sector and SMEs during UN Security Council and OSCE chairmanship periods.</div>
-        <div class="tl-src">Sources: <a href="https://www.maltatoday.com.mt/news/national/135540/cyberattacks_rose_as_malta_assumed_top_posts_secret_service_report_shows" target="_blank">MaltaToday</a></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-8" style="color:#4a5568;">Details</span>March 2025</div>
-        <div class="tl-body" id="tlb-8">
-        <div class="tl-text" style="color:#b0b8cc !important;">The Mill Adventure API flaw exposed — 800K+ players, 70K+ identity docs. GGL issues public reprimand against Malta entities.</div>
-        <div class="tl-src">Sources: <a href="https://sigma.world/news/data-leak-of-800000-players-in-germany/" target="_blank">SIGMA World</a></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-9" style="color:#4a5568;">Details</span>April 2025</div>
-        <div class="tl-body" id="tlb-9">
-        <div class="tl-text" style="color:#b0b8cc !important;">Saint James Hospital cyberattack — Malta's first confirmed healthcare breach. Systems isolated; forensic investigation launched.</div>
-        <div class="tl-src">Sources: <a href="https://www.maltatoday.com.mt/news/national/134670/saint_james_hospital_targeted_in_cyberattack_medical_appointments_proceeding_normally" target="_blank">MaltaToday</a></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-10" style="color:#4a5568;">Details</span>July 2025</div>
-        <div class="tl-body" id="tlb-10">
-        <div class="tl-text" style="color:#b0b8cc !important;">Presidential Pardon for FreeHour students. Malta adopts Budapest Convention Chapter III. Ethical hacker legal framework consultation launched.</div>
-        <div class="tl-src">Sources: <a href="https://en.wikipedia.org/wiki/2022_FreeHour_ethical_hacking_case" target="_blank">Wikipedia</a></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-11" style="color:#4a5568;">Details</span>October 2025</div>
-        <div class="tl-body" id="tlb-11">
-        <div class="tl-text" style="color:#b0b8cc !important;">Fast Track CRM cyberattack — KYC and financial data of casino players exposed. Shuffle Casino terminates partnership.</div>
-        <div class="tl-src">Sources: <a href="https://bravenewcoin.com/insights/shuffle-data-breach-major-crypto-casino-hit-by-third-party-crm-attack" target="_blank">Brave New Coin</a></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-12" style="color:#4a5568;">Details</span>November 2025</div>
-        <div class="tl-body" id="tlb-12">
-        <div class="tl-text" style="color:#b0b8cc !important;">MTCA accidentally emails 7,000 company records to wrong recipients. IDPC notified. Opposition demands independent investigation.</div>
-        <div class="tl-src">Sources: <a href="https://newsbook.com.mt/en/data-breach-at-malta-tax-office-7000-companies-details-exposed/" target="_blank">Newsbook</a></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-13" style="color:#4a5568;">Details</span>January 2026</div>
-        <div class="tl-body" id="tlb-13">
-        <div class="tl-text" style="color:#b0b8cc !important;">Malta's <strong>NIS2 framework enters into force</strong> (S.L. 460.41). Board-level oversight mandatory. Fines up to <strong>€10M or 2% global turnover</strong>. Director personal liability introduced.</div>
-        <div class="tl-src">Sources: <a href="https://thebusinesspicture.com/2026/03/09/cybersecurity-for-the-maltese-sme/" target="_blank">The Business Picture</a></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-14" style="color:#4a5568;">Details</span>March 2026</div>
-        <div class="tl-body" id="tlb-14">
-        <div class="tl-text" style="color:#b0b8cc !important;">MGA system breach confirmed (17 March). Wittmann claims responsibility (20 March). Criminal investigation opened. NIS2 updated via <strong>Legal Notice 89 of 2026</strong>.</div>
-        <div class="tl-src">Sources: <a href="https://www.maltatoday.com.mt/news/national/140462/hacker_claims_responsibility_for_gaming_authority_data_breach_" target="_blank">MaltaToday</a> · <a href="https://gtg.com.mt/malta-nis2-legal-framework-update-l-n-89-of-2026/" target="_blank">GTG Advocates</a></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date" style="color:#ff9f1c !important;"><span class="tl-toggle" id="tlt-15" style="color:#4a5568;">Details</span>September 2026 — Upcoming</div>
-        <div class="tl-body" id="tlb-15">
-        <div class="tl-text" style="color:#b0b8cc !important;"><strong>EU Cyber Resilience Act</strong> obligations enter into force. Penalties up to €15M; risk of EU market exclusion for non-compliant Malta-based software providers.</div>
-        <div class="tl-src">Sources: <a href="https://thebusinesspicture.com/2026/03/09/cybersecurity-for-the-maltese-sme/" target="_blank">The Business Picture</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
+      </div>`).join('');
+
+  } catch(err) {
+    console.error('Failed to load data.json:', err);
+    ['breachBody','courtBody','incidentCards'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = '<tr><td colspan="6" style="color:#e63946;font-family:monospace;padding:16px;">⚠ Could not load data: ' + err.message + '</td></tr>';
+    });
+  }
+}
+
+loadData();
+</script>
 
   <footer style="background:transparent;">
     <div class="footer-l">Malta Cybersecurity Report · Compiled April 2026 · Live feed powered by Claude AI</div>
