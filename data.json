@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-05-02T15:16:16.000Z",
+  "fetched": "2026-05-02T16:18:51.000Z",
   "confirmed_incidents": [
     {
       "id": 1,
@@ -353,31 +353,6 @@
     },
     {
       "id": 15,
-      "title": "AI Deepfake Fraud Campaigns \u2014 Malta 2026 General Election",
-      "year": "2026",
-      "severity": "high",
-      "sector": "Political / Electoral Security",
-      "type": "AI deepfake / social engineering",
-      "records": "Entire Maltese electorate targeted",
-      "summary": "Malta's 30 May 2026 snap general election \u2014 described as Malta's first election in the age of AI \u2014 saw an immediate flood of AI-generated deepfake photos and videos targeting both major party leaders. More critically, deepfake videos of PM Robert Abela were weaponised in active fraud and phishing campaigns targeting Maltese citizens, with scammers using the PM's likeness to add credibility to social engineering attacks. The Malta Police Force issued a formal public warning specifically referencing the AI deepfake threat.",
-      "malta_connection": "Maltese PM's likeness used in fraud campaigns; entire Maltese electorate targeted; Malta Police issued formal warning; 30 May 2026 election directly impacted",
-      "source_name": "Wikipedia \u00b7 Newsbook \u00b7 Malta Police",
-      "source_url": "https://en.wikipedia.org/wiki/2026_Maltese_general_election",
-      "analysis": {
-        "prevention": "Electoral authorities and political parties should have implemented pre-emptive deepfake monitoring ahead of the election announcement. Rapid response teams with digital forensics capability should be on standby during election periods. Political party websites and official channels should publish verified video authentication guidance for supporters. The Electoral Commission should issue clear guidance on AI-generated content in electoral campaigns.",
-        "detection": "AI deepfake detection tools (e.g. Microsoft Video Authenticator, Sensity AI) should be deployed by the Electoral Commission and major news portals to flag synthetic media. Social media platforms should be required to label AI-generated political content. A dedicated national hotline for reporting suspected deepfake electoral content would accelerate detection.",
-        "improvement": "Malta should urgently legislate on AI-generated electoral content \u2014 the EU AI Act's provisions on deepfakes in elections provide a framework. Political parties should watermark all authentic video content. The Electoral Commission should publish a public register of verified official campaign content. Media literacy campaigns targeting older demographics most susceptible to deepfake fraud should be deployed before elections.",
-        "monitoring_controls": [
-          "AI deepfake detection tools (Sensity AI / Microsoft Video Authenticator)",
-          "Social media monitoring for impersonation of public figures",
-          "Electoral Commission rapid response team for AI-generated content",
-          "Verified digital signatures on official political party communications",
-          "Public awareness campaigns on recognising AI-generated content"
-        ]
-      }
-    },
-    {
-      "id": 16,
       "title": "Malta Police \u2014 AI Voice Cloning & Spoofed Call Fraud Surge",
       "year": "2026",
       "severity": "high",
@@ -520,14 +495,14 @@
       "malta_connection": "Direct change in leadership of Malta's data protection authority; affects all Malta-based data controllers"
     },
     {
-      "title": "AI Deepfakes & Disinformation Flood Malta's 30 May 2026 General Election",
+      "title": "Malta 2026 General Election \u2014 AI-Generated Satirical Content Floods Social Media",
       "source": "Wikipedia \u00b7 Newsbook \u00b7 MaltaToday",
       "date": "April\u2013May 2026",
       "url": "https://en.wikipedia.org/wiki/2026_Maltese_general_election",
-      "summary": "Malta's 30 May 2026 snap general election has been described as the first Maltese election held in the age of AI. Within hours of the election announcement, AI-generated photos and videos targeting both major party leaders flooded social media. Deepfake videos of PM Robert Abela have been weaponised in active phishing campaigns, while smaller parties used AI edits to misrepresent opponents. Malta Police issued a formal public warning specifically referencing the AI deepfake threat.",
-      "severity": "high",
+      "summary": "Malta's 30 May 2026 snap general election has been described as the first Maltese election in the age of AI. Within hours of the election announcement, AI-generated satirical photos and humorous edited videos mocking both Labour and Nationalist Party leaders flooded social media \u2014 most were political jokes rather than coordinated disinformation. Separately, and unrelatedly, scammers have used AI-generated deepfake videos of PM Robert Abela in phishing and fraud campaigns targeting Maltese citizens, for which the Malta Police issued a formal warning.",
+      "severity": "medium",
       "sector": "Political / Electoral Security",
-      "malta_connection": "Malta's 30 May 2026 general election directly targeted; PM Robert Abela's likeness used in fraud campaigns; Malta Police issued formal warning"
+      "malta_connection": "Malta's 30 May 2026 general election context; AI-generated satirical content circulated widely; separate deepfake fraud campaign targeting Maltese citizens using PM's likeness"
     },
     {
       "title": "Malta Police Warn of AI-Powered Spoofed Calls Impersonating Officers",
