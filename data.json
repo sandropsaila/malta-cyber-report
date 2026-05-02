@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-05-02T06:24:55.000Z",
+  "fetched": "2026-05-02T13:02:00.000Z",
   "confirmed_incidents": [
     {
       "id": 1,
@@ -440,51 +440,61 @@
   ],
   "live_news": [
     {
-      "title": "NEW \u2014 Malta Police Warn of Surge in Spoofed Calls Impersonating Officers",
-      "source": "Newsbook",
+      "title": "NEW \u2014 AI Deepfakes & Disinformation Flood Malta's 30 May 2026 General Election",
+      "source": "Wikipedia \u00b7 Newsbook \u00b7 MaltaToday",
+      "date": "April\u2013May 2026",
+      "url": "https://en.wikipedia.org/wiki/2026_Maltese_general_election",
+      "summary": "Malta's 30 May 2026 snap general election has been described as the first Maltese election held in the age of AI. Within hours of the election announcement, AI-generated photos and videos targeting both Labour and Nationalist Party leaders flooded social media. Deepfake videos of PM Robert Abela have been used by scammers in phishing campaigns targeting Maltese citizens, while smaller parties used AI edits to misrepresent their opponents. The Malta Police Force issued a specific public warning about spoofed calls using deepfake audio of the PM as a social engineering lure.",
+      "severity": "high",
+      "sector": "Political / Electoral Security",
+      "malta_connection": "Malta's 30 May 2026 general election directly targeted by AI deepfakes; PM Robert Abela's likeness used in fraud campaigns; Malta Police issued formal warning"
+    },
+    {
+      "title": "NEW \u2014 Malta Police Warn of AI-Powered Spoofed Calls Impersonating Officers",
+      "source": "Newsbook \u00b7 Malta Police Force",
       "date": "May 2026",
       "url": "https://newsbook.com.mt/en/police-warn-of-spoofed-calls-as-scammers-impersonate-officers/",
-      "summary": "The Malta Police Force issued an urgent public warning about a surge in fraudulent phone calls where scammers impersonate police officers using spoofed local mobile numbers. Scammers increasingly use AI and deepfake videos \u2014 including one featuring PM Robert Abela \u2014 to target victims. Superintendent Jonathan Ransley warned 'everyone is a potential victim, not because people are ignorant, but because scams are getting more sophisticated.'",
+      "summary": "The Malta Police Force issued an urgent public warning about a surge in fraudulent calls where scammers use spoofed Maltese mobile numbers and AI-generated voice cloning to impersonate police officers. Callers claim to be officials and request personal details under the pretence of scheduling a fictitious appointment. Scammers have also circulated deepfake videos of PM Robert Abela to add credibility. Superintendent Jonathan Ransley warned that everyone is a potential target as scams become increasingly sophisticated.",
       "severity": "high",
-      "sector": "Public / Law Enforcement",
-      "malta_connection": "Malta Police Force issued the warning; Maltese citizens targeted; deepfake of PM Robert Abela used"
+      "sector": "Public / Law Enforcement (Malta Police)",
+      "malta_connection": "Malta Police Force issued the warning; Maltese citizens are targeted; deepfake of PM Robert Abela used as social engineering lure"
     },
     {
-      "title": "MGA Breach: Wittmann Used LinkedIn and X \u2014 LinkedIn Post Rapidly Removed by Platform",
-      "source": "AGB Brief \u00b7 Newsbook \u00b7 Next.io",
+      "title": "MGA Breach: Wittmann Warns Extradition Would Trigger Full iGaming Archive Release",
+      "source": "MaltaToday \u00b7 Newsbook \u00b7 AGB Brief",
       "date": "March 2026",
-      "url": "https://agbrief.com/intel/deep-dive/22/03/2026/the-hacker-who-says-she-holds-maltas-gambling-empire-to-ransom/",
-      "summary": "Lilith Wittmann posted on both LinkedIn and X claiming responsibility \u2014 the LinkedIn post spread rapidly across iGaming before being removed by the platform. She warned any police action would trigger immediate release of her full iGaming data archive. Three simultaneous processes are now underway: Malta's criminal investigation, Germany's awareness of Wittmann's statements, and Wittmann's possession of a data archive she is using as a bargaining chip.",
+      "url": "https://newsbook.com.mt/en/german-hacker-claims-responsibility-for-mga-breach-and-vows-further-disclosures/",
+      "summary": "Lilith Wittmann of the Chaos Computer Club claimed responsibility for the MGA breach via X, stating data had been shared with media and authorities and threatening to 'expose the organised crime enablement schemes' she alleges the MGA facilitated. She warned any extradition attempt would trigger immediate release of her full iGaming data archive. The MGA confirmed its systems were accessed by someone who 'presented' as a security researcher. A criminal investigation has been opened in Malta; Wittmann faces up to 10 years imprisonment under Maltese law.",
       "severity": "critical",
       "sector": "iGaming / Regulatory (MGA)",
-      "malta_connection": "MGA is Malta's primary gaming regulator; criminal investigation opened in Malta; data shared with Maltese authorities"
+      "malta_connection": "MGA is Malta's primary gaming regulator; breach of its internal systems; Maltese criminal investigation opened; data shared with Maltese authorities"
     },
     {
-      "title": "MFSA Issues 'Heightened Cyber Threat' Circular to All Supervised Financial Entities",
-      "source": "MFSA Official (mfsa.mt)",
+      "title": "MFSA Issues 'Heightened Cyber Threat' Circular to All Malta-Supervised Financial Entities",
+      "source": "MFSA Official Circular (mfsa.mt)",
       "date": "March 2026",
       "url": "https://www.mfsa.mt/publication/impact-of-conflict-on-maltas-cyber-threat-landscape/",
-      "summary": "The MFSA issued a circular titled 'Exercising Caution in Times of Heightened Cyber Threat', warning all MFSA-supervised entities of an elevated cyber risk environment. The circular follows 2026 Supervisory Priorities placing ICT and cyber-resilience under DORA as a top concern for Malta's entire financial sector.",
+      "summary": "The MFSA issued a circular titled 'Exercising Caution in Times of Heightened Cyber Threat' on 5 March 2026, warning all MFSA-supervised entities of an elevated cyber risk environment linked to global conflicts. Entities were urged to conduct situational awareness assessments and revisit ICT risk management procedures. The circular follows MFSA's 2026 Supervisory Priorities placing ICT and cyber-resilience under DORA as a top concern for Malta's entire financial sector.",
       "severity": "high",
       "sector": "Financial Services (MFSA)",
       "malta_connection": "MFSA is Malta's financial regulator; circular addressed to all Malta-licensed financial entities"
     },
     {
-      "title": "MFSA Public-Private Anti-Fraud Partnership with Police, FIAU and Central Bank",
+      "title": "MFSA Public-Private Anti-Fraud Partnership Launched with Malta Police, FIAU and Central Bank",
       "source": "MFSA Official \u00b7 Crowdfund Insider",
       "date": "April 2026",
       "url": "https://www.crowdfundinsider.com/2026/04/274113-malta-mfsa-advances-financial-sector-resilience-with-new-anti-fraud-alliance-and-insurance-oversight-review/",
-      "summary": "On 8 April 2026 the MFSA announced a formal Public-Private Partnership to combat financial fraud, bringing together the Malta Police Force, the Office of the Arbiter for Financial Services, the FIAU and the Central Bank of Malta. The initiative focuses on consumer-facing retail payment fraud with intelligence sharing across five pillars.",
+      "summary": "On 8 April 2026 the MFSA announced a formal Public-Private Partnership to combat financial fraud, bringing together the Malta Police Force, the Office of the Arbiter for Financial Services, the FIAU and the Central Bank of Malta. The initiative focuses on consumer-facing retail payment fraud with intelligence sharing across five pillars including typology workshops and coordinated supervisory actions.",
       "severity": "medium",
       "sector": "Financial Services (MFSA / FIAU / Malta Police)",
       "malta_connection": "All five partner bodies are Maltese authorities; initiative targets fraud affecting Maltese consumers"
     },
     {
-      "title": "BOV Fraud Losses Nearly Doubled \u2014 'Spot the Scam' Tool Launched",
-      "source": "Newsbook \u00b7 Malta Chamber \u00b7 BOV",
+      "title": "BOV Fraud Losses Nearly Doubled \u2014 \u20ac5.4M in 8 Months of 2025; 'Spot the Scam' Tool Launched",
+      "source": "Newsbook \u00b7 Malta Chamber \u00b7 BOV Official",
       "date": "October 2025 \u2013 April 2026",
       "url": "https://newsbook.com.mt/en/bov-malta-chamber-sound-alarm-on-soaring-business-fraud-losses/",
-      "summary": "BOV revealed fraud losses nearly doubled from \u20ac2.9M in 2024 to \u20ac5.4M in the first eight months of 2025. BOV launched a free 'Spot the Scam Self-Assessment' tool in April 2026. 28.7% of Maltese enterprises reported a cyber incident in 2023 \u2014 above the EU average of 21.5% (Eurostat 2024).",
+      "summary": "Bank of Valletta revealed fraud losses nearly doubled from \u20ac2.9M in 2024 to \u20ac5.4M in the first eight months of 2025. The FCID simultaneously probed \u20ac13M in total scam losses in H1 2025, with \u20ac3.5M attributed to Business Email Compromise. BOV launched a free 'Spot the Scam Self-Assessment' tool in April 2026 for Maltese consumers. 28.7% of Maltese enterprises reported a cyber incident in 2023 \u2014 above the EU average of 21.5% (Eurostat 2024).",
       "severity": "high",
       "sector": "Financial Services (BOV)",
       "malta_connection": "BOV is Malta's largest bank; fraud losses involve Maltese customers; FCID is Malta's financial crime police unit"
@@ -494,50 +504,40 @@
       "source": "MaltaToday \u00b7 Newsbook",
       "date": "2024\u20132026",
       "url": "https://www.maltatoday.com.mt/news/court_and_police/139843/fraudster_used_text_messages_fake_bank_apps_to_swindle_hundreds_of_victims_",
-      "summary": "A coordinated phishing operation using fake bank apps and SMS links defrauded 100+ victims across four Maltese banks. A 25-year-old suspect was arrested in February 2026 and denied bail, with investigators detecting international involvement and cryptocurrency money laundering.",
+      "summary": "A coordinated phishing operation using fake bank apps and SMS links defrauded 100+ victims across four Maltese banks between September 2024 and May 2025. A 25-year-old suspect was arrested in February 2026 and denied bail, with investigators detecting international involvement and cryptocurrency money laundering via Revolut and Bitcoin.",
       "severity": "high",
       "sector": "Financial Services (BOV / APS / HSBC / BNF)",
       "malta_connection": "Four Malta-licensed banks targeted; all victims are Maltese bank customers; suspect arrested by Malta Police"
     },
     {
-      "title": "IDPC Enforcement Surge: CCTV Overreach and SAR Failures \u2014 2024\u20132025",
-      "source": "INPLP Legal Review \u00b7 IDPC",
-      "date": "2024\u20132025",
-      "url": "https://inplp.com/latest-news/article/malta-at-the-intersection-of-it-law-data-protection-and-artificial-intelligence-a-2025-legal-review/",
-      "summary": "Malta's IDPC significantly stepped up enforcement in 2024\u20132025. Recurring themes: failures to handle subject access requests under Articles 5 and 15 GDPR, and CCTV overreach capturing public spaces without justification. Financial penalties now imposed in more intrusive cases.",
-      "severity": "medium",
-      "sector": "Data Protection (IDPC)",
-      "malta_connection": "IDPC is Malta's data protection authority; decisions directly affect Malta-based data controllers"
-    },
-    {
-      "title": "\u20ac1M Fraud \u2014 Malta Police Arrest Woman and 82-Year-Old Man",
-      "source": "AML Intelligence \u00b7 Malta Police",
+      "title": "\u20ac1M Fraud \u2014 Malta Police Arrest Woman and 82-Year-Old Man (200 Victims)",
+      "source": "AML Intelligence \u00b7 Malta Police / FCID",
       "date": "February 2026",
       "url": "https://www.amlintelligence.com/2026/02/news-malta-police-arrest-25-year-old-woman-suspected-of-scamming-200-people-out-of-e1m/",
-      "summary": "Malta Police and the FCID arrested a 25-year-old woman and an 82-year-old man linked to fraud losses of approximately \u20ac1 million affecting around 200 victims. Case referred to criminal court for prosecution.",
+      "summary": "Malta Police and the FCID arrested a 25-year-old woman and an 82-year-old man in connection with fraud losses of approximately \u20ac1 million affecting around 200 victims. Case referred to criminal court for prosecution. Part of a broader pattern of escalating financial cybercrime in Malta with 3,700+ FCID investigations between 2022 and 2025.",
       "severity": "high",
       "sector": "Financial Crime (FCID / Malta Police)",
       "malta_connection": "Suspects arrested by Malta Police; all victims are Maltese residents; FCID led the investigation"
+    },
+    {
+      "title": "Fast Track CRM Cyberattack Exposes Casino Player KYC Documents Including Passports",
+      "source": "Brave New Coin \u00b7 Breached.company",
+      "date": "October 2025",
+      "url": "https://bravenewcoin.com/insights/shuffle-data-breach-major-crypto-casino-hit-by-third-party-crm-attack",
+      "summary": "Malta-headquartered iGaming CRM provider Fast Track was breached in October 2025, exposing player KYC documents including passports and driver's licences across at least two casino operators. Shuffle Casino was the only publicly named victim and terminated its partnership. The breach occurred despite Fast Track holding a SOC 2 Type 2 certification renewed in June 2025.",
+      "severity": "high",
+      "sector": "iGaming / CRM",
+      "malta_connection": "Fast Track is headquartered in Malta and holds an MGA licence; breach reported to Maltese authorities"
     },
     {
       "title": "Saint James Hospital \u2014 Malta's First Confirmed Healthcare Cyberattack",
       "source": "MaltaToday \u00b7 Lovin Malta",
       "date": "April 2025",
       "url": "https://www.maltatoday.com.mt/news/national/134670/saint_james_hospital_targeted_in_cyberattack_medical_appointments_proceeding_normally",
-      "summary": "Saint James Hospital Group confirmed a sophisticated cyberattack on 18 April 2025, immediately isolating all systems. Forensic investigation launched into potential patient data exposure. IDPC and Malta Police formally notified \u2014 first confirmed attack on Maltese healthcare infrastructure.",
+      "summary": "Saint James Hospital Group confirmed a sophisticated cyberattack on 18 April 2025, immediately isolating all systems from external networks. A forensic investigation was launched into potential patient data exposure. IDPC and Malta Police formally notified \u2014 the first confirmed cyberattack on Maltese healthcare infrastructure.",
       "severity": "high",
       "sector": "Healthcare",
-      "malta_connection": "Saint James Hospital is Malta-based; patients are Maltese residents; IDPC and Malta Police notified"
-    },
-    {
-      "title": "Evos Oil Terminal Birzebbuga \u2014 BlackCat Ransomware Attack",
-      "source": "MaltaToday \u00b7 The Stack \u00b7 ICS Strive",
-      "date": "February 2022",
-      "url": "https://www.maltatoday.com.mt/news/europe/114785/malta_oil_terminal_affected_by_cyberattack_on_european_facilities",
-      "summary": "The Evos oil storage terminal in Birzebbuga suffered IT disruptions as part of a 17-terminal European ransomware wave attributed to the BlackCat/ALPHV group. Evos confirmed disruption causing delays in execution. Malta's critical energy infrastructure was directly impacted.",
-      "severity": "high",
-      "sector": "Energy / Critical Infrastructure",
-      "malta_connection": "Evos operates Malta's Birzebbuga oil storage terminal \u2014 part of Malta's critical energy infrastructure"
+      "malta_connection": "Saint James Hospital operates in Sliema and \u017bejtun, Malta; patients are Maltese residents; IDPC and Malta Police notified"
     }
   ]
 }
