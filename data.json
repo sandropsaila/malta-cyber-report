@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-05-02T13:02:00.000Z",
+  "fetched": "2026-05-02T15:12:11.000Z",
   "confirmed_incidents": [
     {
       "id": 1,
@@ -348,6 +348,56 @@
           "Shodan self-scan of government IP ranges",
           "Pre-launch security checklist (MITA-mandated)",
           "GDPR Article 25 Privacy by Design review"
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "title": "AI Deepfake Fraud Campaigns \u2014 Malta 2026 General Election",
+      "year": "2026",
+      "severity": "high",
+      "sector": "Political / Electoral Security",
+      "type": "AI deepfake / social engineering",
+      "records": "Entire Maltese electorate targeted",
+      "summary": "Malta's 30 May 2026 snap general election \u2014 described as Malta's first election in the age of AI \u2014 saw an immediate flood of AI-generated deepfake photos and videos targeting both major party leaders. More critically, deepfake videos of PM Robert Abela were weaponised in active fraud and phishing campaigns targeting Maltese citizens, with scammers using the PM's likeness to add credibility to social engineering attacks. The Malta Police Force issued a formal public warning specifically referencing the AI deepfake threat.",
+      "malta_connection": "Maltese PM's likeness used in fraud campaigns; entire Maltese electorate targeted; Malta Police issued formal warning; 30 May 2026 election directly impacted",
+      "source_name": "Wikipedia \u00b7 Newsbook \u00b7 Malta Police",
+      "source_url": "https://en.wikipedia.org/wiki/2026_Maltese_general_election",
+      "analysis": {
+        "prevention": "Electoral authorities and political parties should have implemented pre-emptive deepfake monitoring ahead of the election announcement. Rapid response teams with digital forensics capability should be on standby during election periods. Political party websites and official channels should publish verified video authentication guidance for supporters. The Electoral Commission should issue clear guidance on AI-generated content in electoral campaigns.",
+        "detection": "AI deepfake detection tools (e.g. Microsoft Video Authenticator, Sensity AI) should be deployed by the Electoral Commission and major news portals to flag synthetic media. Social media platforms should be required to label AI-generated political content. A dedicated national hotline for reporting suspected deepfake electoral content would accelerate detection.",
+        "improvement": "Malta should urgently legislate on AI-generated electoral content \u2014 the EU AI Act's provisions on deepfakes in elections provide a framework. Political parties should watermark all authentic video content. The Electoral Commission should publish a public register of verified official campaign content. Media literacy campaigns targeting older demographics most susceptible to deepfake fraud should be deployed before elections.",
+        "monitoring_controls": [
+          "AI deepfake detection tools (Sensity AI / Microsoft Video Authenticator)",
+          "Social media monitoring for impersonation of public figures",
+          "Electoral Commission rapid response team for AI-generated content",
+          "Verified digital signatures on official political party communications",
+          "Public awareness campaigns on recognising AI-generated content"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "title": "Malta Police \u2014 AI Voice Cloning & Spoofed Call Fraud Surge",
+      "year": "2026",
+      "severity": "high",
+      "sector": "Public / Law Enforcement",
+      "type": "AI voice cloning / vishing / social engineering",
+      "records": "Ongoing \u2014 number of victims unconfirmed",
+      "summary": "The Malta Police Force issued an urgent public warning in May 2026 about a significant surge in fraudulent calls using spoofed Maltese mobile numbers combined with AI voice cloning to impersonate police officers. Callers use the fake police identity to extract personal details under the guise of scheduling a fictitious appointment. The scams are also leveraging AI-generated deepfake videos of PM Robert Abela to add perceived legitimacy. Superintendent Jonathan Ransley stated the attacks are increasingly sophisticated and that 'everyone is a potential victim.'",
+      "malta_connection": "Malta Police Force issued the formal warning; Maltese citizens and residents are the targets; deepfake of Maltese PM used as lure; reported to Maltese authorities",
+      "source_name": "Newsbook \u00b7 Malta Police Force",
+      "source_url": "https://newsbook.com.mt/en/police-warn-of-spoofed-calls-as-scammers-impersonate-officers/",
+      "analysis": {
+        "prevention": "Telecommunications providers in Malta should implement STIR/SHAKEN call authentication to prevent caller ID spoofing. The public should be informed that police will never request personal details over an unsolicited phone call. MCA (Malta Communications Authority) should mandate call authentication standards for Maltese operators. Two-factor verification for any request involving personal data should be promoted as standard practice.",
+        "detection": "Victims can verify calls by hanging up and calling the official police number directly (2122 4001). AI voice cloning detection is difficult in real-time for individuals, but telcos can implement network-level anomaly detection for bulk spoofed call campaigns. Reporting channels should be prominently advertised so incidents are centralised and patterns identified quickly.",
+        "improvement": "Malta should fast-track implementation of STIR/SHAKEN caller authentication standards as mandated under EU EECC (European Electronic Communications Code). A public-facing real-time scam reporting portal (similar to the UK's Action Fraud) would help the FCID identify campaign patterns faster. Regular public awareness campaigns via national media, particularly targeting elderly demographics most affected by vishing.",
+        "monitoring_controls": [
+          "STIR/SHAKEN caller ID authentication (MCA-mandated)",
+          "Telco-level bulk spoofed call detection",
+          "Centralised scam reporting portal (FCID)",
+          "Real-time AI voice cloning detection at network layer",
+          "Public awareness campaigns via TVM, Newsbook, MaltaToday"
         ]
       }
     }
