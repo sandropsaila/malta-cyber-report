@@ -47,15 +47,43 @@ Search ALL of the following sources:
    spc.int (Pacific — cross-reference for any Malta-linked Pacific-region incidents),
    density.io (threat intelligence aggregation)
 
-Return a JSON array of up to 10 recent items. Each must have:
+TARGETED SWEEP STRATEGY — MANDATORY (this is how you find incidents that NEVER reached the news):
+Many Malta breaches are never reported by Maltese media. The ONLY public trace is a dark web
+leak-site listing or a threat-intel database entry. You MUST search by Malta IDENTIFIERS, not
+by waiting for news coverage. Run ALL of these targeted query patterns:
+
+A. DARK WEB LEAK-SITE SWEEP — search ransomware leak trackers for Maltese victims by domain:
+   - Query pattern: ".com.mt" OR ".mt" + [ransomware group] + "victim" OR "leak"
+   - Query pattern: "Malta" site:breachsense.com OR site:redpacketsecurity.com OR ransomlook.io OR ransomware.live
+   - Check leak-site victim lists for: Akira, Qilin, LockBit, Play, RansomHub, Cl0p, HellCat,
+     Medusa, INC, BlackCat/ALPHV, Rhysida, SafePay, NightSpire, Lynx — filter for .mt domains
+B. INFOSTEALER / CREDENTIAL SWEEP — search for Maltese domains in stealer logs:
+   - Query pattern: ".com.mt" OR ".gov.mt" credentials infostealer log site:infostealers.com
+   - Query pattern: "Malta" OR ".mt" exposed credentials site:spycloud.com OR hudsonrock.com
+C. THREAT-INTEL DATABASE SWEEP — query each platform with Malta as the search term:
+   - "Malta" cyber incident on recordedfuture.com, group-ib.com, intel471.com, zerofox.com,
+     anomali.com, constellaintelligence.com, blueliv.com, kroll.com
+D. INCIDENT-TRACKER SWEEP — scan named incident trackers for any Malta entry:
+   - CSIS Significant Cyber Incidents list, CNAS Cyber Incident Tracker — Ctrl-F "Malta"
+E. REGULATOR ENFORCEMENT SWEEP — directly read enforcement/decision registers:
+   - mga.org.mt enforcement register, mfsa.mt enforcement dashboard, idpc.org.mt decisions
+F. NEWS / SOCIAL SWEEP — the 11 Maltese portals + LinkedIn/X/Reddit (as before)
+
+For EACH category A-F run at least one dedicated query. Do NOT rely on a single broad
+"Malta cyberattack" search — that is exactly what missed the Intercomp Malta / Akira incident.
+A breach with ONLY a dark web leak-site listing and NO news coverage still qualifies and MUST
+be included if the victim domain or organisation is Maltese.
+
+Return a JSON array of up to 15 recent items. Each must have:
 - title: string
-- source: string (publication + authority)
+- source: string (publication, leak-site, or threat-intel platform)
 - date: string (e.g. "May 2026")
-- url: string (full article URL)
+- url: string (full article or leak-tracker URL)
 - summary: string (2-3 sentences including authority response if any)
 - severity: "critical" | "high" | "medium" | "low"
 - sector: string (include authority name e.g. "Financial Services (MFSA)")
-- malta_connection: string (WHY this qualifies under the Malta filter)
+- malta_connection: string (WHY this qualifies — e.g. ".mt domain", "MGA-licensed")
+- detection_source: string (which sweep category A-F surfaced this: e.g. "A - dark web leak-site")
 
 Today is \${new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}.
 Prioritise incidents from the past 12 months.
@@ -71,16 +99,26 @@ function callAnthropic(apiKey) {
       messages: [{
         role: "user",
         content: `Today is ${new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}.
-Search ALL 48 sources for the latest Malta cybersecurity incidents:
-- Maltese news portals: maltatoday, timesofmalta, independent, theshiftnews, lovinmalta, newsbook, netnews, onenews, tvm, illum, maltadaily
-- Maltese regulators: MGA (enforcement register), MFSA (circulars + enforcement), IDPC (decisions), MDIA, MITA, MSS, FCID, Transport Malta, MTCA, Identity Malta, Lands Authority
-- Social: LinkedIn, Facebook, Twitter/X, Reddit r/malta
-- iGaming: igamingcapital, igamingbusiness, sigma.world, next.io, tribuna.com, calvin.ayre
-- EU: ENISA, EDPB, Europol, EUR-Lex
-- Security Intelligence: GDPRhub, DataBreaches.net, HaveIBeenPwned, BleepingComputer, SecurityWeek, The Record, Cybernews, OCCRP, Daphne Foundation, infostealers.com (HudsonRock), hudsonrock.com/threat-intelligence-cybercrime-tools, recordedfuture.com, spycloud.com, group-ib.com, kroll.com/cyber/threat-intelligence, zerofox.com, intel471.com, anomali.com, constellaintelligence.com, blueliv.com, csis.org/significant-cyber-incidents, cnas.org/cyber-incident-tracker
-- Infostealer Resources: breachsense.com/blog, f6s.com/infostealer-detection, infosecurityeurope.com, shadowdragon.io/resources
-- Proactive: Shodan, VirusTotal, Google News, spc.int, density.io
-Apply strict Malta-relevance filter. Return JSON array only.`
+Run the FULL TARGETED SWEEP (categories A-F) for Malta cybersecurity incidents.
+Do NOT rely on a single broad "Malta cyberattack" query — that misses leak-site-only victims.
+
+SWEEP A — Dark web leak-site sweep: search for ".com.mt" / ".mt" victims on breachsense.com,
+  redpacketsecurity.com, ransomlook.io, ransomware.live. Check Akira, Qilin, LockBit, Play,
+  RansomHub, Cl0p, HellCat, Medusa, INC, BlackCat, Rhysida, SafePay, NightSpire, Lynx victim lists.
+SWEEP B — Infostealer/credential sweep: ".com.mt"/".gov.mt" credentials in infostealers.com,
+  hudsonrock.com, spycloud.com stealer-log data.
+SWEEP C — Threat-intel database sweep: query "Malta" on recordedfuture.com, group-ib.com,
+  intel471.com, zerofox.com, anomali.com, constellaintelligence.com, blueliv.com, kroll.com.
+SWEEP D — Incident-tracker sweep: scan CSIS Significant Cyber Incidents + CNAS Cyber Incident
+  Tracker for any "Malta" entry.
+SWEEP E — Regulator enforcement sweep: mga.org.mt enforcement register, mfsa.mt enforcement
+  dashboard, idpc.org.mt decisions.
+SWEEP F — News/social sweep: 11 Maltese portals (maltatoday, timesofmalta, independent,
+  theshiftnews, lovinmalta, newsbook, netnews, onenews, tvm, illum, maltadaily), iGaming
+  (igamingcapital, next.io, tribuna.com, sigma.world), LinkedIn, X, Reddit r/malta.
+
+Run at least one dedicated query per category A-F. Apply the strict Malta-relevance filter.
+Include leak-site-only victims with no news coverage. Return JSON array only.`
       }]
     });
 

@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-05-22T12:00:00.000Z",
+  "fetched": "2026-05-22T13:00:00.000Z",
   "count": 12,
   "filter_applied": "Strict Malta-relevance filter: all items have direct connection to Malta as victim, attacker, regulator or legal jurisdiction",
   "sources_searched": [
@@ -51,7 +51,10 @@
     "Shodan",
     "VirusTotal/MalwareBazaar",
     "Google News",
-    "infostealers.com (HudsonRock)"
+    "infostealers.com (HudsonRock)",
+    "ransomware.live",
+    "ransomlook.io",
+    "redpacketsecurity.com"
   ],
   "items": [
     {
@@ -174,5 +177,6 @@
       "sector": "Healthcare",
       "malta_connection": "Saint James Hospital operates in Sliema and Zejtun, Malta; patients are Maltese residents; IDPC and Malta Police formally notified"
     }
-  ]
+  ],
+  "last_sweep": "Targeted A-F sweep executed 22 May 2026: dark web leak-sites, infostealer/credential, threat-intel databases, incident trackers, regulator registers, news/social"
 }
