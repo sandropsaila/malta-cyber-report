@@ -1,6 +1,56 @@
 {
-  "fetched": "2026-05-02T16:18:51.000Z",
+  "fetched": "2026-05-22T13:30:00.000Z",
   "confirmed_incidents": [
+    {
+      "id": 16,
+      "title": "LeoVegas Group (MGA-Licensed) \u2014 HELLCAT Ransomware via Stolen Jira Credentials",
+      "year": "2025",
+      "severity": "high",
+      "sector": "iGaming / Online Gaming (MGA-licensed)",
+      "type": "Ransomware / Credential theft (infostealer-enabled)",
+      "records": "Internal files, emails and financial records exfiltrated",
+      "summary": "On 5 April 2025 the HELLCAT ransomware group published LeoVegas Group \u2014 an MGA-licensed online gaming operator \u2014 as one of four new victims, alongside HighWire Press, Asseco Poland and Racami. HudsonRock researchers confirmed all four breaches stemmed from Atlassian Jira credentials harvested by infostealer malware (StealC, Raccoon, Redline, Lumma Stealer) months before the attack. HELLCAT moved laterally inside Jira, exfiltrated internal files, emails and financial records, and threatened to leak the data unless ransoms were paid. This is the same credential-reuse playbook HELLCAT used against Jaguar Land Rover, Telefonica, Schneider Electric and Orange.",
+      "malta_connection": "LeoVegas Group holds an MGA (Malta Gaming Authority) Remote Gaming Licence and operates under Maltese gaming law, placing this incident squarely within MGA jurisdiction. It illustrates the exposure of any MGA-licensed operator that relies on Atlassian Jira without credential monitoring.",
+      "source_name": "infostealers.com (HudsonRock) \u00b7 Hackread",
+      "source_url": "https://www.infostealers.com/article/hellcat-ransomware-group-strikes-again-four-new-victims-breached-via-jira-credentials-from-infostealer-logs/",
+      "analysis": {
+        "prevention": "Infostealer-harvested credentials are the root cause. MGA-licensed operators must enforce phishing-resistant MFA (FIDO2/passkeys) on all Atlassian Jira and Confluence access, so a stolen password alone cannot grant entry. Corporate Jira instances should never be reachable from the public internet without SSO and conditional-access policies. Endpoint controls must block the consumer-grade infostealers (StealC, Lumma, Redline) that typically infect employees via cracked software and malicious downloads.",
+        "detection": "Continuous dark web and infostealer-log monitoring (HudsonRock, SpyCloud) would have flagged the compromised Jira credentials months before HELLCAT used them \u2014 the logs existed long in advance. Jira audit logging with anomalous-login alerting (new geolocation, impossible travel, bulk export activity) would have caught the lateral movement and data exfiltration.",
+        "improvement": "Mandate session-cookie and token rotation, not just password resets, since infostealers capture active session tokens that bypass MFA. Treat any employee infostealer infection as a credential-compromise incident requiring full reset across all corporate SaaS. MGA should consider issuing guidance to licensees on infostealer exposure and Atlassian hardening.",
+        "monitoring_controls": [
+          "Dark web / infostealer-log monitoring (HudsonRock Cavalier, SpyCloud)",
+          "Atlassian Jira audit logs with anomalous-login alerting",
+          "Phishing-resistant MFA (FIDO2 / passkeys) on all SaaS",
+          "EDR tuned for StealC/Lumma/Redline IoCs",
+          "Session token rotation and conditional access"
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "title": "Intercomp Malta \u2014 Akira Ransomware, Data Listed on Dark Web Leak Site",
+      "year": "2025",
+      "severity": "high",
+      "sector": "Technology / IT Services",
+      "type": "Ransomware (Akira) / Double extortion",
+      "records": "39 internal users + 4 third-party organisations identified on leak page",
+      "summary": "Intercomp Malta, a leading Maltese IT solutions provider supplying hardware, software and IT services across multiple sectors, was listed as a victim on the Akira ransomware group's dark web Tor leak site on 4-5 February 2025. The leak page identified 39 internal users and 4 connected third-party organisations. No employee data was publicly leaked, suggesting the breach may have been limited to external partner or client data. Akira \u2014 which has claimed over 1,400 victims since 2023 and at least $245M in ransoms \u2014 typically gains initial access via unpatched VPN services or compromised RDP credentials and uses double-extortion tactics. The incident received no Maltese press coverage and surfaced only through dark web leak-site monitoring.",
+      "malta_connection": "Intercomp Malta (intercomp.com.mt) is a Malta-domiciled IT solutions provider serving Maltese public and private sector clients. As an IT supplier, a breach carries supply-chain risk to its Maltese customer base. Detected via Akira's Tor leak site and breachsense.com \u2014 not via news media.",
+      "source_name": "breachsense.com \u00b7 RedPacket Security (Akira leak site)",
+      "source_url": "https://www.breachsense.com/breaches/intercomp-malta-data-breach/",
+      "analysis": {
+        "prevention": "Akira's dominant initial-access vectors are unpatched SSL VPN appliances (notably SonicWall CVE-2024-40766) and compromised RDP credentials. An IT solutions provider must keep all internet-facing VPN and remote-access appliances patched within days of vendor advisories, disable or strictly gate RDP, and enforce MFA on every remote entry point. Network segmentation limits how far an intruder can spread from a single foothold.",
+        "detection": "Akira typically moves from initial access to full encryption in under four hours, so detection must be fast. EDR with behavioural ransomware detection, monitoring for mass file operations, and alerting on unusual VPN logins (new geolocation, off-hours) are essential. For an IT provider, monitoring should extend to systems that touch client environments.",
+        "improvement": "Maintain offline, immutable backups tested for rapid restore. Establish an incident-response retainer. Critically \u2014 for an IT services company \u2014 proactively monitor dark web leak sites for the company's own domain and its clients' domains, since (as this incident shows) a leak-site listing may be the only warning before data is published.",
+        "monitoring_controls": [
+          "VPN/RDP patch-compliance monitoring (SonicWall/Fortinet advisories)",
+          "EDR with behavioural ransomware detection",
+          "Immutable offline backups with restore testing",
+          "Dark web leak-site monitoring for own + client domains",
+          "MFA on all remote access; RDP disabled or gated"
+        ]
+      }
+    },
     {
       "id": 1,
       "title": "Malta Gaming Authority (MGA) \u2014 System Breach",
@@ -613,6 +663,10 @@
     "Daphne Foundation",
     "Shodan",
     "VirusTotal/MalwareBazaar",
-    "Google News"
+    "Google News",
+    "infostealers.com (HudsonRock)",
+    "ransomware.live",
+    "ransomlook.io",
+    "redpacketsecurity.com"
   ]
 }
