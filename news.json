@@ -1,6 +1,6 @@
 {
-  "fetched": "2026-05-02T05:57:39.000Z",
-  "count": 10,
+  "fetched": "2026-05-22T00:00:00.000Z",
+  "count": 11,
   "filter_applied": "Strict Malta-relevance filter: all items have direct connection to Malta as victim, attacker, regulator or legal jurisdiction",
   "sources_searched": [
     "maltatoday.com.mt",
@@ -50,9 +50,20 @@
     "Daphne Foundation",
     "Shodan",
     "VirusTotal/MalwareBazaar",
-    "Google News"
+    "Google News",
+    "infostealers.com (HudsonRock)"
   ],
   "items": [
+    {
+      "title": "HELLCAT Ransomware Breaches LeoVegas Group (MGA-Licensed) via Jira Credentials Stolen by Infostealers",
+      "source": "infostealers.com (HudsonRock)",
+      "date": "April 2025",
+      "url": "https://www.infostealers.com/article/hellcat-ransomware-group-strikes-again-four-new-victims-breached-via-jira-credentials-from-infostealer-logs/",
+      "summary": "HudsonRock researchers confirmed that HellCat ransomware breached four organisations on April 5, 2025 \u2014 including LeoVegas Group, an MGA-licensed online gaming operator. All four breaches stem from Jira credentials harvested by infostealer malware (StealC, Raccoon, Redline, Lumma Stealer) months before the attack. HellCat moved laterally inside Jira, exfiltrated internal files, emails and financial records, and threatened to leak data unless ransoms were paid. This follows HellCat's same credential-reuse playbook used against Jaguar Land Rover, Telefonica and Schneider Electric.",
+      "severity": "high",
+      "sector": "iGaming / Online Gaming (MGA-licensed)",
+      "malta_connection": "LeoVegas Group holds an MGA (Malta Gaming Authority) Remote Gaming Licence and is regulated under Maltese gaming law \u2014 making this a direct MGA-jurisdiction incident. The attack exposes risks to any MGA-licensed operator relying on Atlassian Jira without credential monitoring."
+    },
     {
       "title": "NEW \u2014 Malta Police Warn of Surge in Spoofed Calls Impersonating Officers",
       "source": "Newsbook (2 days ago)",

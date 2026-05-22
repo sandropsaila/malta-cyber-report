@@ -24,7 +24,8 @@ Search ALL of the following sources:
 4. IGAMING: igamingcapital.mt, igamingbusiness.com, sigma.world, next.io, tribuna.com, calvin.ayre.com
 5. EU BODIES: ENISA, EDPB, Europol, EUR-Lex (Malta-specific enforcement only)
 6. SECURITY INTELLIGENCE: GDPRhub (IDPC decisions), DataBreaches.net, HaveIBeenPwned,
-   BleepingComputer, SecurityWeek, The Record, Cybernews, OCCRP, Daphne Foundation
+   BleepingComputer, SecurityWeek, The Record, Cybernews, OCCRP, Daphne Foundation,
+   infostealers.com (HudsonRock — infostealer logs, credential theft, Jira/VPN breach intelligence)
 7. PROACTIVE: Shodan (Maltese IP ranges), VirusTotal/MalwareBazaar, Google News
 
 Return a JSON array of up to 10 recent items. Each must have:
@@ -57,7 +58,7 @@ Search ALL 48 sources for the latest Malta cybersecurity incidents:
 - Social: LinkedIn, Facebook, Twitter/X, Reddit r/malta
 - iGaming: igamingcapital, igamingbusiness, sigma.world, next.io, tribuna.com, calvin.ayre
 - EU: ENISA, EDPB, Europol, EUR-Lex
-- Security: GDPRhub, DataBreaches.net, HaveIBeenPwned, BleepingComputer, SecurityWeek, The Record, Cybernews, OCCRP, Daphne Foundation
+- Security: GDPRhub, DataBreaches.net, HaveIBeenPwned, BleepingComputer, SecurityWeek, The Record, Cybernews, OCCRP, Daphne Foundation, infostealers.com (HudsonRock)
 - Proactive: Shodan, VirusTotal, Google News
 Apply strict Malta-relevance filter. Return JSON array only.`
       }]
@@ -125,7 +126,7 @@ async function main() {
     "igamingcapital.mt","igamingbusiness.com","sigma.world","next.io","tribuna.com","calvin.ayre.com",
     "ENISA","EDPB","Europol","EUR-Lex",
     "GDPRhub","DataBreaches.net","HaveIBeenPwned","BleepingComputer",
-    "SecurityWeek","The Record","Cybernews","OCCRP","Daphne Foundation",
+    "SecurityWeek","The Record","Cybernews","OCCRP","Daphne Foundation","infostealers.com (HudsonRock)",
     "Shodan","VirusTotal/MalwareBazaar","Google News"
   ];
 
