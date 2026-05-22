@@ -1,6 +1,6 @@
 {
-  "fetched": "2026-05-22T00:00:00.000Z",
-  "count": 11,
+  "fetched": "2026-05-22T12:00:00.000Z",
+  "count": 12,
   "filter_applied": "Strict Malta-relevance filter: all items have direct connection to Malta as victim, attacker, regulator or legal jurisdiction",
   "sources_searched": [
     "maltatoday.com.mt",
@@ -63,6 +63,16 @@
       "severity": "high",
       "sector": "iGaming / Online Gaming (MGA-licensed)",
       "malta_connection": "LeoVegas Group holds an MGA (Malta Gaming Authority) Remote Gaming Licence and is regulated under Maltese gaming law \u2014 making this a direct MGA-jurisdiction incident. The attack exposes risks to any MGA-licensed operator relying on Atlassian Jira without credential monitoring."
+    },
+    {
+      "title": "Intercomp Malta \u2014 Akira Ransomware Attack, Data Posted to Dark Web",
+      "source": "breachsense.com / RedPacket Security (Akira Tor leak site)",
+      "date": "February 2025",
+      "url": "https://www.breachsense.com/breaches/intercomp-malta-data-breach/",
+      "summary": "Intercomp Malta, a leading Maltese IT solutions provider supplying hardware, software and IT services across multiple sectors, was listed as a victim on the Akira ransomware group's dark web leak site on 4\u20135 February 2025. The leak page identified 39 internal users and 4 third-party organisations connected to the incident. No employee data was publicly leaked, suggesting the breach may have been limited to external partner or client data. Akira \u2014 which has claimed over 1,400 victims since 2023 and collected at least $245M in ransoms \u2014 typically gains access via unpatched VPN services or compromised RDP credentials and uses double extortion tactics.",
+      "severity": "high",
+      "sector": "Technology / IT Services",
+      "malta_connection": "Intercomp Malta (intercomp.com.mt) is a Malta-domiciled IT solutions provider serving Maltese public and private sector clients. The breach was discovered via Akira's Tor-based dark web leak site and reported by breachsense.com \u2014 not previously surfaced in Maltese news media."
     },
     {
       "title": "NEW \u2014 Malta Police Warn of Surge in Spoofed Calls Impersonating Officers",
