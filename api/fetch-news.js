@@ -25,8 +25,27 @@ Search ALL of the following sources:
 5. EU BODIES: ENISA, EDPB, Europol, EUR-Lex (Malta-specific enforcement only)
 6. SECURITY INTELLIGENCE: GDPRhub (IDPC decisions), DataBreaches.net, HaveIBeenPwned,
    BleepingComputer, SecurityWeek, The Record, Cybernews, OCCRP, Daphne Foundation,
-   infostealers.com (HudsonRock — infostealer logs, credential theft, Jira/VPN breach intelligence)
-7. PROACTIVE: Shodan (Maltese IP ranges), VirusTotal/MalwareBazaar, Google News
+   infostealers.com (HudsonRock — infostealer logs, credential theft, Jira/VPN breach intelligence),
+   hudsonrock.com/threat-intelligence-cybercrime-tools (credential exposure lookup),
+   recordedfuture.com (threat intelligence platform — search Malta-tagged intel),
+   spycloud.com (stolen credential & infostealer data — Malta-linked exposures),
+   group-ib.com (cybercrime investigation & threat intel — Malta/iGaming incidents),
+   kroll.com/en/insights/publications/cyber/threat-intelligence (Kroll cyber threat reports),
+   zerofox.com (external threat intelligence — Malta brand/executive exposure),
+   intel471.com (underground & dark web intel — Malta-linked actors),
+   anomali.com (threat intelligence platform — Malta IOC searches),
+   constellaintelligence.com (threat intelligence — Malta-linked incidents),
+   blueliv.com (threat intelligence — European/Malta cyber threats),
+   csis.org/programs/strategic-technologies-program/significant-cyber-incidents (CSIS significant cyber incidents tracker),
+   cnas.org/publications/reports/cyber-incident-tracker (CNAS cyber incident tracker)
+7. INFOSTEALER RESOURCES: breachsense.com/blog (infostealer & credential breach monitoring),
+   f6s.com/software/category/infostealer-detection (infostealer tool landscape),
+   infosecurityeurope.com (infostealer malware guides & incident coverage),
+   cyber.gov.au infostealer advisory (ASD/ACSC infostealer malware advisory — techniques applicable to Malta operators),
+   shadowdragon.io/resources (threat intelligence platform coverage)
+8. PROACTIVE: Shodan (Maltese IP ranges), VirusTotal/MalwareBazaar, Google News,
+   spc.int (Pacific — cross-reference for any Malta-linked Pacific-region incidents),
+   density.io (threat intelligence aggregation)
 
 Return a JSON array of up to 10 recent items. Each must have:
 - title: string
@@ -58,8 +77,9 @@ Search ALL 48 sources for the latest Malta cybersecurity incidents:
 - Social: LinkedIn, Facebook, Twitter/X, Reddit r/malta
 - iGaming: igamingcapital, igamingbusiness, sigma.world, next.io, tribuna.com, calvin.ayre
 - EU: ENISA, EDPB, Europol, EUR-Lex
-- Security: GDPRhub, DataBreaches.net, HaveIBeenPwned, BleepingComputer, SecurityWeek, The Record, Cybernews, OCCRP, Daphne Foundation, infostealers.com (HudsonRock)
-- Proactive: Shodan, VirusTotal, Google News
+- Security Intelligence: GDPRhub, DataBreaches.net, HaveIBeenPwned, BleepingComputer, SecurityWeek, The Record, Cybernews, OCCRP, Daphne Foundation, infostealers.com (HudsonRock), hudsonrock.com/threat-intelligence-cybercrime-tools, recordedfuture.com, spycloud.com, group-ib.com, kroll.com/cyber/threat-intelligence, zerofox.com, intel471.com, anomali.com, constellaintelligence.com, blueliv.com, csis.org/significant-cyber-incidents, cnas.org/cyber-incident-tracker
+- Infostealer Resources: breachsense.com/blog, f6s.com/infostealer-detection, infosecurityeurope.com, shadowdragon.io/resources
+- Proactive: Shodan, VirusTotal, Google News, spc.int, density.io
 Apply strict Malta-relevance filter. Return JSON array only.`
       }]
     });
@@ -127,7 +147,13 @@ async function main() {
     "ENISA","EDPB","Europol","EUR-Lex",
     "GDPRhub","DataBreaches.net","HaveIBeenPwned","BleepingComputer",
     "SecurityWeek","The Record","Cybernews","OCCRP","Daphne Foundation","infostealers.com (HudsonRock)",
-    "Shodan","VirusTotal/MalwareBazaar","Google News"
+    "hudsonrock.com/threat-intelligence-cybercrime-tools","recordedfuture.com","spycloud.com",
+    "group-ib.com","kroll.com/cyber/threat-intelligence","zerofox.com","intel471.com",
+    "anomali.com","constellaintelligence.com","blueliv.com",
+    "csis.org/significant-cyber-incidents","cnas.org/cyber-incident-tracker",
+    "breachsense.com/blog","f6s.com/infostealer-detection",
+    "infosecurityeurope.com","shadowdragon.io/resources",
+    "Shodan","VirusTotal/MalwareBazaar","Google News","spc.int","density.io"
   ];
 
   // Write updated data.json — preserve curated data, update live feed + timestamp
