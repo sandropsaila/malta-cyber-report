@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-16T18:12:44.000Z",
+  "fetched": "2026-07-16T18:17:15.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -331,7 +331,7 @@
       "title": "FreeHour App \u2014 Vulnerability Disclosure & Legal Controversy",
       "year": "2022\u20132025",
       "severity": "medium",
-      "sector": "Tech / Education",
+      "sector": "Education",
       "type": "API vulnerability (ethical disclosure)",
       "records": "Student PII at risk",
       "summary": "Four UoM students found critical API flaws in FreeHour (Malta's most popular student app). Instead of recognition, they were arrested, strip-searched, and had 14 devices impounded for 28 months. Two reported PTSD. The case triggered national debate, Budapest Convention adoption, and a Presidential Pardon in July 2025.",
