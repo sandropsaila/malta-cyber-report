@@ -72,10 +72,13 @@
 
     /* Breakdown block (shared by both boxes) */
     .stat-breakdown { flex:1; min-width:0; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1px; line-height:1.9; text-align:left; padding-top:6px; }
-    .stat-breakdown .row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:1px 0; }
+    .stat-breakdown .row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:1px 0; break-inside:avoid; }
     .stat-breakdown .label { text-transform:uppercase; color:#8892a6 !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .stat-breakdown .count { color:#d0d6e2 !important; font-weight:600; font-variant-numeric:tabular-nums; min-width:20px; text-align:right; flex-shrink:0; }
     .stat-breakdown .dot { display:inline-block; width:6px; height:6px; border-radius:1px; margin-right:8px; vertical-align:middle; }
+
+    /* Two-column variant — used when there are many rows (e.g. sectors) */
+    .stat-breakdown--two-col { column-count:2; column-gap:clamp(20px,3vw,40px); column-rule:1px solid #1f2530; }
 
     /* SECTION */
     .section { margin-bottom:52px; }
@@ -270,7 +273,7 @@
   <div class="stat-box sb-amber" style="background:#111318 !important;">
     <div class="stat-row">
       <div class="stat-num" style="color:#ff9f1c !important;" id="statSectors">—</div>
-      <div class="stat-breakdown" id="statSectorBreakdown"></div>
+      <div class="stat-breakdown stat-breakdown--two-col" id="statSectorBreakdown"></div>
     </div>
     <div class="stat-label" style="color:#6b7585 !important;">Sectors Affected</div>
   </div>
