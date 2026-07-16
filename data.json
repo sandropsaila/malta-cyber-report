@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-16T19:06:23.000Z",
+  "fetched": "2026-07-16T19:13:09.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -24,7 +24,8 @@
           "EDR tuned for StealC/Lumma/Redline IoCs",
           "Session token rotation and conditional access"
         ]
-      }
+      },
+      "month": "Apr"
     },
     {
       "id": 17,
@@ -49,7 +50,8 @@
           "Dark web leak-site monitoring for own + client domains",
           "MFA on all remote access; RDP disabled or gated"
         ]
-      }
+      },
+      "month": "Feb"
     },
     {
       "id": 1,
@@ -74,7 +76,8 @@
           "Network Traffic Analysis (NTA)",
           "Immutable audit logs on all data access"
         ]
-      }
+      },
+      "month": "Mar"
     },
     {
       "id": 2,
@@ -99,7 +102,8 @@
           "Vendor security scorecards (e.g. SecurityScorecard)",
           "Continuous compliance monitoring (SOC 2 + ISO 27001)"
         ]
-      }
+      },
+      "month": "Oct"
     },
     {
       "id": 3,
@@ -124,7 +128,8 @@
           "API response size monitoring",
           "OWASP API Security Top 10 compliance scanning"
         ]
-      }
+      },
+      "month": "Mar"
     },
     {
       "id": 4,
@@ -149,7 +154,8 @@
           "24/7 SOC",
           "Anomalous authentication alerting"
         ]
-      }
+      },
+      "month": "Apr"
     },
     {
       "id": 5,
@@ -174,7 +180,8 @@
           "Data classification tagging",
           "Outbound email audit logging"
         ]
-      }
+      },
+      "month": "Nov"
     },
     {
       "id": 6,
@@ -199,7 +206,8 @@
           "Upstream carrier DDoS signalling",
           "Customer communication automated alerts"
         ]
-      }
+      },
+      "month": "Jan"
     },
     {
       "id": 7,
@@ -224,7 +232,8 @@
           "Immutable backup integrity monitoring",
           "ENISA critical infrastructure framework compliance"
         ]
-      }
+      },
+      "month": "Feb"
     },
     {
       "id": 8,
@@ -274,7 +283,8 @@
           "File integrity monitoring (FIM)",
           "Government-wide SIEM aggregation"
         ]
-      }
+      },
+      "month": "Sep"
     },
     {
       "id": 10,
@@ -299,7 +309,8 @@
           "Encryption at rest enforcement",
           "GDPR Article 25 privacy-by-design review"
         ]
-      }
+      },
+      "month": "Apr"
     },
     {
       "id": 11,
@@ -374,7 +385,8 @@
           "Real-time correspondent bank alerting",
           "Europol EC3 / Interpol IFCACC liaison"
         ]
-      }
+      },
+      "month": "Feb"
     },
     {
       "id": 14,
@@ -399,7 +411,8 @@
           "Pre-launch security checklist (MITA-mandated)",
           "GDPR Article 25 Privacy by Design review"
         ]
-      }
+      },
+      "month": "Nov"
     },
     {
       "id": 18,
@@ -424,7 +437,8 @@
           "Monitored social-media management console with audit logs",
           "Coordination channel with FCID for political-target incidents"
         ]
-      }
+      },
+      "month": "Jan"
     }
   ],
   "court_cases": [

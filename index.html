@@ -431,6 +431,9 @@ async function loadData() {
       const m = String(s).match(/\d{4}/g);
       return m ? Math.max(...m.map(Number)) : 0;
     };
+    // Format: "Mmm-YYYY" if month is known, otherwise the raw year string
+    const formatDate = (inc) => inc.month ? `${inc.month}-${inc.year}` : inc.year;
+
     const incidents = (data.confirmed_incidents || []).slice().sort((a, b) => yearKey(b.year) - yearKey(a.year));
     document.getElementById('breachCount').textContent = incidents.length + ' Incidents';
     document.getElementById('breachBody').innerHTML = incidents.map((inc, i) => `
@@ -442,7 +445,7 @@ async function loadData() {
             ${inc.title} <span style="font-size:10px; opacity:0.6;">↗</span>
           </a>
         </td>
-        <td><span class="yr-tag">${inc.year}</span></td>
+        <td><span class="yr-tag" style="white-space:nowrap;">${formatDate(inc)}</span></td>
         <td>${SEV_PILL[inc.severity] || SEV_PILL.high}</td>
         <td class="hide-mobile" style="color:#b0b8cc !important;">${inc.type}</td>
         <td class="hide-mobile" style="color:#b0b8cc !important;">${inc.records}</td>
