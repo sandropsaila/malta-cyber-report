@@ -313,6 +313,27 @@
     </div>
   </div>
 
+  <!-- ══ TABLE 3: THREAT LANDSCAPE / SCAM TRENDS ══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Threat Landscape &amp; Scam Trends</div>
+      <div class="section-count" id="threatCount">Loading...</div>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6b7585; margin-bottom:14px; line-height:1.6;">Cyber-adjacent threats and scam campaigns targeting Maltese citizens — public warnings, ongoing fraud trends, and deepfake / vishing campaigns. Not confirmed breaches of Maltese organisations.</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Threat</th><th>Category</th><th>First Reported</th><th>Severity</th><th class="hide-mobile">Reporting Body</th><th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="threatBody">
+          <tr><td colspan="6" style="color:#6b7585;font-family:'IBM Plex Mono',monospace;font-size:11px;padding:20px 14px;">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <!-- ══ NEWS FEED LINK ══ -->
   <div class="section">
     <div style="background:#111318 !important; border:1px solid #1f2530; border-left:4px solid #e63946; padding:20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
@@ -424,6 +445,27 @@ async function loadData() {
         <td class="hide-mobile" style="color:#b0b8cc !important;font-size:13px;">${c.court}</td>
         <td class="hide-mobile" style="color:#b0b8cc !important;font-size:13px;">${c.outcome}</td>
         <td><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border:1px solid;color:${STATUS_COLOR[c.status]||'#6b7585'} !important;border-color:${STATUS_COLOR[c.status]||'#6b7585'};">${c.status}</span></td>
+      </tr>`).join('');
+
+    // ── TABLE 3: Threat Landscape / Scam Trends ──
+    const threats = data.threat_landscape || [];
+    document.getElementById('threatCount').textContent = threats.length + (threats.length === 1 ? ' Threat' : ' Threats');
+    document.getElementById('threatBody').innerHTML = threats.map((t, i) => `
+      <tr style="background:${i%2===0?'#0a0c10':'#0d0f14'} !important; cursor:pointer;" onclick="toggleSection('tl-${t.id}')">
+        <td style="color:#d0d6e2 !important; font-weight:600;">
+          <span id="tog-tl-${t.id}" style="float:right;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a5568;">▸</span>
+          ${t.title}
+          <div id="tl-${t.id}" style="display:none;">
+            <div style="margin-top:10px;padding-top:10px;border-top:1px solid #1f2530;font-size:13px;color:#b0b8cc !important;font-weight:300;line-height:1.7;">${t.summary}</div>
+            <div style="margin-top:8px;font-size:12px;color:#6b7585 !important;line-height:1.6;"><strong style="color:#d0d6e2 !important;">Malta connection:</strong> ${t.malta_connection}</div>
+            <div style="margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;"><a href="${t.source_url}" target="_blank" style="color:#2ec4b6 !important;text-decoration:none;">${t.source_name} ↗</a></div>
+          </div>
+        </td>
+        <td style="color:#b0b8cc !important;font-size:13px;">${t.category}</td>
+        <td><span class="yr-tag" style="white-space:nowrap;">${t.first_reported}</span></td>
+        <td>${SEV_PILL[t.severity] || SEV_PILL.high}</td>
+        <td class="hide-mobile" style="color:#b0b8cc !important;font-size:13px;">${t.reporting_body}</td>
+        <td><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border:1px solid #ff9f1c;color:#ff9f1c !important;">${t.status}</span></td>
       </tr>`).join('');
 
     // ── Stats — all dynamic from data.json ──

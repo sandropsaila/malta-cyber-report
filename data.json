@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-16T11:02:33.000Z",
+  "fetched": "2026-07-16T11:06:31.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -400,31 +400,6 @@
           "GDPR Article 25 Privacy by Design review"
         ]
       }
-    },
-    {
-      "id": 15,
-      "title": "Malta Police \u2014 AI Voice Cloning & Spoofed Call Fraud Surge",
-      "year": "2026",
-      "severity": "high",
-      "sector": "Public / Law Enforcement",
-      "type": "AI voice cloning / vishing / social engineering",
-      "records": "Ongoing \u2014 number of victims unconfirmed",
-      "summary": "The Malta Police Force issued an urgent public warning in May 2026 about a significant surge in fraudulent calls using spoofed Maltese mobile numbers combined with AI voice cloning to impersonate police officers. Callers use the fake police identity to extract personal details under the guise of scheduling a fictitious appointment. The scams are also leveraging AI-generated deepfake videos of PM Robert Abela to add perceived legitimacy. Superintendent Jonathan Ransley stated the attacks are increasingly sophisticated and that 'everyone is a potential victim.'",
-      "malta_connection": "Malta Police Force issued the formal warning; Maltese citizens and residents are the targets; deepfake of Maltese PM used as lure; reported to Maltese authorities",
-      "source_name": "Newsbook \u00b7 Malta Police Force",
-      "source_url": "https://newsbook.com.mt/en/police-warn-of-spoofed-calls-as-scammers-impersonate-officers/",
-      "analysis": {
-        "prevention": "Telecommunications providers in Malta should implement STIR/SHAKEN call authentication to prevent caller ID spoofing. The public should be informed that police will never request personal details over an unsolicited phone call. MCA (Malta Communications Authority) should mandate call authentication standards for Maltese operators. Two-factor verification for any request involving personal data should be promoted as standard practice.",
-        "detection": "Victims can verify calls by hanging up and calling the official police number directly (2122 4001). AI voice cloning detection is difficult in real-time for individuals, but telcos can implement network-level anomaly detection for bulk spoofed call campaigns. Reporting channels should be prominently advertised so incidents are centralised and patterns identified quickly.",
-        "improvement": "Malta should fast-track implementation of STIR/SHAKEN caller authentication standards as mandated under EU EECC (European Electronic Communications Code). A public-facing real-time scam reporting portal (similar to the UK's Action Fraud) would help the FCID identify campaign patterns faster. Regular public awareness campaigns via national media, particularly targeting elderly demographics most affected by vishing.",
-        "monitoring_controls": [
-          "STIR/SHAKEN caller ID authentication (MCA-mandated)",
-          "Telco-level bulk spoofed call detection",
-          "Centralised scam reporting portal (FCID)",
-          "Real-time AI voice cloning detection at network layer",
-          "Public awareness campaigns via TVM, Newsbook, MaltaToday"
-        ]
-      }
     }
   ],
   "court_cases": [
@@ -680,6 +655,33 @@
       "source_name": "Linklaters \u2014 Data Protected: Malta (citing IDPC statements)",
       "source_url": "https://www.linklaters.com/en/insights/data-protected/data-protected---malta",
       "as_of_date": "10 October 2023"
+    }
+  ],
+  "threat_landscape": [
+    {
+      "id": "tl-001",
+      "title": "AI Voice Cloning & Spoofed Call Fraud Surge",
+      "category": "Vishing / Deepfake Impersonation",
+      "first_reported": "May 2026",
+      "status": "Ongoing",
+      "severity": "high",
+      "reporting_body": "Malta Police Force",
+      "summary": "The Malta Police Force issued an urgent public warning in May 2026 about a significant surge in fraudulent calls using spoofed Maltese mobile numbers combined with AI voice cloning to impersonate police officers. Callers use the fake police identity to extract personal details under the guise of scheduling a fictitious appointment. The scams are also leveraging AI-generated deepfake videos of PM Robert Abela to add perceived legitimacy. Superintendent Jonathan Ransley stated the attacks are increasingly sophisticated and that 'everyone is a potential victim.'",
+      "malta_connection": "Malta Police Force issued the formal warning; Maltese citizens and residents are the targets; deepfake of Maltese PM used as lure; reported to Maltese authorities",
+      "source_name": "Newsbook \u00b7 Malta Police Force",
+      "source_url": "https://newsbook.com.mt/en/police-warn-of-spoofed-calls-as-scammers-impersonate-officers/",
+      "guidance": {
+        "prevention": "Telecommunications providers in Malta should implement STIR/SHAKEN call authentication to prevent caller ID spoofing. The public should be informed that police will never request personal details over an unsolicited phone call. MCA (Malta Communications Authority) should mandate call authentication standards for Maltese operators. Two-factor verification for any request involving personal data should be promoted as standard practice.",
+        "detection": "Victims can verify calls by hanging up and calling the official police number directly (2122 4001). AI voice cloning detection is difficult in real-time for individuals, but telcos can implement network-level anomaly detection for bulk spoofed call campaigns. Reporting channels should be prominently advertised so incidents are centralised and patterns identified quickly.",
+        "improvement": "Malta should fast-track implementation of STIR/SHAKEN caller authentication standards as mandated under EU EECC (European Electronic Communications Code). A public-facing real-time scam reporting portal (similar to the UK's Action Fraud) would help the FCID identify campaign patterns faster. Regular public awareness campaigns via national media, particularly targeting elderly demographics most affected by vishing.",
+        "monitoring_controls": [
+          "STIR/SHAKEN caller ID authentication (MCA-mandated)",
+          "Telco-level bulk spoofed call detection",
+          "Centralised scam reporting portal (FCID)",
+          "Real-time AI voice cloning detection at network layer",
+          "Public awareness campaigns via TVM, Newsbook, MaltaToday"
+        ]
+      }
     }
   ]
 }
