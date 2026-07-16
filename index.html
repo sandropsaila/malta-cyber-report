@@ -64,13 +64,17 @@
     .sb-red .stat-num { color:#e63946 !important; }
     .sb-amber .stat-num { color:#ff9f1c !important; }
     .sb-teal .stat-num { color:#2ec4b6 !important; }
-    .stat-label { font-size:clamp(8px,2.5vw,10px); color:#6b7585 !important; text-transform:uppercase; letter-spacing:0.8px; line-height:1.4; }
+    .stat-label { font-size:clamp(8px,2.5vw,10px); color:#6b7585 !important; text-transform:uppercase; letter-spacing:0.8px; line-height:1.4; margin-top:18px; padding-top:14px; border-top:1px solid #1f2530; }
 
-    /* Shared breakdown block inside stat boxes */
-    .stat-breakdown { margin-top:18px; padding-top:14px; border-top:1px solid #1f2530; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1px; line-height:1.9; text-align:left; }
+    /* Row: big number on the left, breakdown on the right */
+    .stat-row { display:flex; align-items:flex-start; gap:clamp(20px,4vw,48px); flex-wrap:nowrap; }
+    .stat-row .stat-num { flex-shrink:0; margin-bottom:0; }
+
+    /* Breakdown block (shared by both boxes) */
+    .stat-breakdown { flex:1; min-width:0; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1px; line-height:1.9; text-align:left; padding-top:6px; }
     .stat-breakdown .row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:1px 0; }
-    .stat-breakdown .label { text-transform:uppercase; color:#8892a6 !important; }
-    .stat-breakdown .count { color:#d0d6e2 !important; font-weight:600; font-variant-numeric:tabular-nums; min-width:20px; text-align:right; }
+    .stat-breakdown .label { text-transform:uppercase; color:#8892a6 !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .stat-breakdown .count { color:#d0d6e2 !important; font-weight:600; font-variant-numeric:tabular-nums; min-width:20px; text-align:right; flex-shrink:0; }
     .stat-breakdown .dot { display:inline-block; width:6px; height:6px; border-radius:1px; margin-right:8px; vertical-align:middle; }
 
     /* SECTION */
@@ -257,14 +261,18 @@
 
 <div class="stats-strip" style="background:#1f2530;">
   <div class="stat-box sb-red" style="background:#111318 !important;">
-    <div class="stat-num" style="color:#e63946 !important;" id="statIncidents">—</div>
-    <div class="stat-label" style="color:#6b7585 !important;">Confirmed Incidents<br><span id="statYearRange">—</span></div>
-    <div class="stat-breakdown" id="statSeverityBreakdown"></div>
+    <div class="stat-row">
+      <div class="stat-num" style="color:#e63946 !important;" id="statIncidents">—</div>
+      <div class="stat-breakdown" id="statSeverityBreakdown"></div>
+    </div>
+    <div class="stat-label" style="color:#6b7585 !important;">Confirmed Incidents · <span id="statYearRange">—</span></div>
   </div>
   <div class="stat-box sb-amber" style="background:#111318 !important;">
-    <div class="stat-num" style="color:#ff9f1c !important;" id="statSectors">—</div>
-    <div class="stat-label" style="color:#6b7585 !important;">Sectors<br>Affected</div>
-    <div class="stat-breakdown" id="statSectorBreakdown"></div>
+    <div class="stat-row">
+      <div class="stat-num" style="color:#ff9f1c !important;" id="statSectors">—</div>
+      <div class="stat-breakdown" id="statSectorBreakdown"></div>
+    </div>
+    <div class="stat-label" style="color:#6b7585 !important;">Sectors Affected</div>
   </div>
 </div>
 
