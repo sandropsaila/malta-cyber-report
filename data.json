@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-16T18:00:50.000Z",
+  "fetched": "2026-07-16T18:05:09.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -81,7 +81,7 @@
       "title": "Fast Track (Malta CRM) \u2014 Third-Party Casino Data Breach",
       "year": "2025",
       "severity": "high",
-      "sector": "iGaming / CRM",
+      "sector": "Technology / iGaming",
       "type": "Third-party platform breach",
       "records": "PII + KYC + financials; majority of Shuffle Casino users",
       "summary": "Malta-headquartered iGaming CRM provider Fast Track was breached in October 2025, exposing player KYC documents including passports and driver's licences. Shuffle Casino was the only publicly named victim. The breach occurred despite Fast Track holding a SOC 2 Type 2 certification renewed in June 2025.",
