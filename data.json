@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-16T18:05:09.000Z",
+  "fetched": "2026-07-16T18:06:17.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -106,7 +106,7 @@
       "title": "The Mill Adventure (Malta) \u2014 API Flaw Exposes 800K+ Players",
       "year": "2025",
       "severity": "high",
-      "sector": "iGaming / Software",
+      "sector": "Technology / iGaming",
       "type": "Unauthenticated API exposure",
       "records": "~800,000 players; 70,000+ identity documents",
       "summary": "Malta-based gaming provider The Mill Adventure had a critically vulnerable unauthenticated GraphQL API. Researcher Lilith Wittmann disclosed the flaw on 14 March 2025. Exposed: player IDs, names, IBANs, login records and 70,000+ identity documents. Germany's GGL issued a public reprimand against Malta-based subsidiaries.",
