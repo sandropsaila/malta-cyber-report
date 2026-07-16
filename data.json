@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-16T19:28:56.000Z",
+  "fetched": "2026-07-16T19:33:58.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -659,7 +659,7 @@
     "ransomlook.io",
     "redpacketsecurity.com"
   ],
-  "last_sweep_note": "Full A-F Targeted Sweep executed 15 July 2026. No new incidents surfaced beyond the 17 already listed. Regulatory context: Dr Reno Borg took oath as new IDPC Commissioner on 22 April 2026 (5-year term), replacing Ian Deguara whose mandate ended 23 April 2026.",
+  "last_sweep_note": "Full A-F Targeted Sweep executed 16 July 2026. No new incidents surfaced. Regulatory context: (1) Legal Notice 89 of 2026 established a new Enforcement Committee under Malta's NIS2 framework, with CIPD as national supervisory authority and CSIRT Malta handling cyber incident coordination; (2) MFSA released its first Cyber Threats Awareness Brief (Jun 2026); (3) MFSA imposed a \u20ac2,400 administrative penalty on a CSP for missed 2022 Annual Compliance Return (2 Jul 2026).",
   "key_statistics": [
     {
       "id": "idpc-breach-notifications-2018-2023",
