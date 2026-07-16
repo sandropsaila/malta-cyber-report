@@ -256,6 +256,7 @@
   <div class="stat-box sb-amber" style="background:#111318 !important;">
     <div class="stat-num" style="color:#ff9f1c !important;" id="statSectors">—</div>
     <div class="stat-label" style="color:#6b7585 !important;">Sectors<br>Affected</div>
+    <div id="statSectorBreakdown" style="margin-top:14px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1px; color:#8892a6 !important; line-height:1.9; text-align:left;"></div>
   </div>
 </div>
 
@@ -478,6 +479,20 @@ async function loadData() {
     document.getElementById('statIncidents').textContent = incidentCount;
     document.getElementById('statSectors').textContent   = sectorSet.size;
     document.getElementById('statYearRange').textContent = minYear + '–' + maxYear;
+
+    // ── Sector breakdown — count incidents per top-level sector ──
+    const sectorCounts = {};
+    incidents.forEach(i => {
+      const key = i.sector.split('/')[0].trim();
+      sectorCounts[key] = (sectorCounts[key] || 0) + 1;
+    });
+    const sortedSectors = Object.entries(sectorCounts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    document.getElementById('statSectorBreakdown').innerHTML = sortedSectors.map(([name, n]) =>
+      `<div style="display:flex; justify-content:space-between; gap:12px;">
+        <span style="text-transform:uppercase; color:#8892a6 !important;">${name}</span>
+        <span style="color:#ff9f1c !important; font-weight:600;">${n}</span>
+      </div>`
+    ).join('');
     document.getElementById('breachCount').textContent   = incidentCount + ' Incidents';
     document.getElementById('courtCount').textContent    = cases.length + ' Cases';
     document.getElementById('cardCount').textContent     = incidentCount + ' Events';
