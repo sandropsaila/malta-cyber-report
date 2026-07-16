@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-16T17:57:47.000Z",
+  "fetched": "2026-07-16T17:59:42.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -56,7 +56,7 @@
       "title": "Malta Gaming Authority (MGA) \u2014 System Breach",
       "year": "2026",
       "severity": "critical",
-      "sector": "iGaming / Regulatory",
+      "sector": "Government / Regulatory",
       "type": "Unauthorised system access",
       "records": "Unknown \u2014 under investigation",
       "summary": "On 17 March 2026 the MGA confirmed a breach of one of its internal systems. Lilith Wittmann of the Chaos Computer Club claimed responsibility via LinkedIn and X, warning any extradition attempt would trigger immediate release of her full iGaming data archive covering all 304 licensed operators. The MGA condemned the access but called the allegations unsubstantiated. Criminal investigation opened; Wittmann faces up to 10 years under Maltese law.",
