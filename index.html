@@ -51,7 +51,7 @@
     @keyframes ticker { from{transform:translateX(0);} to{transform:translateX(-100%);} }
 
     /* STATS */
-    .stats-strip { display:grid; grid-template-columns:repeat(2, minmax(0, 360px)); justify-content:center; gap:1px; background:#1f2530; border-bottom:1px solid #1f2530; }
+    .stats-strip { display:grid; grid-template-columns:repeat(2, minmax(0, 400px)); justify-content:center; gap:1px; background:#1f2530; border-bottom:1px solid #1f2530; }
     .stat-num { font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,7vw,52px); line-height:1; margin-bottom:5px; }
     .stat-box { padding:16px 12px; position:relative; }
     @media (min-width:400px) { .stat-box { padding:20px 16px; } }
@@ -65,6 +65,13 @@
     .sb-amber .stat-num { color:#ff9f1c !important; }
     .sb-teal .stat-num { color:#2ec4b6 !important; }
     .stat-label { font-size:clamp(8px,2.5vw,10px); color:#6b7585 !important; text-transform:uppercase; letter-spacing:0.8px; line-height:1.4; }
+
+    /* Shared breakdown block inside stat boxes */
+    .stat-breakdown { margin-top:18px; padding-top:14px; border-top:1px solid #1f2530; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1px; line-height:1.9; text-align:left; }
+    .stat-breakdown .row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:1px 0; }
+    .stat-breakdown .label { text-transform:uppercase; color:#8892a6 !important; }
+    .stat-breakdown .count { color:#d0d6e2 !important; font-weight:600; font-variant-numeric:tabular-nums; min-width:20px; text-align:right; }
+    .stat-breakdown .dot { display:inline-block; width:6px; height:6px; border-radius:1px; margin-right:8px; vertical-align:middle; }
 
     /* SECTION */
     .section { margin-bottom:52px; }
@@ -252,11 +259,12 @@
   <div class="stat-box sb-red" style="background:#111318 !important;">
     <div class="stat-num" style="color:#e63946 !important;" id="statIncidents">—</div>
     <div class="stat-label" style="color:#6b7585 !important;">Confirmed Incidents<br><span id="statYearRange">—</span></div>
+    <div class="stat-breakdown" id="statSeverityBreakdown"></div>
   </div>
   <div class="stat-box sb-amber" style="background:#111318 !important;">
     <div class="stat-num" style="color:#ff9f1c !important;" id="statSectors">—</div>
     <div class="stat-label" style="color:#6b7585 !important;">Sectors<br>Affected</div>
-    <div id="statSectorBreakdown" style="margin-top:14px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1px; color:#8892a6 !important; line-height:1.9; text-align:left;"></div>
+    <div class="stat-breakdown" id="statSectorBreakdown"></div>
   </div>
 </div>
 
@@ -480,6 +488,22 @@ async function loadData() {
     document.getElementById('statSectors').textContent   = sectorSet.size;
     document.getElementById('statYearRange').textContent = minYear + '–' + maxYear;
 
+    // ── Severity breakdown — count incidents per severity level ──
+    const SEV_ORDER = ['critical','high','medium','low'];
+    const SEV_LABEL = { critical:'Critical', high:'High', medium:'Medium', low:'Low' };
+    const sevCounts = { critical:0, high:0, medium:0, low:0 };
+    incidents.forEach(i => {
+      const k = (i.severity || 'high').toLowerCase();
+      if (sevCounts[k] !== undefined) sevCounts[k]++;
+    });
+    document.getElementById('statSeverityBreakdown').innerHTML = SEV_ORDER
+      .filter(k => sevCounts[k] > 0)
+      .map(k => `
+        <div class="row">
+          <span class="label"><span class="dot" style="background:${SEV_BORDER[k]};"></span>${SEV_LABEL[k]}</span>
+          <span class="count" style="color:${SEV_BORDER[k]} !important;">${sevCounts[k]}</span>
+        </div>`).join('');
+
     // ── Sector breakdown — count incidents per top-level sector ──
     const sectorCounts = {};
     incidents.forEach(i => {
@@ -488,9 +512,9 @@ async function loadData() {
     });
     const sortedSectors = Object.entries(sectorCounts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
     document.getElementById('statSectorBreakdown').innerHTML = sortedSectors.map(([name, n]) =>
-      `<div style="display:flex; justify-content:space-between; gap:12px;">
-        <span style="text-transform:uppercase; color:#8892a6 !important;">${name}</span>
-        <span style="color:#ff9f1c !important; font-weight:600;">${n}</span>
+      `<div class="row">
+        <span class="label">${name}</span>
+        <span class="count" style="color:#ff9f1c !important;">${n}</span>
       </div>`
     ).join('');
     document.getElementById('breachCount').textContent   = incidentCount + ' Incidents';
