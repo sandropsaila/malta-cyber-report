@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-15T17:40:35.000Z",
+  "fetched": "2026-07-16T09:47:52.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -669,5 +669,17 @@
     "ransomlook.io",
     "redpacketsecurity.com"
   ],
-  "last_sweep_note": "Full A-F Targeted Sweep executed 15 July 2026. No new incidents surfaced beyond the 17 already listed. Regulatory context: Dr Reno Borg took oath as new IDPC Commissioner on 22 April 2026 (5-year term), replacing Ian Deguara whose mandate ended 23 April 2026."
+  "last_sweep_note": "Full A-F Targeted Sweep executed 15 July 2026. No new incidents surfaced beyond the 17 already listed. Regulatory context: Dr Reno Borg took oath as new IDPC Commissioner on 22 April 2026 (5-year term), replacing Ian Deguara whose mandate ended 23 April 2026.",
+  "key_statistics": [
+    {
+      "id": "idpc-breach-notifications-2018-2023",
+      "value": 544,
+      "label_short": "IDPC Breach Notifications",
+      "label_range": "May 2018 \u2013 Oct 2023",
+      "description": "Personal data breach notifications filed with the Malta Information and Data Protection Commissioner (IDPC) from GDPR entering into force on 25 May 2018 through 10 October 2023. 49 of these were reported between 28 January 2023 and 10 October 2023.",
+      "source_name": "Linklaters \u2014 Data Protected: Malta (citing IDPC statements)",
+      "source_url": "https://www.linklaters.com/en/insights/data-protected/data-protected---malta",
+      "as_of_date": "10 October 2023"
+    }
+  ]
 }

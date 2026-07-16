@@ -261,7 +261,7 @@
     C-Planet: 330K+ voter records leaked — 2020 &nbsp;·&nbsp;
     BOV €13M cyber heist — February 2019 &nbsp;·&nbsp;
     FreeHour ethical hacking case triggers law reform — 2022–2025 &nbsp;·&nbsp;
-    544 breach notifications filed with IDPC (2018–2023) &nbsp;·&nbsp;
+    544 breach notifications filed with IDPC (May 2018 – Oct 2023) &nbsp;·&nbsp;
   </span>
 </div>
 
@@ -274,10 +274,10 @@
     <div class="stat-num" style="color:#ff9f1c !important;" id="statSectors">—</div>
     <div class="stat-label" style="color:#6b7585 !important;">Sectors<br>Affected</div>
   </div>
-  <div class="stat-box sb-red" style="background:#111318 !important;">
-    <div class="stat-num" style="color:#e63946 !important;">544</div>
-    <div class="stat-label" style="color:#6b7585 !important;">IDPC Breach<br>Notifications (2018–23)</div>
-  </div>
+  <a id="statIdpcCard" href="#" target="_blank" rel="noopener" class="stat-box sb-red" style="background:#111318 !important; text-decoration:none;" title="Click to view source">
+    <div class="stat-num" style="color:#e63946 !important;" id="statIdpcValue">—</div>
+    <div class="stat-label" style="color:#6b7585 !important;">IDPC Breach<br>Notifications (<span id="statIdpcRange">—</span>) <span style="opacity:0.6; font-size:0.75em;">↗ source</span></div>
+  </a>
 
 </div>
 
@@ -461,6 +461,16 @@ async function loadData() {
     document.getElementById('breachCount').textContent   = incidentCount + ' Incidents';
     document.getElementById('courtCount').textContent    = cases.length + ' Cases';
     document.getElementById('cardCount').textContent     = incidentCount + ' Events';
+
+    // ── Hydrate IDPC stat card from key_statistics ──
+    const idpcStat = (data.key_statistics || []).find(s => s.id === 'idpc-breach-notifications-2018-2023');
+    if (idpcStat) {
+      document.getElementById('statIdpcValue').textContent = idpcStat.value.toLocaleString();
+      document.getElementById('statIdpcRange').textContent = idpcStat.label_range;
+      const card = document.getElementById('statIdpcCard');
+      card.href = idpcStat.source_url;
+      card.title = idpcStat.source_name + ' — as of ' + idpcStat.as_of_date;
+    }
 
     // ── Header & footer dates ──
     if (data.fetched) {
