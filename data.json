@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-16T19:15:54.000Z",
+  "fetched": "2026-07-16T19:20:40.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -234,31 +234,6 @@
         ]
       },
       "month": "Feb"
-    },
-    {
-      "id": 8,
-      "title": "MSS \u2014 Phishing, Ransomware & DDoS Surge (Public Sector & SMEs)",
-      "year": "2023\u20132024",
-      "severity": "high",
-      "sector": "Government / National Security",
-      "type": "Phishing / Ransomware / DDoS",
-      "records": "Public sector staff + Malta SMEs",
-      "summary": "MSS annual reports for 2023 and 2024, tabled in Parliament in 2025, confirmed a surge in cyberattacks coinciding with Malta's UN Security Council tenure and OSCE chairmanship. Incidents included phishing at public sector employees, ransomware on SMEs, and DDoS attacks. Mostly financially motivated; no direct link to diplomatic activity established.",
-      "malta_connection": "MSS is Malta's national security service; attacks targeted Maltese govt staff and Malta-based SMEs",
-      "source_name": "MaltaToday (MSS Annual Reports)",
-      "source_url": "https://www.maltatoday.com.mt/news/national/135540/cyberattacks_rose_as_malta_assumed_top_posts_secret_service_report_shows",
-      "analysis": {
-        "prevention": "Malta's elevated geopolitical profile during UN/OSCE tenures created a predictable attack opportunity window. Government departments should have received heightened security briefings and implemented temporary additional controls (increased MFA enforcement, phishing simulation campaigns, VPN mandates) ahead of these periods. SMEs in Malta's supply chain should have been given guidance on DDoS mitigation and ransomware preparedness.",
-        "detection": "Centralised government SIEM (managed by MITA) should aggregate logs from all ministries. Phishing simulation baselines would have established click-rate benchmarks to detect a campaign spike. DNS-layer protection (e.g. Cisco Umbrella) would have blocked C2 communications from ransomware infections.",
-        "improvement": "Establish a Maltese Government CERT with 24/7 monitoring capability. Implement a threat intelligence sharing platform between government departments and critical SMEs. Run mandatory cyber exercises ahead of high-profile international events. Extend MITA's security services to smaller government agencies.",
-        "monitoring_controls": [
-          "Centralised Government SIEM (MITA)",
-          "DNS-layer protection (Cisco Umbrella/Cloudflare Gateway)",
-          "Email anti-phishing (DMARC + anti-spoofing)",
-          "Ransomware honeypots in government networks",
-          "Threat intelligence feeds (MISP/ISACs)"
-        ]
-      }
     },
     {
       "id": 9,
@@ -720,6 +695,39 @@
           "Centralised scam reporting portal (FCID)",
           "Real-time AI voice cloning detection at network layer",
           "Public awareness campaigns via TVM, Newsbook, MaltaToday"
+        ]
+      }
+    }
+  ],
+  "threat_reports": [
+    {
+      "id": "tr-001",
+      "title": "MSS Annual Threat Reports 2023\u20132024 \u2014 Public Sector & SME Attack Surge",
+      "reporting_body": "Malta Security Service (MSS)",
+      "period_covered": "2023\u20132024",
+      "published": "2025 (tabled in Parliament)",
+      "scope": "Public Sector & Maltese SMEs",
+      "severity_signal": "high",
+      "summary": "MSS annual reports for 2023 and 2024, tabled in Parliament in 2025, confirmed a surge in cyberattacks coinciding with Malta's UN Security Council tenure and OSCE chairmanship. Incidents included phishing at public sector employees, ransomware on SMEs, and DDoS attacks. Mostly financially motivated; no direct link to diplomatic activity established.",
+      "malta_connection": "MSS is Malta's national security service; attacks targeted Maltese govt staff and Malta-based SMEs",
+      "source_name": "MaltaToday (MSS Annual Reports)",
+      "source_url": "https://www.maltatoday.com.mt/news/national/135540/cyberattacks_rose_as_malta_assumed_top_posts_secret_service_report_shows",
+      "key_findings": [
+        "Surge in cyberattacks against Maltese public sector and SMEs during 2023\u20132024",
+        "Timing coincided with Malta's UN Security Council tenure and OSCE chairmanship",
+        "Attack mix: phishing against public-sector employees, ransomware on SMEs, DDoS incidents",
+        "Motivation predominantly financial; no direct link to diplomatic activity established by MSS"
+      ],
+      "recommendations": {
+        "prevention": "Malta's elevated geopolitical profile during UN/OSCE tenures created a predictable attack opportunity window. Government departments should have received heightened security briefings and implemented temporary additional controls (increased MFA enforcement, phishing simulation campaigns, VPN mandates) ahead of these periods. SMEs in Malta's supply chain should have been given guidance on DDoS mitigation and ransomware preparedness.",
+        "detection": "Centralised government SIEM (managed by MITA) should aggregate logs from all ministries. Phishing simulation baselines would have established click-rate benchmarks to detect a campaign spike. DNS-layer protection (e.g. Cisco Umbrella) would have blocked C2 communications from ransomware infections.",
+        "improvement": "Establish a Maltese Government CERT with 24/7 monitoring capability. Implement a threat intelligence sharing platform between government departments and critical SMEs. Run mandatory cyber exercises ahead of high-profile international events. Extend MITA's security services to smaller government agencies.",
+        "monitoring_controls": [
+          "Centralised Government SIEM (MITA)",
+          "DNS-layer protection (Cisco Umbrella/Cloudflare Gateway)",
+          "Email anti-phishing (DMARC + anti-spoofing)",
+          "Ransomware honeypots in government networks",
+          "Threat intelligence feeds (MISP/ISACs)"
         ]
       }
     }
