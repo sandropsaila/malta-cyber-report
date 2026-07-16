@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-16T19:13:09.000Z",
+  "fetched": "2026-07-16T19:15:54.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -340,7 +340,7 @@
     {
       "id": 12,
       "title": "FreeHour App \u2014 Vulnerability Disclosure & Legal Controversy",
-      "year": "2022\u20132025",
+      "year": "2022",
       "severity": "medium",
       "sector": "Education",
       "type": "API vulnerability (ethical disclosure)",
@@ -360,7 +360,8 @@
           "Static Application Security Testing (SAST)",
           "Responsible Disclosure Policy (VDP)"
         ]
-      }
+      },
+      "month": "Oct"
     },
     {
       "id": 13,
