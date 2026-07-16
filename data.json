@@ -1,12 +1,12 @@
 {
-  "fetched": "2026-07-16T17:59:42.000Z",
+  "fetched": "2026-07-16T18:00:50.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
       "title": "LeoVegas Group (MGA-Licensed) \u2014 HELLCAT Ransomware via Stolen Jira Credentials",
       "year": "2025",
       "severity": "high",
-      "sector": "iGaming / Online Gaming (MGA-licensed)",
+      "sector": "Technology / iGaming",
       "type": "Ransomware / Credential theft (infostealer-enabled)",
       "records": "Internal files, emails and financial records exfiltrated",
       "summary": "On 5 April 2025 the HELLCAT ransomware group published LeoVegas Group \u2014 an MGA-licensed online gaming operator \u2014 as one of four new victims, alongside HighWire Press, Asseco Poland and Racami. HudsonRock researchers confirmed all four breaches stemmed from Atlassian Jira credentials harvested by infostealer malware (StealC, Raccoon, Redline, Lumma Stealer) months before the attack. HELLCAT moved laterally inside Jira, exfiltrated internal files, emails and financial records, and threatened to leak the data unless ransoms were paid. This is the same credential-reuse playbook HELLCAT used against Jaguar Land Rover, Telefonica, Schneider Electric and Orange.",
