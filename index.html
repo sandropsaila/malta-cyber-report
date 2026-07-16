@@ -77,8 +77,8 @@
     .stat-breakdown .count { color:#d0d6e2 !important; font-weight:600; font-variant-numeric:tabular-nums; min-width:20px; text-align:right; flex-shrink:0; }
     .stat-breakdown .dot { display:inline-block; width:6px; height:6px; border-radius:1px; margin-right:8px; vertical-align:middle; }
 
-    /* Two-column variant — used when there are many rows (e.g. sectors) */
-    .stat-breakdown--two-col { column-count:2; column-gap:clamp(20px,3vw,40px); column-rule:1px solid #1f2530; }
+    /* Multi-column variant — column-count set dynamically from JS based on row count */
+    .stat-breakdown--multi-col { column-gap:clamp(20px,3vw,40px); column-rule:1px solid #1f2530; }
 
     /* SECTION */
     .section { margin-bottom:52px; }
@@ -273,7 +273,7 @@
   <div class="stat-box sb-amber" style="background:#111318 !important;">
     <div class="stat-row">
       <div class="stat-num" style="color:#ff9f1c !important;" id="statSectors">—</div>
-      <div class="stat-breakdown stat-breakdown--two-col" id="statSectorBreakdown"></div>
+      <div class="stat-breakdown stat-breakdown--multi-col" id="statSectorBreakdown"></div>
     </div>
     <div class="stat-label" style="color:#6b7585 !important;">Sectors Affected</div>
   </div>
@@ -522,7 +522,11 @@ async function loadData() {
       sectorCounts[key] = (sectorCounts[key] || 0) + 1;
     });
     const sortedSectors = Object.entries(sectorCounts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-    document.getElementById('statSectorBreakdown').innerHTML = sortedSectors.map(([name, n]) =>
+    const sectorEl = document.getElementById('statSectorBreakdown');
+    // Max 3 rows per column — compute column count from data
+    const MAX_ROWS_PER_COL = 3;
+    sectorEl.style.columnCount = Math.max(1, Math.ceil(sortedSectors.length / MAX_ROWS_PER_COL));
+    sectorEl.innerHTML = sortedSectors.map(([name, n]) =>
       `<div class="row">
         <span class="label">${name}</span>
         <span class="count" style="color:#ff9f1c !important;">${n}</span>
