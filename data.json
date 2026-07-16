@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-16T11:06:31.000Z",
+  "fetched": "2026-07-16T17:57:47.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -398,6 +398,31 @@
           "Shodan self-scan of government IP ranges",
           "Pre-launch security checklist (MITA-mandated)",
           "GDPR Article 25 Privacy by Design review"
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "title": "Adrian Delia (PN Leader) \u2014 Twitter Account Attack from Multiple European Locations",
+      "year": "2019",
+      "severity": "medium",
+      "sector": "Political / Civil Society",
+      "type": "Account takeover attempt / Coordinated credential attack",
+      "records": "Twitter account credentials targeted; no confirmed compromise",
+      "summary": "On 17 January 2019 the Nationalist Party (PN) confirmed that Opposition Leader Adrian Delia's Twitter account had come under a coordinated cyber attack, with login attempts originating from multiple locations across Europe. The PN's social media team took immediate action to safeguard the affected profiles and no account takeover was ultimately confirmed. The party described the attack as 'coordinated and malicious' against Delia and the party, noting it occurred while he was publicly criticising the government's decisions on the transfer of public land to private entrepreneurs and the earlier privatisation of public hospitals to Vitals / Steward. This is the second known cyber-attack on the PN in this period; the party's IT infrastructure was later hit by a full ransomware attack in 2021 (see separate entry).",
+      "malta_connection": "Adrian Delia was Leader of the Nationalist Party and Leader of the Opposition in the Maltese Parliament (Sep 2017 \u2013 Oct 2020). Targeting the account of the country's constitutional Opposition Leader is a direct attack on Maltese democratic institutions and political speech.",
+      "source_name": "The Malta Independent",
+      "source_url": "https://www.independent.com.mt/articles/2019-01-17/local-news/Cyber-attack-on-Adrian-Delia-Twitter-account-from-several-places-around-Europe-6736202187",
+      "analysis": {
+        "prevention": "Public political figures and their staff should treat social media accounts as high-value targets requiring the strongest available account protections: phishing-resistant MFA (hardware security keys / FIDO2), unique long passphrases per account, dedicated 'political' devices separated from personal ones, and strict social-media platform 'protect-account' features (Twitter/X 'Advanced protection' or equivalent). Account access should be limited to a small named team with individually audited credentials rather than shared logins.",
+        "detection": "Twitter/X's login-attempt notifications, IP-geolocation anomaly alerts and session-management dashboards would flag simultaneous login attempts from multiple European locations. Political parties should route account activity through a monitored console (e.g. Hootsuite, Sprout Social) with audit logging so credential-stuffing bursts are visible in near-real-time.",
+        "improvement": "Adopt a formal political-cyber-hygiene playbook covering all elected officials and candidates. Coordinate with the Maltese Cyber Crime Unit (FCID) and international bodies such as ENISA \u2014 attacks on political actors are a recognised EU-wide election-integrity risk. Preserve forensic evidence (IP logs, attempt timestamps) even when the attack is unsuccessful, to support later attribution and prosecution.",
+        "monitoring_controls": [
+          "Twitter/X native login alerts and session review",
+          "Hardware-key (FIDO2) MFA on all political accounts",
+          "Password-manager with breach-monitoring for political staff",
+          "Monitored social-media management console with audit logs",
+          "Coordination channel with FCID for political-target incidents"
         ]
       }
     }
