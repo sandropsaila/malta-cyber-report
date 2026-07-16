@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-16T18:06:17.000Z",
+  "fetched": "2026-07-16T18:12:44.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -281,7 +281,7 @@
       "title": "C-Planet IT Solutions \u2014 Maltese Voter Database Leak",
       "year": "2020",
       "severity": "critical",
-      "sector": "Political / Civil Society",
+      "sector": "Technology / IT Services",
       "type": "Unlawful data collection & exposure",
       "records": "330,000+ voters (98% of electorate)",
       "summary": "In April 2020 a database on C-Planet servers exposed PII of 330,000+ Maltese voters including names, ID card numbers, dates of birth and political opinions. IDPC fined C-Planet \u20ac65,000 in January 2022 \u2014 at the time Malta's highest GDPR fine. Origin of the data remains disputed.",
