@@ -87,6 +87,16 @@
     .section-title { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:2px; text-transform:uppercase; color:#fff !important; }
     .section-count { font-family:'IBM Plex Mono',monospace; font-size:10px; color:#6b7585 !important; border:1px solid #1f2530; padding:3px 8px; }
 
+    /* Table filters */
+    .filter-row th { background:#0d0f14 !important; padding:6px 10px !important; border-top:1px solid #1f2530; border-bottom:1px solid #1f2530; }
+    .filter-ctrl { width:100%; box-sizing:border-box; background:#0a0c10 !important; border:1px solid #1f2530; color:#d0d6e2 !important; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.5px; padding:5px 8px; outline:none; text-transform:uppercase; }
+    .filter-ctrl:focus { border-color:#e63946; }
+    .filter-ctrl::placeholder { color:#4a5568; text-transform:uppercase; }
+    select.filter-ctrl { appearance:none; -webkit-appearance:none; background-image:linear-gradient(45deg, transparent 50%, #6b7585 50%),linear-gradient(135deg, #6b7585 50%, transparent 50%); background-position:calc(100% - 12px) 50%, calc(100% - 7px) 50%; background-size:5px 5px, 5px 5px; background-repeat:no-repeat; padding-right:22px; cursor:pointer; }
+    .filter-clear { background:#e63946 !important; color:#0a0c10 !important; border:none; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; padding:5px 10px; cursor:pointer; font-weight:600; }
+    .filter-clear:hover { background:#c72c3a !important; }
+    .filter-empty td { color:#6b7585 !important; font-family:'IBM Plex Mono',monospace; font-size:12px; padding:24px 14px !important; text-align:center; }
+
     /* LIVE NEWS SECTION */
     .live-status { font-family:'IBM Plex Mono',monospace; font-size:12px; color:#6b7585 !important; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
     .spinner { width:14px; height:14px; border:2px solid #1f2530; border-top-color:#e63946; border-radius:50%; animation:spin 0.8s linear infinite; flex-shrink:0; }
@@ -298,12 +308,21 @@
     <div class="section-header">
       <div class="section-title">Confirmed Breaches</div>
       <div class="section-count" id="breachCount">Loading...</div>
+      <button id="clearFilters" class="filter-clear" style="display:none;">Clear filters ✕</button>
     </div>
     <div class="tbl-wrap">
       <table>
         <thead>
           <tr>
             <th>Sector</th><th>Incident</th><th>Year</th><th>Severity</th><th class="hide-mobile">Type</th><th class="hide-mobile">Impact</th>
+          </tr>
+          <tr class="filter-row">
+            <th><select id="fSector" class="filter-ctrl"><option value="">All</option></select></th>
+            <th><input id="fIncident" class="filter-ctrl" type="text" placeholder="Search…" /></th>
+            <th><select id="fYear" class="filter-ctrl"><option value="">All</option></select></th>
+            <th><select id="fSeverity" class="filter-ctrl"><option value="">All</option></select></th>
+            <th class="hide-mobile"><input id="fType" class="filter-ctrl" type="text" placeholder="Search…" /></th>
+            <th class="hide-mobile"><input id="fImpact" class="filter-ctrl" type="text" placeholder="Search…" /></th>
           </tr>
         </thead>
         <tbody id="breachBody">
@@ -457,20 +476,82 @@ async function loadData() {
 
     const incidents = (data.confirmed_incidents || []).slice().sort((a, b) => yearKey(b.year) - yearKey(a.year));
     document.getElementById('breachCount').textContent = incidents.length + ' Incidents';
-    document.getElementById('breachBody').innerHTML = incidents.map((inc, i) => `
-      <tr style="background:${i%2===0?'#0a0c10':'#0d0f14'} !important;">
-        <td style="color:#d0d6e2 !important; font-weight:600; white-space:nowrap;">${inc.sector}</td>
-        <td>
-          <a href="incident.html?id=${inc.id}"
-             style="color:#2ec4b6 !important; text-decoration:none; font-weight:600; line-height:1.4; display:block;">
-            ${inc.title} <span style="font-size:10px; opacity:0.6;">↗</span>
-          </a>
-        </td>
-        <td><span class="yr-tag" style="white-space:nowrap;">${formatDate(inc)}</span></td>
-        <td>${SEV_PILL[inc.severity] || SEV_PILL.high}</td>
-        <td class="hide-mobile" style="color:#b0b8cc !important;">${inc.type}</td>
-        <td class="hide-mobile" style="color:#b0b8cc !important;">${inc.records}</td>
-      </tr>`).join('');
+
+    // ── Populate filter dropdowns from data ──
+    const uniq = (arr) => [...new Set(arr)].filter(Boolean);
+    const populate = (id, values, sorter) => {
+      const el = document.getElementById(id);
+      const sorted = sorter ? [...values].sort(sorter) : [...values].sort();
+      sorted.forEach(v => {
+        const opt = document.createElement('option');
+        opt.value = v; opt.textContent = v;
+        el.appendChild(opt);
+      });
+    };
+    populate('fSector', uniq(incidents.map(i => i.sector)));
+    populate('fYear',   uniq(incidents.map(i => i.year)), (a,b) => yearKey(b)-yearKey(a));
+    // Severity fixed order: critical > high > medium > low
+    const SEV_ORDER_KEY = { critical:0, high:1, medium:2, low:3 };
+    populate('fSeverity', uniq(incidents.map(i => (i.severity||'high'))), (a,b) => (SEV_ORDER_KEY[a]??9)-(SEV_ORDER_KEY[b]??9));
+
+    // ── Filter state and render ──
+    const filterState = { sector:'', incident:'', year:'', severity:'', type:'', impact:'' };
+    const renderBreaches = () => {
+      const rows = incidents.filter(i => {
+        if (filterState.sector   && i.sector !== filterState.sector) return false;
+        if (filterState.year     && i.year !== filterState.year) return false;
+        if (filterState.severity && (i.severity||'high') !== filterState.severity) return false;
+        if (filterState.incident && !(i.title||'').toLowerCase().includes(filterState.incident.toLowerCase())) return false;
+        if (filterState.type     && !(i.type||'').toLowerCase().includes(filterState.type.toLowerCase())) return false;
+        if (filterState.impact   && !(i.records||'').toLowerCase().includes(filterState.impact.toLowerCase())) return false;
+        return true;
+      });
+      document.getElementById('breachCount').textContent = rows.length + (rows.length === incidents.length ? '' : ' / ' + incidents.length) + ' Incidents';
+      if (rows.length === 0) {
+        document.getElementById('breachBody').innerHTML = `<tr class="filter-empty"><td colspan="6">No incidents match the current filters.</td></tr>`;
+        return;
+      }
+      document.getElementById('breachBody').innerHTML = rows.map((inc, i) => `
+        <tr style="background:${i%2===0?'#0a0c10':'#0d0f14'} !important;">
+          <td style="color:#d0d6e2 !important; font-weight:600; white-space:nowrap;">${inc.sector}</td>
+          <td>
+            <a href="incident.html?id=${inc.id}"
+               style="color:#2ec4b6 !important; text-decoration:none; font-weight:600; line-height:1.4; display:block;">
+              ${inc.title} <span style="font-size:10px; opacity:0.6;">↗</span>
+            </a>
+          </td>
+          <td><span class="yr-tag" style="white-space:nowrap;">${formatDate(inc)}</span></td>
+          <td>${SEV_PILL[inc.severity] || SEV_PILL.high}</td>
+          <td class="hide-mobile" style="color:#b0b8cc !important;">${inc.type}</td>
+          <td class="hide-mobile" style="color:#b0b8cc !important;">${inc.records}</td>
+        </tr>`).join('');
+    };
+
+    // ── Wire filter events ──
+    const filterMap = [
+      { id:'fSector',   key:'sector',   event:'change' },
+      { id:'fIncident', key:'incident', event:'input'  },
+      { id:'fYear',     key:'year',     event:'change' },
+      { id:'fSeverity', key:'severity', event:'change' },
+      { id:'fType',     key:'type',     event:'input'  },
+      { id:'fImpact',   key:'impact',   event:'input'  }
+    ];
+    const clearBtn = document.getElementById('clearFilters');
+    const anyFilterActive = () => Object.values(filterState).some(v => v);
+    filterMap.forEach(f => {
+      document.getElementById(f.id).addEventListener(f.event, e => {
+        filterState[f.key] = e.target.value.trim();
+        clearBtn.style.display = anyFilterActive() ? 'inline-block' : 'none';
+        renderBreaches();
+      });
+    });
+    clearBtn.addEventListener('click', () => {
+      Object.keys(filterState).forEach(k => filterState[k] = '');
+      filterMap.forEach(f => document.getElementById(f.id).value = '');
+      clearBtn.style.display = 'none';
+      renderBreaches();
+    });
+    renderBreaches();
 
     // ── TABLE 2: Court Cases ──
     const cases = (data.court_cases || []).slice().sort((a, b) => yearKey(b.year) - yearKey(a.year));
@@ -580,7 +661,6 @@ async function loadData() {
         <span class="count" style="color:#ff9f1c !important;">${n}</span>
       </div>`
     ).join('');
-    document.getElementById('breachCount').textContent   = incidentCount + ' Incidents';
     document.getElementById('courtCount').textContent    = cases.length + ' Cases';
     document.getElementById('cardCount').textContent     = incidentCount + ' Events';
 
