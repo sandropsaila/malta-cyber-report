@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-07-16T19:33:58.000Z",
+  "fetched": "2026-07-20T10:04:21.000Z",
   "confirmed_incidents": [
     {
       "id": 16,
@@ -659,7 +659,7 @@
     "ransomlook.io",
     "redpacketsecurity.com"
   ],
-  "last_sweep_note": "Full A-F Targeted Sweep executed 16 July 2026. No new incidents surfaced. Regulatory context: (1) Legal Notice 89 of 2026 established a new Enforcement Committee under Malta's NIS2 framework, with CIPD as national supervisory authority and CSIRT Malta handling cyber incident coordination; (2) MFSA released its first Cyber Threats Awareness Brief (Jun 2026); (3) MFSA imposed a \u20ac2,400 administrative penalty on a CSP for missed 2022 Annual Compliance Return (2 Jul 2026).",
+  "last_sweep_note": "Deeper sweep executed 16 July 2026 covering: (a) Q1 2026 backfill (Jan/Feb \u2014 no incidents surfaced before MGA in March); (b) 2023-2024 backfill via IDPC decision register, Maltese portals, and MSS reports \u2014 confirmed via MSS that phishing, ransomware and DDoS incidents did occur against public sector and SMEs during Malta's UNSC tenure, but victim organisations were NEVER publicly named, explaining the 2023-2024 gap in individual incidents; (c) Ransomware-group deep-dive across Qilin, Akira, LockBit, Play, RansomHub \u2014 Qilin has 500+ 2026 victims globally but no Malta targets; (d) iGaming trade press (NEXT.io, iGaming Business, SiGMA) \u2014 no incidents beyond MGA already in report; (e) IDPC 2023-2024 decisions register \u2014 no named breach cases publicly surfaced.",
   "key_statistics": [
     {
       "id": "idpc-breach-notifications-2018-2023",
