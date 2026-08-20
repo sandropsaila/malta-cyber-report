@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-08-20T18:40:58.000Z",
+  "fetched": "2026-08-20T18:47:48.000Z",
   "confirmed_incidents": [
     {
       "id": 19,
@@ -744,7 +744,7 @@
     "ieeexplore.ieee.org",
     "link.springer.com"
   ],
-  "last_sweep_note": "Nimble-augmented sweep executed 20 July 2026. New incident surfaced via Nimble country-filtered search (country=MT) on Legal-ISAC RansomWatch: Tax-MT (Maltese accounting firm) listed on Play ransomware leak site 22 Jul 2026 \u2014 missed by all previous standard web-search sweeps.",
+  "last_sweep_note": "Full Nimble-augmented A-I sweep executed 20 August 2026. Sources queried: Nimble country=MT news (week & month), Nimble deep general (.com.mt/.gov.mt), Legal-ISAC RansomWatch (extracted; JS-driven \u2014 no new MT country entries), breachsense.com August 2026 page (extracted; 0 .mt domain victims found), CSIRT Malta / CIPD / MDIA / MITA advisories, NIS2 & CRA reporting frameworks. No new confirmed incidents beyond the 17 already listed. Tax-MT/Play (July 2026) remains the most recent verified Malta breach. Regulatory context: CRA reporting obligations enter into force 11 September 2026.",
   "key_statistics": [
     {
       "id": "idpc-breach-notifications-2018-2023",
