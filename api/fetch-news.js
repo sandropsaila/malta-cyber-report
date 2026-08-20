@@ -68,6 +68,22 @@ D. INCIDENT-TRACKER SWEEP — scan named incident trackers for any Malta entry:
 E. REGULATOR ENFORCEMENT SWEEP — directly read enforcement/decision registers:
    - mga.org.mt enforcement register, mfsa.mt enforcement dashboard, idpc.org.mt decisions
 F. NEWS / SOCIAL SWEEP — the 11 Maltese portals + LinkedIn/X/Reddit (as before)
+G. NIMBLE INTELLIGENCE SWEEP (when running via Claude Chat/App with MCP access):
+   Nimble's country-filtered search, news focus, and deep extraction find intel that
+   standard web_search misses — country="MT" surfaces Malta-tagged results from trackers
+   that don't title-tag by country. Run these Nimble queries:
+   - nimble_search(query="Malta cyber attack ransomware", country="MT", focus="news", time_range="month")
+     — Malta-geo news aggregation
+   - nimble_search(query=".com.mt OR .gov.mt data breach ransomware", focus="general",
+     search_depth="deep", time_range="year") — deep web extraction of Malta domain victims
+   - nimble_search(query="[victim domain] Malta company", search_depth="deep") to verify
+     ambiguous MT vs Mato Grosso (Brazil) domain hits
+   - nimble_extract on Legal-ISAC RansomWatch (legal-isac.org/ransomware) and
+     breachsense.com month pages for structured victim data with country codes
+   - For ambiguous ".mt" domains: Malta always has .com.mt / .gov.mt / .edu.mt / .org.mt;
+     Brazilian Mato Grosso uses .mt.gov.br — never confuse the two
+   This is how Tax-MT/Play ransomware was discovered in July 2026, missed by 6 prior
+   standard-search sweeps.
 
 For EACH category A-F run at least one dedicated query. Do NOT rely on a single broad
 "Malta cyberattack" search — that is exactly what missed the Intercomp Malta / Akira incident.
@@ -116,9 +132,15 @@ SWEEP E — Regulator enforcement sweep: mga.org.mt enforcement register, mfsa.m
 SWEEP F — News/social sweep: 11 Maltese portals (maltatoday, timesofmalta, independent,
   theshiftnews, lovinmalta, newsbook, netnews, onenews, tvm, illum, maltadaily), iGaming
   (igamingcapital, next.io, tribuna.com, sigma.world), LinkedIn, X, Reddit r/malta.
+SWEEP G — Nimble intelligence sweep (manual runs with MCP access only): country="MT"
+  filtered nimble_search on news + general focus; nimble_extract on Legal-ISAC
+  RansomWatch (legal-isac.org/ransomware) and breachsense.com month pages; verify any
+  ambiguous ".mt" domain (Malta .com.mt / .gov.mt vs Brazilian Mato Grosso .mt.gov.br).
 
-Run at least one dedicated query per category A-F. Apply the strict Malta-relevance filter.
-Include leak-site-only victims with no news coverage. Return JSON array only.`
+Run at least one dedicated query per category A-G (skip G on automated backend runs
+that lack MCP access — the automated Claude API cannot call Nimble tools). Apply the
+strict Malta-relevance filter. Include leak-site-only victims with no news coverage.
+Return JSON array only.`
       }]
     });
 
@@ -191,7 +213,8 @@ async function main() {
     "csis.org/significant-cyber-incidents","cnas.org/cyber-incident-tracker",
     "breachsense.com/blog","f6s.com/infostealer-detection",
     "infosecurityeurope.com","shadowdragon.io/resources",
-    "Shodan","VirusTotal/MalwareBazaar","Google News","spc.int","density.io"
+    "Shodan","VirusTotal/MalwareBazaar","Google News","spc.int","density.io",
+    "Nimble (nimbleway.com — country=MT filtered search)","legal-isac.org RansomWatch"
   ];
 
   // Write updated data.json — preserve curated data, update live feed + timestamp

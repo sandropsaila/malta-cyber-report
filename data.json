@@ -1,6 +1,32 @@
 {
-  "fetched": "2026-07-20T10:04:21.000Z",
+  "fetched": "2026-08-20T18:22:32.000Z",
   "confirmed_incidents": [
+    {
+      "id": 19,
+      "title": "Tax-MT \u2014 Play Ransomware, Listed on Dark Web Leak Site",
+      "year": "2026",
+      "month": "Jul",
+      "severity": "high",
+      "sector": "Technology / IT Services",
+      "type": "Ransomware (Play) / Double extortion",
+      "records": "Undisclosed \u2014 accounting client data at risk",
+      "summary": "Tax-MT (tax-mt.com), a Maltese accounting and tax-services firm, was listed as a victim on the Play ransomware group's dark web leak site on 22 July 2026. The listing was surfaced via Legal-ISAC RansomWatch and breachsense.com \u2014 Malta country-tagged (MT), Business Services sector. Play is one of the most active ransomware operations of 2025-2026, typically gaining initial access via unpatched SSL VPN appliances (Fortinet, SonicWall, Cisco ASA) or compromised RDP credentials, and follows a double-extortion playbook: exfiltrating data before deploying encryption, then threatening to publish stolen files if a ransom is not paid. The victim's exposed content had not been public-sampled at the time of listing. As an accounting-services provider, a compromise carries direct data-protection risk for the firm's Maltese business clients, including sensitive tax filings, VAT records and financial statements.",
+      "malta_connection": "tax-mt.com is a Maltese accounting and tax firm operating under Maltese jurisdiction. Detected via Nimble country-filtered search (country=MT) on Legal-ISAC RansomWatch and breachsense.com \u2014 not surfaced by standard web search or Maltese news portals at the time of discovery.",
+      "source_name": "Legal-ISAC RansomWatch \u00b7 breachsense.com (Play leak site)",
+      "source_url": "https://www.breachsense.com/breaches/2026/july/",
+      "analysis": {
+        "prevention": "Play ransomware's dominant initial-access vectors are unpatched SSL VPN appliances (Fortinet FortiGate, SonicWall, Cisco ASA) and internet-exposed RDP with weak or reused credentials. An accounting firm handling client tax data must patch all internet-facing appliances within days of vendor advisories, enforce phishing-resistant MFA (FIDO2/hardware keys) on VPN and remote-access accounts, and disable RDP or gate it behind a strict jump-host with conditional access. Network segmentation limits lateral movement \u2014 client databases and file servers should not sit on the same broadcast domain as user workstations.",
+        "detection": "Play typically dwells only hours before encryption, so detection must be behavioural not signature-based. EDR with anomalous-encryption alerts, sudden mass file-rename detection, and off-hours admin-account activity monitoring is essential. For accounting firms, dark-web leak-site monitoring for the firm's own domain (as this incident demonstrates) is often the earliest \u2014 and sometimes only \u2014 external warning.",
+        "improvement": "Maintain offline immutable backups tested for restore. Establish an incident-response retainer with a Malta-based or EU DFIR firm before an incident. For any breach involving client tax records, GDPR Article 33 mandates notifying the IDPC within 72 hours, and Article 34 requires notifying affected data subjects when the breach is likely to result in a high risk to their rights and freedoms. Coordinate with the Malta Financial Services Authority (MFSA) if any client data touches licensed financial-service activity.",
+        "monitoring_controls": [
+          "VPN / SSL-VPN patch-compliance monitoring (Fortinet, SonicWall, Cisco advisories)",
+          "EDR with behavioural ransomware detection and mass file-rename alerts",
+          "Immutable offline backups with regular restore testing",
+          "Dark-web leak-site monitoring (Legal-ISAC RansomWatch, breachsense) for own + client domains",
+          "Phishing-resistant MFA on all remote access; RDP disabled or gated"
+        ]
+      }
+    },
     {
       "id": 16,
       "title": "LeoVegas Group (MGA-Licensed) \u2014 HELLCAT Ransomware via Stolen Jira Credentials",
@@ -659,7 +685,7 @@
     "ransomlook.io",
     "redpacketsecurity.com"
   ],
-  "last_sweep_note": "Deeper sweep executed 16 July 2026 covering: (a) Q1 2026 backfill (Jan/Feb \u2014 no incidents surfaced before MGA in March); (b) 2023-2024 backfill via IDPC decision register, Maltese portals, and MSS reports \u2014 confirmed via MSS that phishing, ransomware and DDoS incidents did occur against public sector and SMEs during Malta's UNSC tenure, but victim organisations were NEVER publicly named, explaining the 2023-2024 gap in individual incidents; (c) Ransomware-group deep-dive across Qilin, Akira, LockBit, Play, RansomHub \u2014 Qilin has 500+ 2026 victims globally but no Malta targets; (d) iGaming trade press (NEXT.io, iGaming Business, SiGMA) \u2014 no incidents beyond MGA already in report; (e) IDPC 2023-2024 decisions register \u2014 no named breach cases publicly surfaced.",
+  "last_sweep_note": "Nimble-augmented sweep executed 20 July 2026. New incident surfaced via Nimble country-filtered search (country=MT) on Legal-ISAC RansomWatch: Tax-MT (Maltese accounting firm) listed on Play ransomware leak site 22 Jul 2026 \u2014 missed by all previous standard web-search sweeps.",
   "key_statistics": [
     {
       "id": "idpc-breach-notifications-2018-2023",
